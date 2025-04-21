@@ -1,0 +1,39 @@
+LTspice 24.0.12 for Windows
+Circuit: * C:\Users\mshar\Documents\capstone\simulation\turbiditySensor.asc
+Start Time: Sun Apr 20 22:52:51 2025
+solver = Normal
+Maximum thread count: 12
+tnom = 27
+temp = 27
+method = modified trap
+Direct Newton iteration failed to find .op point.  (Use ".option noopiter" to skip.)
+Starting Gmin stepping
+Gmin = 10
+Gmin = 1.07374
+Gmin = 0.115292
+Gmin = 0.0123794
+Gmin = 0.00132923
+vernier = 0.5
+vernier = 0.25
+Gmin = 0.000327952
+vernier = 0.333333
+Gmin = 0.000159192
+vernier = 0.444444
+vernier = 0.592592
+Gmin = 4.86839e-05
+vernier = 0.790123
+vernier = 1
+Gmin = 8.01401e-06
+Gmin = 8.60498e-07
+Gmin = 9.23953e-08
+Gmin = 9.92087e-09
+Gmin = 1.06525e-09
+Gmin = 1.1438e-10
+Gmin = 1.22814e-11
+Gmin = 1.31871e-12
+Gmin = 1.41595e-13
+Gmin = 0
+Gmin stepping succeeded in finding the operating point.
+
+Total elapsed time: 0.369 seconds.
+
