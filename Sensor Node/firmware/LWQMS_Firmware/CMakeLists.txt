@@ -35,11 +35,12 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 file(GLOB DRIVER_SOURCES "sx126x_driver/*.c")
+file(GLOB LIB "lib/*.c")
 
 add_executable(LWQMS_Firmware 
     main.c
-    hal.c
     ${DRIVER_SOURCES}
+    ${LIB}
 )
 
 pico_set_program_name(LWQMS_Firmware "LWQMS_Firmware")
@@ -53,27 +54,32 @@ pico_enable_stdio_usb(LWQMS_Firmware 1)
 target_link_libraries(LWQMS_Firmware
         pico_stdlib
         hardware_spi
+        hardware_watchdog
+        hardware_irq
+        hardware_resets
 )
 
 # Include these directories in the source search
 target_include_directories(LWQMS_Firmware PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
-        ${CMAKE_CURRENT_LIST_DIR}/headers
         ${CMAKE_CURRENT_LIST_DIR}/sx126x_driver
+        ${CMAKE_CURRENT_LIST_DIR}/sx126x_driver/headers
+        ${CMAKE_CURRENT_LIST_DIR}/lib
+        ${CMAKE_CURRENT_LIST_DIR}/lib/headers
 )
 
 # Enable creation of .uf2 file.
 pico_add_extra_outputs(LWQMS_Firmware)
 
-# Create a top-level directory named "firmware" to store the final build artifact
-file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/final_build)
+# Create a top-level directory named "bin" to store the final build binary
+file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
 # Add a custom command that runs after the build is complete.
-# This copies the .uf2 file from the build directory to the "firmware" directory.
+# This copies the .uf2 file from the build directory to the "bin" directory.
 add_custom_command(
     TARGET LWQMS_Firmware POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy
             ${CMAKE_BINARY_DIR}/LWQMS_Firmware.uf2
-            ${CMAKE_SOURCE_DIR}/final_build/LWQMS_Firmware.uf2
-    COMMENT "Copying .uf2 to final_build/ directory"
+            ${CMAKE_SOURCE_DIR}/bin/LWQMS_Firmware.uf2
+    COMMENT "Copying .uf2 to bin/ directory"
 )

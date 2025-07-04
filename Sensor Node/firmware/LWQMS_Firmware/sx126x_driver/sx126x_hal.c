@@ -11,9 +11,9 @@
  * ************************************************************************************/
 
 #include "sx126x_hal.h"
-#include "main.h"
 #include "hardware/spi.h"
 #include "hardware/gpio.h"
+#include "main.h"
 #include "pico/time.h"
 #include "hal.h"
 #include <stdio.h>
@@ -175,9 +175,13 @@ void sx126x_hal_init(const void* context) {
     // First, cast the void pointer context to a radio context
     const sx126x_context_t* radio_inst = (const sx126x_context_t *)context;
 
-    // Initialize all GPIO pins
+    /* Initialize all GPIO pins */
+
+    // Outputs to Radio
     gpio_setup_hal(&(radio_inst->cs), true);
     gpio_setup_hal(&(radio_inst->rst), true);
+
+    // Inputs from radio
     gpio_setup_hal(&(radio_inst->busy), false);
     gpio_setup_hal(&(radio_inst->irq), false);
 
@@ -188,11 +192,54 @@ void sx126x_hal_init(const void* context) {
     gpio_write_hal(&(radio_inst->cs), GPIO_HIGH);
     gpio_write_hal(&(radio_inst->rst), GPIO_HIGH);
 
+    // Register the Radio with the master IRQ handler
+    sx126x_register_radio_irq_pin(radio_inst);
+
     #ifdef DEBUG
         printf("Initialized %s GPIO Pins and SPI interface at %u Hz\n", radio_inst->designator, baud);
     #endif
 
     return;
+}
+
+sx126x_status_t sx126x_hal_initialize_radio(const void* context) {
+
+    bool init_ok = false;
+
+    for (int k = 0; k < SPI_RETRIES; k++) {
+
+        do {
+            // 1. Perform a reset of the radio module
+            if (sx126x_hal_reset(context) != SX126X_STATUS_OK)                          break;
+        
+            // 2. Wakeup the radio
+            if (sx126x_hal_wakeup(context) != SX126X_STATUS_OK)                         break;
+        
+            // 3. Set the regulator mode
+            if (sx126x_set_reg_mode(context, SX126X_REG_MODE_DCDC) != SX126X_STATUS_OK) break;
+        
+            // 4. Set DIO2 to control the RF switch
+            if (sx126x_set_dio2_as_rf_sw_ctrl(context, true) != SX126X_STATUS_OK)       break;
+
+            // 5. Set DIO3 to control the TCXO
+            if (sx126x_set_dio3_as_tcxo_ctrl(context, SX126X_TCXO_CTRL_3_3V, SX126X_TCXO_TIMEOUT) != SX126X_STATUS_OK)  break;
+
+            // 6. Calibrate the radio
+            if (sx126x_cal(context, SX126X_CAL_ALL) != SX126X_STATUS_OK)                break;
+
+            init_ok = true;
+
+        } while (0);
+
+        if (init_ok) {
+            return SX126X_STATUS_OK;
+        }
+    }
+
+    err_raise(ERR_SPI_TRANSACTION_FAIL, ERR_SEV_REBOOT, "SPI Communications failure with SX126X module during radio initialization", "sx126x_hal_initialize_radio");
+
+    return SX126X_STATUS_ERROR;
+
 }
 
 #pragma endregion
