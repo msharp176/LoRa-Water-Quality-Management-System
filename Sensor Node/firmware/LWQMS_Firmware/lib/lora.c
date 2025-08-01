@@ -10,11 +10,7 @@
 *
 *********************************************************************************************************************/
 
-#include "main.h"
-#include "sx126x.h"
 #include "lora.h"
-#include "errs.h"
-#include "sx126x_hal.h"
 
 #pragma region Helper Methods
 
@@ -43,22 +39,60 @@ void set_lora_ldro_val(sx126x_mod_params_lora_t* modulation_params) {
 
 #pragma endregion
 
+#pragma region Initialize Radio
+
+sx126x_status_t sx126x_radio_setup(const void* context) {
+
+    bool init_ok = false;
+
+    for (int k = 0; k < SPI_RETRIES; k++) {
+
+        do {
+            // 1. Perform a reset of the radio module
+            if (sx126x_hal_reset(context) != SX126X_STATUS_OK)                          break;
+        
+            // 2. Wakeup the radio
+            if (sx126x_hal_wakeup(context) != SX126X_STATUS_OK)                         break;
+        
+            // 3. Set the regulator mode
+            if (sx126x_set_reg_mode(context, SX126X_REG_MODE_DCDC) != SX126X_STATUS_OK) break;
+        
+            // 4. Set DIO2 to control the RF switch
+            if (sx126x_set_dio2_as_rf_sw_ctrl(context, true) != SX126X_STATUS_OK)       break;
+
+            // 5. Set DIO3 to control the TCXO
+            if (sx126x_set_dio3_as_tcxo_ctrl(context, SX126X_TCXO_CTRL_3_3V, SX126X_TCXO_TIMEOUT) != SX126X_STATUS_OK)  break;
+
+            // 6. Calibrate the radio
+            if (sx126x_cal(context, SX126X_CAL_ALL) != SX126X_STATUS_OK)                break;
+
+            init_ok = true;
+
+        } while (0);
+
+        if (init_ok) {
+            return SX126X_STATUS_OK;
+        }
+    }
+
+    err_raise(ERR_SPI_TRANSACTION_FAIL, ERR_SEV_REBOOT, "SPI Communications failure with SX126X module during radio initialization", "sx126x_hal_initialize_radio");
+
+    return SX126X_STATUS_ERROR;
+
+}
+
+#pragma endregion
+
 #pragma region TX Init
 
 bool lora_init_tx(  const sx126x_context_t* radio_context, 
                     sx126x_pa_cfg_params_t* power_amplifier_config,
+                    sx126x_mod_params_lora_t* lora_modulation_parameters, 
                     int8_t  txPower,
-                    sx126x_ramp_time_t ramp_time
+                    sx126x_ramp_time_t ramp_time,
+                    uint8_t sync_word
 ) {
-    /**
-     * Per the datasheet, to setup the sx126x for TX mode:
-     *  1. Put the chip into standby mode with SetStandby
-     *  2. Define the protocol with SetPacketType
-     *  3. Define the RF frequency with SetRfFrequency
-     *  4. Define the power amplifier configuration with SetPaConfig
-     *  5. Define output power and ramping time with SetTxParams
-     *  6. Define the data payload storage base address using SetBufferBaseAddress
-     */
+    set_lora_ldro_val(lora_modulation_parameters);  // Set the Low Data Rate Optimization value by editing the given struct in-place.
     
     // Write all the configuration data
     for (int k = 0; k < SPI_RETRIES; k++) {
@@ -86,11 +120,16 @@ bool lora_init_tx(  const sx126x_context_t* radio_context,
             // 6. Initialize the radio r/w buffers
             if (sx126x_set_buffer_base_address(radio_context, LORA_TX_BUF_BASE, LORA_RX_BUF_BASE) != SX126X_STATUS_OK)      break; // The lower half of the buffer will be tx data and the upper half of the buffer will be rx data
 
-            // Read back packet type
-            if (sx126x_get_pkt_type(radio_context, &readback_pkt_type) != SX126X_STATUS_OK) break;
-            if (readback_pkt_type != SX126X_PKT_TYPE_LORA) break;
+            // 7. Configure the LoRa modulation parameters (spreading factor, bandwidth, error correction)
+            if (sx126x_set_lora_mod_params(radio_context, lora_modulation_parameters) != SX126X_STATUS_OK)                  break;
 
-            
+            // 8. Set the SYNC word - helps all devices in dedicated LoRa network understand the message may be for them
+            if (sx126x_set_lora_sync_word(radio_context, sync_word) != SX126X_STATUS_OK)                                    break;
+
+            // Read back packet type
+            if (sx126x_get_pkt_type(radio_context, &readback_pkt_type) != SX126X_STATUS_OK)                                 break;
+
+            if (readback_pkt_type != SX126X_PKT_TYPE_LORA) break;         
 
             init_ok = true; // Only once everything is confirmed to be set up correctly will the init_ok flag be set to true.
 
@@ -110,53 +149,33 @@ bool lora_init_tx(  const sx126x_context_t* radio_context,
 
 #pragma region TX
 
-bool lora_tx(   const sx126x_context_t* radio_context, 
-                sx126x_mod_params_lora_t* lora_modulation_parameters, 
-                sx126x_pkt_params_lora_t* lora_packet_parameters,
+bool lora_tx(   const sx126x_context_t* radio_context,
                 sx126x_dio_irq_masks_t* radio_interrupt_cfg,
+                sx126x_pkt_params_lora_t* lora_packet_parameters,
                 uint8_t *buf, 
                 uint8_t len
 ) {
-    /**
-     * Per the datasheet, once the sx126x is setup using lora_init_tx(), a transmission can be sent as follows:
-     *  1. Transfer the payload into the write buffer using WriteBuffer
-     *  2. Define the modulation parameters using SetModulationParams
-     *  3. Define the frame format to be used with SetPacketParams
-     *  4. Setup interrupt on tx complete using SetDioIrqParams - TxDone IRQ source mapped to DIO[1/2/3]
-     *  5. Define the sync word
-     *  6. Put the sx126x in transmit mode
-     *  7. Wait for IRQ or timeout
-     *  8. Clear IRQ TxDone Flag
-     */
-
-    set_lora_ldro_val(lora_modulation_parameters);  // Set the Low Data Rate Optimization value by editing the given struct in-place.
-
     for (int k = 0; k < SPI_RETRIES; k++) {
 
         bool tx_ok = false;
 
         do {
-            // 1. Write the data to be transmitted into the TX buffer
+            // 1. Configure the LoRa packet
+            lora_packet_parameters->pld_len_in_bytes = len;
+            if (sx126x_set_lora_pkt_params(radio_context, lora_packet_parameters) != SX126X_STATUS_OK)                      break;
+
+            // 2. Write the data to be transmitted into the TX buffer
             if (sx126x_write_buffer(radio_context, 0x00, buf, len) != SX126X_STATUS_OK)                     break;
 
-            // 2. Configure the LoRa modulation parameters (spreading factor, bandwidth, error correction)
-            if (sx126x_set_lora_mod_params(radio_context, lora_modulation_parameters) != SX126X_STATUS_OK)  break;
-
-            // 3. Configure the LoRa packet
-            if (sx126x_set_lora_pkt_params(radio_context, lora_packet_parameters) != SX126X_STATUS_OK)      break;
-
-            // 4. Configure the interrupts
+            // 3. Configure the interrupts
             if (sx126x_set_dio_irq_params(  radio_context, 
                                             radio_interrupt_cfg->system_mask, 
                                             radio_interrupt_cfg->dio1_mask, 
                                             radio_interrupt_cfg->dio2_mask, 
                                             radio_interrupt_cfg->dio3_mask  ) != SX126X_STATUS_OK)          break;
-
-            // 5. Set the SYNC word - helps all devices in dedicated LoRa network understand the message may be for them
-            if (sx126x_set_lora_sync_word(radio_context, LWQMS_SYNC_WORD) != SX126X_STATUS_OK)              break;
             
-            // 6. Transmit the data
-            if (sx126x_set_tx(radio_context, SX126X_MAX_TIMEOUT_IN_MS) != SX126X_STATUS_OK)                 break;
+            // 4. Transmit the data
+            if (sx126x_set_tx(radio_context, 10000) != SX126X_STATUS_OK)                 break;
 
             tx_ok = true;
 
@@ -166,9 +185,7 @@ bool lora_tx(   const sx126x_context_t* radio_context,
             return true;
         }
     }
-
     err_raise(ERR_SPI_TRANSACTION_FAIL, ERR_SEV_REBOOT, "SPI Communications failure with SX126X during packet transmission", "lora_tx");
-
 }
 
 #pragma endregion
@@ -236,6 +253,8 @@ bool lora_init_rx(sx126x_context_t* radio_context,
 
 bool lora_rx(   sx126x_context_t* radio_context,
                 sx126x_dio_irq_masks_t* radio_interrupt_cfg,
+                uint8_t sync_word,
+                uint32_t timeout_ms,
                 uint8_t *buf, 
                 uint32_t len
 ) {
@@ -264,10 +283,10 @@ bool lora_rx(   sx126x_context_t* radio_context,
                                             radio_interrupt_cfg->dio3_mask) != SX126X_STATUS_OK)                  break;
 
             // 2. Set the SYNC word - helps all devices in dedicated LoRa network understand the message may be for them
-            if (sx126x_set_lora_sync_word(radio_context, LWQMS_SYNC_WORD) != SX126X_STATUS_OK)              break;
+            if (sx126x_set_lora_sync_word(radio_context, sync_word) != SX126X_STATUS_OK)              break;
 
             // 3. Set the radio in Receive mode
-            if (sx126x_set_rx(radio_context, LORA_TIMEOUT_MS) != SX126X_STATUS_OK)                          break;
+            if (sx126x_set_rx(radio_context, timeout_ms) != SX126X_STATUS_OK)                          break;
 
             rx_ok = true;
 

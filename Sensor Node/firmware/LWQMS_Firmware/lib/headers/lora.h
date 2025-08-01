@@ -24,6 +24,9 @@
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Project Includes
 
+#include "hardware.h"
+#include "errs.h"
+#include "sx126x_hal.h"
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -35,89 +38,7 @@
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Pre-Defined Optimal Power Amplifier Operating Modes (per datasheet)
-
-sx126x_pa_cfg_params_t sx1262_14dBm_pa_params = {
-    .pa_duty_cycle = 0x02,
-    .hp_max = 0x02,
-    .device_sel = 0x00,
-    .pa_lut = 0x01
-};
-
-sx126x_pa_cfg_params_t sx1262_17dBm_pa_params = {
-    .pa_duty_cycle = 0x02,
-    .hp_max = 0x03,
-    .device_sel = 0x00,
-    .pa_lut = 0x01 
-};
-
-sx126x_pa_cfg_params_t sx1262_20dBm_pa_params = {
-    .pa_duty_cycle = 0x03,
-    .hp_max = 0x05,
-    .device_sel = 0x00,
-    .pa_lut = 0x01
-};
-
-sx126x_pa_cfg_params_t sx1262_22dBm_pa_params = {
-    .pa_duty_cycle = 0x04,
-    .hp_max = 0x07,
-    .device_sel = 0x00,
-    .pa_lut = 0x01
-};
-
-sx126x_pa_cfg_params_t sx1261_10dBm_pa_params = {
-    .pa_duty_cycle = 0x01,
-    .hp_max = 0x00,
-    .device_sel = 0x01,
-    .pa_lut = 0x01
-};
-
-sx126x_pa_cfg_params_t sx1261_14dBm_pa_params = {
-    .pa_duty_cycle = 0x04,
-    .hp_max = 0x00,
-    .device_sel = 0x01,
-    .pa_lut = 0x01
-};
-
-sx126x_pa_cfg_params_t sx1261_15dBm_pa_params = {
-    .pa_duty_cycle = 0x06,
-    .hp_max = 0x00,
-    .device_sel = 0x01,
-    .pa_lut = 0x01
-};
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// TX Parameters
-
-#define LORA_TX_POWER_DBM 22
-
-#define LORA_LDRO_ON 0x01
-#define LORA_LDRO_OFF 0x00
-
-#define LWQMS_SYNC_WORD 0x42    // The meaning of life, the universe, and everything
-
-#define LORA_TIMEOUT_MS 10000
-
-sx126x_mod_params_lora_t prototyping_mod_params = {
-    .sf = SX126X_LORA_BW_007,
-    .bw = SX126X_LORA_BW_125,
-    .cr = SX126X_LORA_CR_4_5,
-    .ldro = 0x00
-};
-
-sx126x_pkt_params_lora_t prototyping_pkt_params = {
-    .preamble_len_in_symb = 12,
-    .header_type = SX126X_LORA_PKT_EXPLICIT,
-    .crc_is_on = true,
-    .invert_iq_is_on = false   // Do not invert the IQ unless needed to make network invisible to other LoRa devices - typically involved with LoRaWAN
-};
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// IRQ Masks
+// Types
 
 typedef struct sx126x_dio_irq_masks_s {
     uint16_t system_mask;
@@ -128,7 +49,6 @@ typedef struct sx126x_dio_irq_masks_s {
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // SX126X Buffer Base Addresses
 
@@ -138,40 +58,63 @@ typedef struct sx126x_dio_irq_masks_s {
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Other Definitions
+
+#define LORA_LDRO_ON 0x01
+#define LORA_LDRO_OFF 0x00
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Function Definitions
+
+/**
+ * @brief Software-level initialization of radio parameters and circuit settings. 
+ * Sets up the module to use the DC/DC supply, the DIO2/3 pins as controls, and calibrates the radio.
+ * 
+ * @param [in] context Radio Implementation Parameters
+ * 
+ * @returns SPI transaction status
+ * 
+ * @remark Does not setup the physical hardware GPIO pins or SPI bus.
+ * 
+ * @author Matthew Sharp
+ */
+sx126x_status_t sx126x_radio_setup(const void* context);
 
 /**
  * @brief Initialize the sx126x in transmit mode
  * 
- * @param radio_context             sx126x hardware implementation information
- * @param power_amplifier_config    `sx126x_pa_cfg_params_s` PA configuration data struct
- * @param txPower:                  Transmit power in dBm
+ * @param radio_context                 sx126x hardware implementation information
+ * @param power_amplifier_config        `sx126x_pa_cfg_params_s` PA configuration data struct
+ * @param lora_modulation_parameters    `sx126x_mod_params_lora_s` LoRa Modulation configuration data struct
+ * @param txPower                   Transmit power in dBm
  * @param ramp_time                 Transmit Ramp Time. Must be a member of `sx126x_ramp_time_e` enum.
+ * @param sync_word                 LoRa Sync Word
  * 
  * @returns Radio Initialization Status 
  */
 bool lora_init_tx(  const sx126x_context_t* radio_context, 
                     sx126x_pa_cfg_params_t* power_amplifier_config,
+                    sx126x_mod_params_lora_t* lora_modulation_parameters, 
                     int8_t  txPower,
-                    sx126x_ramp_time_t ramp_time); 
+                    sx126x_ramp_time_t ramp_time,
+                    uint8_t sync_word);
 
 /**
  * @brief Transmit data over LoRa
  * 
  * @param radio_context                 sx126x hardware implementation info
- * @param lora_modulation_parameters    `sx126x_mod_params_lora_s` LoRa Modulation configuration data struct
- * @param lora_packet_parameters        `sx126x_pkt_params_lora_s` LoRa packet configuration data struct
- * @param interrupt_cfg                 `sx126x_dio_irq_masks_s`   LoRa interrupt configuration data struct
+ * @param radio_interrupt_cfg           `sx126x_dio_irq_masks_s` LoRa interrupt configuration data struct
+ * @param lora_packet_parameters        `sx126x_pkt_params_lora_s` LoRa packet configuration data struct. Can be passed with or without the payload length.
  * @param buf                           Pointer to data to be sent
  * @param len                           Length of data to transmit
  * 
  * @returns Radio Transmit Status
- * 
  */
-bool lora_tx(   const sx126x_context_t* radio_context, 
-                sx126x_mod_params_lora_t* lora_modulation_parameters, 
+bool lora_tx(   const sx126x_context_t* radio_context,
+                sx126x_dio_irq_masks_t* radio_interrupt_cfg,
                 sx126x_pkt_params_lora_t* lora_packet_parameters,
-                sx126x_dio_irq_masks_t* interrupt_cfg,
                 uint8_t *buf, 
                 uint8_t len);
 
@@ -193,6 +136,8 @@ bool lora_init_rx(  sx126x_context_t* radio_context,
  * 
  * @param radio_context             sx126x hardware implementation info
  * @param interrupt_cfg             `sx126x_dio_irq_masks_s`   LoRa interrupt configuration data struct
+ * @param sync_word                 LoRa Sync Word
+ * @param timeout_ms                RX Timeout in milliseconds
  * @param buf                       Pointer to data buffer for received data
  * @param len                       Length of data buffer
  * 
@@ -200,6 +145,8 @@ bool lora_init_rx(  sx126x_context_t* radio_context,
  */
 bool lora_rx(   sx126x_context_t* radio_context,
                 sx126x_dio_irq_masks_t* interrupt_cfg,
+                uint8_t sync_word,
+                uint32_t timeout_ms,
                 uint8_t *buf, 
                 uint32_t len);
 

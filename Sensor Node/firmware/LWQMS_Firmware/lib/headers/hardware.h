@@ -13,6 +13,9 @@
 #ifndef HARDWARE_H
 #define HARDWARE_H
 
+#include "pico/stdlib.h"
+#include "hardware/spi.h"
+
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // C Standard Library Includes
 
@@ -23,7 +26,6 @@
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Project Includes
 
-#include "hal.h"
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -88,15 +90,70 @@
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Types
 
+/**
+ * 
+ * @brief Struct containing all data necessary to define a single SPI instance within the HAL
+ * 
+ */
+typedef struct spi_context_s {
+    spi_inst_t* inst;
+    uint8_t     mosi;
+    uint8_t     miso;
+    uint8_t     sck;
+    uint32_t    baud;
+    uint8_t     xfer_bits;
+    uint8_t     polarity;
+    uint8_t     phase;
+    uint8_t     lsb_msb_first;
+} spi_context_t;
+
+/**
+ * @brief GPIO driven IRQ configuration data
+ */
+typedef struct gpio_driven_irq_context_s {
+    uint8_t pin;
+    uint32_t source_mask;
+    void * callback;
+} gpio_driven_irq_context_t;
+
+/**
+ * @brief sx126x Radio Configuration Data
+ */
 typedef struct sx126x_context_s {
-    spi_context_t* spi_context;
+    gpio_driven_irq_context_t * irq_context;    // The interrupt event trigger of the module.
+    spi_context_t* spi_context;                 // The SPI bus of the radio module
     uint8_t        rst;                         // Reset - Pull LOW for 100us to initiate a reset.
     uint8_t        busy;                        // Busy Indicator - HIGH indicates that sx126x is busy and can not be written to
-    uint8_t        irq;                         // Radio Module IRQ
     uint32_t       radio_operation_timeout_us;  // Timeout to wait for radio to leave busy state
     uint8_t        cs;                          // Chip select GPIO Pin.
     char *         designator;                  // Radio designator string
 } sx126x_context_t;
+
+/**
+ * @brief A handler for a GPIO-driven interrupt
+ */
+typedef void (*gpio_isr_handler_t)(gpio_driven_irq_context_t*);  // A function pointer to a GPIO ISR handler that accepts a pointer to an IRQ context type as its input.
+
+/**
+ * @brief Error Sources for the LoRa Water Quality Management System
+ */
+typedef enum lwqms_errs_e {
+    ERR_SPI_TRANSACTION_FAIL = 0,
+    ERR_BAD_CRC = 1,
+    ERR_LORA_TIMEOUT = 2,
+    ERR_ARGUMENT = 3,
+    ERR_BAD_SETUP = 4
+} lwqms_errs_t;
+
+/**
+ * @brief Error Logging Levels for the LoRa Water Quality Management System
+ */
+typedef enum lwqms_err_severity_e {
+    ERR_SEV_FATAL = 0,
+    ERR_SEV_REBOOT = 1,
+    ERR_SEV_NONFATAL = 2
+} lwqms_err_severity_t;
+
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -108,6 +165,8 @@ extern sx126x_context_t radio_0;
 extern spi_context_t context_spi_0;
 
 extern uint8_t err_led;
+
+const extern gpio_driven_irq_context_t irq_radio_0;
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

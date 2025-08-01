@@ -12,6 +12,8 @@
 
 #include "hardware.h"
 
+extern void sx126x_master_isr(gpio_driven_irq_context_t *context);
+
 spi_context_t context_spi_0 = {
     .inst = spi0,
     .baud = SPI_FREQ_GLOBAL,
@@ -24,14 +26,19 @@ spi_context_t context_spi_0 = {
     .lsb_msb_first = SPI_MSB_FIRST
 };
 
+const gpio_driven_irq_context_t irq_radio_0 = {
+    .pin = RADIO_DIO1,
+    .source_mask = GPIO_IRQ_EDGE_RISE,
+    .callback = &sx126x_master_isr
+};
+
 sx126x_context_t radio_0 = {
     .busy = RADIO_BUSY,
-    .irq = RADIO_DIO1,
+    .irq_context = &irq_radio_0,
     .rst =  RADIO_RESET,
     .cs =   RADIO_CS,
     .spi_context = &context_spi_0, // SPI Bus 0
     .radio_operation_timeout_us = RADIO_TIMEOUT_GLOBAL_US,
     .designator = "RADIO 0"
 };
-
 uint8_t err_led = ERROR_LED;

@@ -1432,16 +1432,32 @@ sx126x_status_t sx126x_wakeup( const void* context );
 
 /**
  * 
- * @brief Initialize Hardware Connection with sx126x radio
+ * @brief Initializes hardware and GPIO pins for the given `sx126x_context_s` structure instance.
  * 
  * @param [in] context Chip Implementation Context
+ * 
+ * @remark Handles registration with the Radio IRQ dispatch table. Must still be registered with the GPIO ISR dispatch table.
  * 
  * @returns None
  * 
  * @author Matthew Sharp
  * 
  */
-void sx126x_init( const void* context );
+void sx126x_initialize_hardware_context( const void* context );
+
+/**
+ * 
+ * @brief Wrapper function for `sx126x_hal_setup_interrupts` from `sx126x_hal.h` to setup a GPIO-driven interrupt sourced from a sx126x radio
+ * module with the provided parameters.
+ * 
+ * @param [in] context Chip Implementation Context
+ * @param [in] interrupt_context GPIO-driven interrupt event context
+ * 
+ * @returns None
+ * 
+ * @author Matthew Sharp
+ */
+void sx126x_interrupt_setup(const void* context);
 
 /**
  * @brief Get the list of all active errors

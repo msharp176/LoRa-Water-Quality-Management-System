@@ -11,12 +11,6 @@
  * ************************************************************************************/
 
 #include "sx126x_hal.h"
-#include "hardware/spi.h"
-#include "hardware/gpio.h"
-#include "main.h"
-#include "pico/time.h"
-#include "hal.h"
-#include <stdio.h>
 
 #define CHECK_RADIO_BUSY(CONTEXT) if (wait_for_radio_ready(CONTEXT) == SX126X_HAL_STATUS_ERROR) return SX126X_HAL_STATUS_ERROR
 
@@ -97,10 +91,6 @@ sx126x_hal_status_t sx126x_hal_reset( const void* context ) {
     // Cast the void pointer context to the sx126x context type
     const sx126x_context_t* radio_inst = (const sx126x_context_t*)context;
 
-    #ifdef DEBUG
-        printf("Resetting %s\n", radio_inst->designator);
-    #endif
-
     // Assert the RESET Pin LOW
     gpio_write_hal(&(radio_inst->rst), GPIO_LOW);
 
@@ -120,10 +110,6 @@ sx126x_hal_status_t sx126x_hal_reset( const void* context ) {
 sx126x_hal_status_t sx126x_hal_wakeup( const void* context ) {
     // Cast the void pointer context to the sx126x context type
     const sx126x_context_t* radio_inst = (const sx126x_context_t*)context;
-
-    #ifdef DEBUG
-        printf("Waking up %s\n", radio_inst->designator);
-    #endif
 
     // Check if the radio is busy
     CHECK_RADIO_BUSY(context);   // In case this function gets called when the sx126x is not in SLEEP mode - should not be HIGH under normal operation.
@@ -147,14 +133,18 @@ sx126x_hal_status_t wait_for_radio_ready(const void* context) {
     // First, cast the void pointer context to a radio context
     const sx126x_context_t* radio_inst = (const sx126x_context_t *)context;
 
-    #ifdef DEBUG
-        printf("Checking if %s busy...", radio_inst->designator);
-    #endif
+    uint64_t timeout_offset = radio_inst->radio_operation_timeout_us;
 
-    absolute_time_t tout = make_timeout_time_us(radio_inst->radio_operation_timeout_us);
+    absolute_time_t tout = make_timeout_time_us(timeout_offset);
+
+    int busy_signal_checks = 0;
+
     while (gpio_read_hal(&(radio_inst->busy))) {
+        
+        busy_signal_checks++;
+
         if (get_absolute_time() > tout) {
-            
+
             #ifdef DEBUG
                 printf("TIMEOUT\n");
             #endif
@@ -162,10 +152,6 @@ sx126x_hal_status_t wait_for_radio_ready(const void* context) {
             return SX126X_HAL_STATUS_ERROR;
         }
     }
-
-    #ifdef DEBUG
-        printf("OK\n");
-    #endif
 
     return SX126X_HAL_STATUS_OK;
 }
@@ -183,7 +169,7 @@ void sx126x_hal_init(const void* context) {
 
     // Inputs from radio
     gpio_setup_hal(&(radio_inst->busy), false);
-    gpio_setup_hal(&(radio_inst->irq), false);
+    gpio_setup_hal(&(radio_inst->irq_context->pin), false);
 
     // Setup the SPI instance
     uint baud = spi_init_hal(radio_inst->spi_context);
@@ -192,54 +178,17 @@ void sx126x_hal_init(const void* context) {
     gpio_write_hal(&(radio_inst->cs), GPIO_HIGH);
     gpio_write_hal(&(radio_inst->rst), GPIO_HIGH);
 
-    // Register the Radio with the master IRQ handler
-    sx126x_register_radio_irq_pin(radio_inst);
-
-    #ifdef DEBUG
-        printf("Initialized %s GPIO Pins and SPI interface at %u Hz\n", radio_inst->designator, baud);
-    #endif
-
     return;
 }
 
-sx126x_status_t sx126x_hal_initialize_radio(const void* context) {
+void sx126x_hal_setup_interrupts(const void* context) {
+    const sx126x_context_t* radio_inst = (const sx126x_context_t *)context;
+    
+    // Register the radio with the radio ISR dispatch table
+    sx126x_register_radio_irq_pin(context);
 
-    bool init_ok = false;
-
-    for (int k = 0; k < SPI_RETRIES; k++) {
-
-        do {
-            // 1. Perform a reset of the radio module
-            if (sx126x_hal_reset(context) != SX126X_STATUS_OK)                          break;
-        
-            // 2. Wakeup the radio
-            if (sx126x_hal_wakeup(context) != SX126X_STATUS_OK)                         break;
-        
-            // 3. Set the regulator mode
-            if (sx126x_set_reg_mode(context, SX126X_REG_MODE_DCDC) != SX126X_STATUS_OK) break;
-        
-            // 4. Set DIO2 to control the RF switch
-            if (sx126x_set_dio2_as_rf_sw_ctrl(context, true) != SX126X_STATUS_OK)       break;
-
-            // 5. Set DIO3 to control the TCXO
-            if (sx126x_set_dio3_as_tcxo_ctrl(context, SX126X_TCXO_CTRL_3_3V, SX126X_TCXO_TIMEOUT) != SX126X_STATUS_OK)  break;
-
-            // 6. Calibrate the radio
-            if (sx126x_cal(context, SX126X_CAL_ALL) != SX126X_STATUS_OK)                break;
-
-            init_ok = true;
-
-        } while (0);
-
-        if (init_ok) {
-            return SX126X_STATUS_OK;
-        }
-    }
-
-    err_raise(ERR_SPI_TRANSACTION_FAIL, ERR_SEV_REBOOT, "SPI Communications failure with SX126X module during radio initialization", "sx126x_hal_initialize_radio");
-
-    return SX126X_STATUS_ERROR;
-
+    // Register the radio DIO1 Pin with the global IRQ dispatch table
+    gpio_irq_attach_hal(radio_inst->irq_context);
 }
 
 #pragma endregion

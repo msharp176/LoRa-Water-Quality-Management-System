@@ -15,6 +15,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -22,11 +23,10 @@
 // Project Includes
 
 #include "sx126x.h"
-#include "sx126x_hal.h"
-
 #include "errs.h"
 #include "hardware.h"
 #include "isrs.h"
+#include "global_defs.h"
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -39,6 +39,8 @@
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Types
+
+typedef struct sx126x_context_s sx126x_context_t;
 
 typedef void (*sx126x_isr_t)(sx126x_context_t*);  // A function pointer to an ISR that accepts a pointer to a radio context type as its input.
 
@@ -57,24 +59,32 @@ typedef void (*sx126x_isr_t)(sx126x_context_t*);  // A function pointer to an IS
 void sx126x_register_radio_irq_pin(sx126x_context_t * radio_context_ptr);
 
 /**
- * @brief Checks if an sx126x interrupt has been serviced.
- * 
- * @param irq_mask Bitmask for sx126x interrupts. Can represent one or more interrupts.
- * 
- * @returns Interrupt service status
- * 
- * @note Upon a success (function returns true), the corresponding interrupt service flags will be cleared and ready to detect the next interrupt service.s
- */
-bool sx126x_check_for_irq_service(uint16_t irq_mask);
-
-/**
- * @brief Master Interrupt Service Routine for the SX126X. Selects which specific interrupt subroutine to execute based on the contents of the IRQ register
+ * @brief Master Interrupt Service Routine for the SX126X. Sets a flag which can be retrieved using `sx126x_check_for_interrupt`
  * 
  * @param pin: The pin which raised the interrupt. Used to identify the radio module
  * 
  * @note All SX126X radio DIOx interrupts should have their callback registered to be here within the master ISR dispatch table
  */
 void sx126x_master_isr(gpio_driven_irq_context_t *context);
+
+/**
+ * @brief Manually service interrupts on the sx126x
+ */
+sx126x_irq_mask_t sx126x_manual_isr(sx126x_context_t *radio_context);
+
+/**
+ * @brief Checks if any registered sx126x instance has raised an interrupt.
+ * 
+ * @returns True for a pending interrupt, false otherwise.
+ */
+bool sx126x_check_for_interrupt(void);
+
+/**
+ * @brief Services an interrupt on the most recently interrupting sx126x radio instance.
+ * 
+ * @returns The contents of the IRQ register of the sx126x, indicating which interrupt service routines were triggered.
+ */
+sx126x_irq_mask_t sx126x_service_interrupts(void);
 
 // All sub-isrs will be private to within radio_isr.c so that they can not be mistakenly assigned as a callback to a global isr.
 

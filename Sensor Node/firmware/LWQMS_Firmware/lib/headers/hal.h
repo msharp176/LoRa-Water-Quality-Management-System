@@ -13,53 +13,55 @@
 #ifndef HAL_H
 #define HAL_H
 
-#pragma region Includes
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Project Includes
+
+#include "global_defs.h"
+#include "hardware.h"
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Includes
 
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// C Standard Headers
+
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include <stdbool.h>
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Pico SDK Includes
+
+#include "pico/stdio.h"
 #include "pico/stdlib.h"
 #include "hardware/spi.h"
+#include "hardware/gpio.h"
+#include "hardware/watchdog.h"
+#include "hardware/irq.h"
+#include "hardware/resets.h"
+#include "tusb.h"
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// External Dependencies
+
+extern void err_raise(lwqms_errs_t err_code, lwqms_err_severity_t severity, char * err_msg, char * err_context);
+
+extern void isr_gpio_master(uint gpio_pin, uint32_t irq_src);
+
+extern void register_gpio_isr(gpio_driven_irq_context_t *context);
+
+extern void unregister_gpio_isr(gpio_driven_irq_context_t *context);
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma endregion
 
-#pragma region Types
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Types
-
-/**
- * 
- * @brief Struct containing all data necessary to define a single SPI instance within the HAL
- * 
- */
-typedef struct spi_context_s {
-    spi_inst_t* inst;
-    uint8_t     mosi;
-    uint8_t     miso;
-    uint8_t     sck;
-    uint32_t    baud;
-    uint8_t     xfer_bits;
-    uint8_t     polarity;
-    uint8_t     phase;
-    uint8_t     lsb_msb_first;
-} spi_context_t;
-
-/**
- * @brief GPIO driven IRQ configuration data
- */
-typedef struct gpio_driven_irq_context_s {
-    uint8_t pin;
-    uint32_t source_mask;
-    void * callback;
-} gpio_driven_irq_context_t;
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-#pragma endregion
 
 #pragma region GPIO
 
@@ -238,6 +240,8 @@ bool check_if_rebooted_or_clean_boot(void);
 
 /**
  * @brief Attach an interrupt to a GPIO pin. GPIO pin must be setup first using `gpio_setup_hal`
+ * 
+ * @remark Use this function to attach a gpio-driven interrupt. Do not manually register the interrupt, this function handles that operation.
  * 
  * @param irq_context pointer to `gpio_driven_irq_context_t` struct
  * 

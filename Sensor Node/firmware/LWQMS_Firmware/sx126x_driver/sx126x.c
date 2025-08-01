@@ -1013,9 +1013,14 @@ sx126x_status_t sx126x_wakeup( const void* context )
     return ( sx126x_status_t ) sx126x_hal_wakeup( context );
 }
 
-void sx126x_init( const void* context )
+void sx126x_initialize_hardware_context( const void* context )
 {
     return sx126x_hal_init( context );
+}
+
+void sx126x_interrupt_setup(const void* context) 
+{
+    return sx126x_hal_setup_interrupts( context );
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------

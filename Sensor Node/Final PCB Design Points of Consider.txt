@@ -1,0 +1,5 @@
+Final PCB Design Points of Consideration
+
+1. Separation of Analog/Digital/Power Grounds?
+2. Utilization of stitching vias on high speed signal lines
+3. Focus on using Semtech/Raspberry Pi Reference designs, not the Waveshare module schematic.

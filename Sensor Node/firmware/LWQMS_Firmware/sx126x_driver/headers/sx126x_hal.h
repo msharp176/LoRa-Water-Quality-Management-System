@@ -44,11 +44,19 @@ extern "C" {
  * --- DEPENDENCIES ------------------------------------------------------------
  */
 
+#include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
 
+#include "hal.h"
 #include "sx126x.h"
+#include "hardware.h"
 #include "radio_isr.h"
+#include "global_defs.h"
+
+#include "pico/time.h"
+#include "hardware/spi.h"
+#include "hardware/gpio.h"
 
 /*
  * -----------------------------------------------------------------------------
@@ -166,15 +174,17 @@ sx126x_hal_status_t wait_for_radio_ready( const void* context );
 void sx126x_hal_init(const void* context);
 
 /**
- * @brief Setup and initialize the radio to use the DC-DC converter, DIO2/3 as RF switch and TCXO control, calibrate.
  * 
- * @param [in] context: Radio Implementation Parameters
+ * @brief Sets up the given radio module context instance to trigger a GPIO interrupt defined by the given context.
  * 
- * @returns SPI transaction status
+ * @remark The callback for this interrupt should point to the master sx126x ISR dipatch table logic.
  * 
- * @author Matthew Sharp
+ * @param [in] context: Radio Implementation Context
+ * 
+ * @returns None 
+ * 
  */
-sx126x_status_t sx126x_hal_initialize_radio(const void* context);
+void sx126x_hal_setup_interrupts(const void* context);
 
 #ifdef __cplusplus
 }

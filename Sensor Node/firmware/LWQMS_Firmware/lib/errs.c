@@ -11,10 +11,6 @@
 *********************************************************************************************************************/
 
 #include "errs.h"
-#include "hal.h"
-#include "main.h"
-#include <stdio.h>
-#include "pico/stdlib.h"
 
 void err_raise(lwqms_errs_t err_code, lwqms_err_severity_t severity, char * err_msg, char * err_context) {
     

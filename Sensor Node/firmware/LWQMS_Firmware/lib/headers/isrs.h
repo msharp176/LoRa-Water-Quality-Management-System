@@ -15,25 +15,14 @@
 #ifndef ISRS_H
 #define ISRS_H
 
-#include "main.h"
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Types
-
-/**
- * @brief A handler for a GPIO-driven interrupt
- */
-typedef void (*gpio_isr_handler_t)(gpio_driven_irq_context_t*);  // A function pointer to a GPIO ISR handler that accepts a pointer to an IRQ context type as its input.
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+#include "hal.h"
+#include "pico/stdlib.h"
+#include "pico/stdio.h"
+#include "hardware.h"
+#include "global_defs.h"
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Global Interrupt Definitions
-
-extern gpio_driven_irq_context_t irq_txDone;
-
-extern gpio_driven_irq_context_t irq_rxDone;
 
 extern gpio_driven_irq_context_t irq_button1;
 
@@ -56,6 +45,8 @@ void isr_gpio_master(uint gpio_pin, uint32_t irq_src);
 
 /**
  * @brief Register a GPIO-driven interrupt handler
+ * 
+ * @remark Use the function: `gpio_attach_hal` from `hal.h` to register a GPIO-driven interrupt. This function ONLY registers the callback with the main ISR dispatch table. 
  * 
  * @param context GPIO-driven interrupt handler context
  * 

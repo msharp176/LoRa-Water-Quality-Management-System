@@ -25,11 +25,8 @@ static gpio_isr_handler_t isr_dispatch_table[QTY_GPIO_PINS] = {NULL}; // The STA
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Global Interrupt Definitions
 
-gpio_driven_irq_context_t irq_radio_0 = {
-    .pin = RADIO_DIO1,
-    .source_mask = GPIO_IRQ_LEVEL_HIGH,
-    .callback = isr_placeholder
-};
+void isr_toggle_led(void);
+void isr_print(void);
 
 gpio_driven_irq_context_t irq_button1 = {
     .pin = GP14,
@@ -60,13 +57,16 @@ void isr_gpio_master(uint gpio_pin, uint32_t irq_src) {
         .callback = NULL        // At this point, the callback matters not
     };
 
+    // Acknowledge the interrupt is being serviced on the RP2350
     gpio_irq_ack_hal(&received_context_data);
 
     // Extract the interrupt handler
     gpio_isr_handler_t handler = isr_dispatch_table[gpio_pin];
 
     // Execute the handler
-    if (handler != NULL) handler(&received_context_data);
+    if (handler != NULL) {
+        handler(&received_context_data);
+    }
 
 }
 
