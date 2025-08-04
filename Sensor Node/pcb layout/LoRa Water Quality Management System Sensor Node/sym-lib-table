@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "LoRaWaterQualityManagementSystem")(type "KiCad")(uri "C:/Users/mshar/Documents/capstone/Sensor Node/pcb layout/symbols/LoRaWaterQualityManagementSystem.kicad_sym")(options "")(descr ""))
+)

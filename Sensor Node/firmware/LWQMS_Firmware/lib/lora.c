@@ -105,29 +105,48 @@ bool lora_init_tx(  const sx126x_context_t* radio_context,
             // 1. Put the radio into XTAL Oscillator Standby mode
             if (sx126x_set_standby(radio_context, SX126X_STANDBY_CFG_XOSC) != SX126X_STATUS_OK)                             break; // The WaveShare LoRa module uses a 32MHz TXCO
             
+            printf("1\n");
+
             // 2. Configure the packet type to LoRa
             if (sx126x_set_pkt_type(radio_context, SX126X_PKT_TYPE_LORA) != SX126X_STATUS_OK)                               break; // Use LoRa packets
             
+            printf("2\n");
+
             // 3. Set the RF frequency of the radio to the legal band within the USA
             if (sx126x_set_rf_freq(radio_context, LORA_FREQ_NORTH_AMERICA) != SX126X_STATUS_OK)                             break; // Use the North American Standard LoRa Frequency (915 MHz)
             
+            printf("3\n");
+
             // 4. Configure the Power Amplifier
             if (sx126x_set_pa_cfg(radio_context, power_amplifier_config) != SX126X_STATUS_OK)                               break; // Configure to lowest power mode for now
             
+            printf("4\n");
+
             // 5. Configure the transmission parameters
             if (sx126x_set_tx_params(radio_context, txPower, ramp_time) != SX126X_STATUS_OK)                                break; // Set to use a 200 us Ramp Time
             
+            printf("5\n");
+
             // 6. Initialize the radio r/w buffers
             if (sx126x_set_buffer_base_address(radio_context, LORA_TX_BUF_BASE, LORA_RX_BUF_BASE) != SX126X_STATUS_OK)      break; // The lower half of the buffer will be tx data and the upper half of the buffer will be rx data
+
+            printf("6\n");
 
             // 7. Configure the LoRa modulation parameters (spreading factor, bandwidth, error correction)
             if (sx126x_set_lora_mod_params(radio_context, lora_modulation_parameters) != SX126X_STATUS_OK)                  break;
 
+            printf("7\n");
+
             // 8. Set the SYNC word - helps all devices in dedicated LoRa network understand the message may be for them
             if (sx126x_set_lora_sync_word(radio_context, sync_word) != SX126X_STATUS_OK)                                    break;
 
+            printf("8\n");
+
             // Read back packet type
             if (sx126x_get_pkt_type(radio_context, &readback_pkt_type) != SX126X_STATUS_OK)                                 break;
+
+            printf("9\n");
+            printf("%d", readback_pkt_type);
 
             if (readback_pkt_type != SX126X_PKT_TYPE_LORA) break;         
 
