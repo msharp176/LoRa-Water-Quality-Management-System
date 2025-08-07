@@ -1,0 +1,11 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "7c1df0b6-f533-41fe-8e8e-5fc02a7bb30a")
+	(paper "A4")
+	(title_block
+		(title "LoRa Water Quality Management System Sensor Node")
+	)
+	(lib_symbols)
+)

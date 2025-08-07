@@ -419,6 +419,14 @@
     [
       "33bb74cb-874c-4792-9754-f72a20576d07",
       "Buck-Boost Regulator (TPS631010YBGR) Layout"
+    ],
+    [
+      "e40534b4-86b2-44fa-9b4b-4985bdae1c57",
+      "Buck-Boost Regulator (TPS631010YBGR) Layout1"
+    ],
+    [
+      "ce8791e3-ad50-4e4b-819b-a517400a2b6d",
+      "sx1262 Layout"
     ]
   ],
   "text_variables": {}

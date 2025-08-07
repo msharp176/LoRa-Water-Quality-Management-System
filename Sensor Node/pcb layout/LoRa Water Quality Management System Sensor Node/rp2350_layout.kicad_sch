@@ -22867,7 +22867,7 @@
 	)
 	(rectangle
 		(start 33.274 140.462)
-		(end 123.19 220.98)
+		(end 125.73 220.98)
 		(stroke
 			(width 0)
 			(type dash_dot_dot)
@@ -25792,7 +25792,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "03233ac8-fbef-405f-b024-58ccd19fedb6")
-		(property "Reference" "C2"
+		(property "Reference" "C8"
 			(at 173.99 105.4099 0)
 			(effects
 				(font
@@ -25846,7 +25846,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "C2")
+					(reference "C8")
 					(unit 1)
 				)
 			)
@@ -25862,7 +25862,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "07161346-eb8d-4f8e-a8e1-8852d1c208d3")
-		(property "Reference" "#PWR016"
+		(property "Reference" "#PWR017"
 			(at 190.5 223.52 0)
 			(effects
 				(font
@@ -25912,7 +25912,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR016")
+					(reference "#PWR017")
 					(unit 1)
 				)
 			)
@@ -25928,7 +25928,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0d13bdb4-5c16-400d-9270-e50e23e67cf8")
-		(property "Reference" "#PWR013"
+		(property "Reference" "#PWR015"
 			(at 179.07 162.56 0)
 			(effects
 				(font
@@ -25978,7 +25978,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR013")
+					(reference "#PWR015")
 					(unit 1)
 				)
 			)
@@ -25994,7 +25994,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1c293fc8-aa81-4e70-9d41-4316cd2320a2")
-		(property "Reference" "C10"
+		(property "Reference" "C20"
 			(at 379.73 68.5799 0)
 			(effects
 				(font
@@ -26048,7 +26048,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "C10")
+					(reference "C20")
 					(unit 1)
 				)
 			)
@@ -26064,7 +26064,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1ce278f4-f0da-46ac-8088-6ade4785a27a")
-		(property "Reference" "C8"
+		(property "Reference" "C18"
 			(at 354.33 68.5799 0)
 			(effects
 				(font
@@ -26118,7 +26118,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "C8")
+					(reference "C18")
 					(unit 1)
 				)
 			)
@@ -26134,7 +26134,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "21714761-4493-4d3f-bb8d-84ecbaabdc45")
-		(property "Reference" "J2"
+		(property "Reference" "J3"
 			(at 55.88 198.1199 0)
 			(effects
 				(font
@@ -26188,7 +26188,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "J2")
+					(reference "J3")
 					(unit 1)
 				)
 			)
@@ -26203,7 +26203,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2653ce48-af19-4c2e-9b4b-7c33403c5974")
-		(property "Reference" "C16"
+		(property "Reference" "C7"
 			(at 158.75 162.306 90)
 			(effects
 				(font
@@ -26255,7 +26255,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "C16")
+					(reference "C7")
 					(unit 1)
 				)
 			)
@@ -26271,7 +26271,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2f9357eb-0485-4ef0-a784-5feef8cc5b4a")
-		(property "Reference" "C3"
+		(property "Reference" "C9"
 			(at 185.42 110.4899 0)
 			(effects
 				(font
@@ -26325,7 +26325,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "C3")
+					(reference "C9")
 					(unit 1)
 				)
 			)
@@ -26341,7 +26341,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "432c7787-5290-4e9a-af5e-f74f2904f5ca")
-		(property "Reference" "#PWR08"
+		(property "Reference" "#PWR018"
 			(at 208.28 66.04 0)
 			(effects
 				(font
@@ -26391,7 +26391,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR08")
+					(reference "#PWR018")
 					(unit 1)
 				)
 			)
@@ -26407,7 +26407,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "47ca70f9-d301-4dd8-bc98-e5a27d4249a7")
-		(property "Reference" "#PWR011"
+		(property "Reference" "#PWR09"
 			(at 82.55 194.31 0)
 			(effects
 				(font
@@ -26457,7 +26457,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR011")
+					(reference "#PWR09")
 					(unit 1)
 				)
 			)
@@ -26473,7 +26473,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "567bea19-98f1-4b60-a4af-1554753138fe")
-		(property "Reference" "C1"
+		(property "Reference" "C11"
 			(at 214.63 97.7899 0)
 			(effects
 				(font
@@ -26527,7 +26527,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "C1")
+					(reference "C11")
 					(unit 1)
 				)
 			)
@@ -26543,7 +26543,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5b384203-c6b9-4fef-89f2-0d09b66f96fa")
-		(property "Reference" "#PWR01"
+		(property "Reference" "#PWR019"
 			(at 210.82 111.76 0)
 			(effects
 				(font
@@ -26593,7 +26593,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR01")
+					(reference "#PWR019")
 					(unit 1)
 				)
 			)
@@ -26609,7 +26609,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5d3445b4-1db3-4eeb-af18-59c988283f49")
-		(property "Reference" "#PWR06"
+		(property "Reference" "#PWR023"
 			(at 375.92 90.17 0)
 			(effects
 				(font
@@ -26659,7 +26659,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR06")
+					(reference "#PWR023")
 					(unit 1)
 				)
 			)
@@ -26675,7 +26675,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5e4b536e-b0e4-485a-8263-67b0fb1fd1e3")
-		(property "Reference" "C9"
+		(property "Reference" "C19"
 			(at 367.03 68.5799 0)
 			(effects
 				(font
@@ -26729,7 +26729,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "C9")
+					(reference "C19")
 					(unit 1)
 				)
 			)
@@ -26744,7 +26744,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "64e0898d-ab87-47f1-866d-bb46e77d55b0")
-		(property "Reference" "C4"
+		(property "Reference" "C14"
 			(at 297.18 68.5799 0)
 			(effects
 				(font
@@ -26798,7 +26798,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "C4")
+					(reference "C14")
 					(unit 1)
 				)
 			)
@@ -26814,7 +26814,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "664b4349-b93f-4731-96c7-884b9ba0db2e")
-		(property "Reference" "C6"
+		(property "Reference" "C16"
 			(at 330.2 68.5799 0)
 			(effects
 				(font
@@ -26868,7 +26868,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "C6")
+					(reference "C16")
 					(unit 1)
 				)
 			)
@@ -26884,7 +26884,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "76bf068f-a82d-4637-bd11-85569ec5cef4")
-		(property "Reference" "#PWR07"
+		(property "Reference" "#PWR020"
 			(at 245.11 44.45 0)
 			(effects
 				(font
@@ -26934,7 +26934,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR07")
+					(reference "#PWR020")
 					(unit 1)
 				)
 			)
@@ -26949,7 +26949,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "78147a5f-f2e4-4e1e-8714-62a1d9a9b73b")
-		(property "Reference" "#PWR04"
+		(property "Reference" "#PWR014"
 			(at 170.18 128.27 0)
 			(effects
 				(font
@@ -26999,7 +26999,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR04")
+					(reference "#PWR014")
 					(unit 1)
 				)
 			)
@@ -27014,7 +27014,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7bd9caf8-6ce5-4586-8ac8-5cd1c0ff3d29")
-		(property "Reference" "C14"
+		(property "Reference" "C5"
 			(at 118.11 162.5599 0)
 			(effects
 				(font
@@ -27068,7 +27068,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "C14")
+					(reference "C5")
 					(unit 1)
 				)
 			)
@@ -27085,7 +27085,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7ed6beca-b8bb-4772-9889-ba8ca7acf1af")
-		(property "Reference" "#PWR014"
+		(property "Reference" "#PWR012"
 			(at 166.37 162.56 0)
 			(effects
 				(font
@@ -27135,7 +27135,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR014")
+					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -27150,7 +27150,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8336e5f7-4c27-44b6-b2cf-a5fc02519dd4")
-		(property "Reference" "C15"
+		(property "Reference" "C6"
 			(at 158.75 139.7 90)
 			(effects
 				(font
@@ -27202,7 +27202,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "C15")
+					(reference "C6")
 					(unit 1)
 				)
 			)
@@ -27217,7 +27217,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "85520fb5-738b-4bfd-9701-b4f85ca08b4c")
-		(property "Reference" "R3"
+		(property "Reference" "R5"
 			(at 49.784 184.15 0)
 			(effects
 				(font
@@ -27271,7 +27271,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "R3")
+					(reference "R5")
 					(unit 1)
 				)
 			)
@@ -27287,7 +27287,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8554daa1-35a7-4d13-8e10-dea3a98e75a2")
-		(property "Reference" "C5"
+		(property "Reference" "C15"
 			(at 317.5 68.5799 0)
 			(effects
 				(font
@@ -27341,7 +27341,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "C5")
+					(reference "C15")
 					(unit 1)
 				)
 			)
@@ -27384,7 +27384,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "kicad-embed://AOTA-B201610S3R3-101-T.pdf"
+		(property "Datasheet" "~"
 			(at 194.31 111.76 0)
 			(effects
 				(font
@@ -27426,7 +27426,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9318db5d-5af4-4a18-bc42-746064d9f018")
-		(property "Reference" "R2"
+		(property "Reference" "R6"
 			(at 66.04 165.1 0)
 			(effects
 				(font
@@ -27480,7 +27480,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "R2")
+					(reference "R6")
 					(unit 1)
 				)
 			)
@@ -27565,7 +27565,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a859f41c-6811-4d31-a5c1-b57c9e225921")
-		(property "Reference" "#PWR010"
+		(property "Reference" "#PWR07"
 			(at 48.26 214.63 0)
 			(effects
 				(font
@@ -27615,7 +27615,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR010")
+					(reference "#PWR07")
 					(unit 1)
 				)
 			)
@@ -27630,7 +27630,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b3103c09-81fe-4d39-8cfe-632dd8380df6")
-		(property "Reference" "C13"
+		(property "Reference" "C10"
 			(at 212.09 50.7999 0)
 			(effects
 				(font
@@ -27684,7 +27684,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "C13")
+					(reference "C10")
 					(unit 1)
 				)
 			)
@@ -27699,7 +27699,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b3d5a7ee-c578-409b-b486-2bb32c43ff60")
-		(property "Reference" "R6"
+		(property "Reference" "R10"
 			(at 304.8 111.506 90)
 			(effects
 				(font
@@ -27751,7 +27751,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "R6")
+					(reference "R10")
 					(unit 1)
 				)
 			)
@@ -27766,7 +27766,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b78aa63d-6dc7-40f8-a4b4-28c026ca3da4")
-		(property "Reference" "C11"
+		(property "Reference" "C13"
 			(at 234.95 50.7999 0)
 			(effects
 				(font
@@ -27820,7 +27820,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "C11")
+					(reference "C13")
 					(unit 1)
 				)
 			)
@@ -27836,7 +27836,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "bf580165-8629-4c28-a356-96b3afe8d996")
-		(property "Reference" "#PWR09"
+		(property "Reference" "#PWR08"
 			(at 82.55 153.67 0)
 			(effects
 				(font
@@ -27886,7 +27886,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR09")
+					(reference "#PWR08")
 					(unit 1)
 				)
 			)
@@ -27901,7 +27901,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c673bd49-af21-4a36-9449-73fc79014e87")
-		(property "Reference" "R5"
+		(property "Reference" "R9"
 			(at 304.8 104.648 90)
 			(effects
 				(font
@@ -27953,7 +27953,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "R5")
+					(reference "R9")
 					(unit 1)
 				)
 			)
@@ -27969,7 +27969,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c6afb8c9-101c-4599-81f2-4e86cbda66b5")
-		(property "Reference" "#PWR012"
+		(property "Reference" "#PWR010"
 			(at 114.3 173.99 0)
 			(effects
 				(font
@@ -28019,7 +28019,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR012")
+					(reference "#PWR010")
 					(unit 1)
 				)
 			)
@@ -28035,7 +28035,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cb84d9ec-bb1f-47b1-abe9-5a48ef7db73f")
-		(property "Reference" "#PWR05"
+		(property "Reference" "#PWR022"
 			(at 284.48 53.34 0)
 			(effects
 				(font
@@ -28085,7 +28085,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR05")
+					(reference "#PWR022")
 					(unit 1)
 				)
 			)
@@ -28100,7 +28100,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d1e259ec-c630-47da-92f3-246ff7b54f8c")
-		(property "Reference" "R1"
+		(property "Reference" "R7"
 			(at 196.85 89.154 90)
 			(effects
 				(font
@@ -28152,7 +28152,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "R1")
+					(reference "R7")
 					(unit 1)
 				)
 			)
@@ -28167,7 +28167,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d2bfb9d4-8d29-488b-b4a9-7fb6f38d385b")
-		(property "Reference" "U2"
+		(property "Reference" "U1"
 			(at 58.166 151.384 0)
 			(effects
 				(font
@@ -28241,7 +28241,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "U2")
+					(reference "U1")
 					(unit 1)
 				)
 			)
@@ -28330,7 +28330,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e188ef90-4c1f-40f8-8ee5-560f5a5ce6b6")
-		(property "Reference" "#PWR017"
+		(property "Reference" "#PWR021"
 			(at 267.97 213.36 0)
 			(effects
 				(font
@@ -28380,7 +28380,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR017")
+					(reference "#PWR021")
 					(unit 1)
 				)
 			)
@@ -28396,7 +28396,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e67899f3-0326-402d-b729-2667685e6f3f")
-		(property "Reference" "C7"
+		(property "Reference" "C17"
 			(at 342.9 68.5799 0)
 			(effects
 				(font
@@ -28450,7 +28450,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "C7")
+					(reference "C17")
 					(unit 1)
 				)
 			)
@@ -28465,7 +28465,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e9eddc5b-fcda-4c21-8db8-93ae84f1fa86")
-		(property "Reference" "R4"
+		(property "Reference" "R8"
 			(at 215.9 160.274 90)
 			(effects
 				(font
@@ -28517,7 +28517,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "R4")
+					(reference "R8")
 					(unit 1)
 				)
 			)
@@ -28534,7 +28534,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "eeccf77c-a638-4291-b461-2e739df9fb82")
-		(property "Reference" "J1"
+		(property "Reference" "J4"
 			(at 182.88 203.2 0)
 			(effects
 				(font
@@ -28589,7 +28589,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "J1")
+					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -28605,7 +28605,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f438a424-75b8-4202-a9f9-bcb7a568209d")
-		(property "Reference" "#PWR03"
+		(property "Reference" "#PWR016"
 			(at 181.61 106.68 0)
 			(effects
 				(font
@@ -28655,7 +28655,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR03")
+					(reference "#PWR016")
 					(unit 1)
 				)
 			)
@@ -28671,7 +28671,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "fc5e2f06-8e9f-490f-903e-be4fa776e737")
-		(property "Reference" "U1"
+		(property "Reference" "U2"
 			(at 270.1133 200.66 0)
 			(effects
 				(font
@@ -28902,7 +28902,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "U1")
+					(reference "U2")
 					(unit 1)
 				)
 			)
@@ -28918,7 +28918,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ff21d14d-39e9-43b6-9b9f-6d5edb003ef0")
-		(property "Reference" "#PWR02"
+		(property "Reference" "#PWR013"
 			(at 170.18 90.17 0)
 			(effects
 				(font
@@ -28968,7 +28968,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR02")
+					(reference "#PWR013")
 					(unit 1)
 				)
 			)
@@ -28984,7 +28984,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ffc03edb-589a-452f-997e-a38b8d02f956")
-		(property "Reference" "#PWR015"
+		(property "Reference" "#PWR011"
 			(at 153.67 181.61 0)
 			(effects
 				(font
@@ -29034,7 +29034,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR015")
+					(reference "#PWR011")
 					(unit 1)
 				)
 			)

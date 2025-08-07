@@ -8,145 +8,6 @@
 		(title "LoRa Water Quality Management System Sensor Node")
 	)
 	(lib_symbols
-		(symbol "Device:C"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0.254)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "C"
-				(at 0.635 2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "C"
-				(at 0.635 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" ""
-				(at 0.9652 -3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Unpolarized capacitor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "cap capacitor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "C_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "C_0_1"
-				(polyline
-					(pts
-						(xy -2.032 0.762) (xy 2.032 0.762)
-					)
-					(stroke
-						(width 0.508)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.032 -0.762) (xy 2.032 -0.762)
-					)
-					(stroke
-						(width 0.508)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "C_1_1"
-				(pin passive line
-					(at 0 3.81 270)
-					(length 2.794)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 2.794)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Device:L"
 			(pin_numbers
 				(hide yes)
@@ -309,130 +170,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:R"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "R"
-				(at 2.032 0 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "R"
-				(at 0 0 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at -1.778 0 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Resistor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "R res resistor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "R_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "R_0_1"
-				(rectangle
-					(start -1.016 -2.54)
-					(end 1.016 2.54)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "R_1_1"
-				(pin passive line
-					(at 0 3.81 270)
-					(length 1.27)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 1.27)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "LoRaWaterQualityManagementSystem:TPS631010YBGR"
 			(pin_names
 				(offset 1.016)
@@ -440,20 +177,22 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "U3"
-				(at 0 17.78 0)
+			(property "Reference" "U"
+				(at -10.16 13.462 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left bottom)
 				)
 			)
 			(property "Value" "TPS631010YBGR"
-				(at 0 15.24 0)
+				(at -10.16 -12.7 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left bottom)
 				)
 			)
 			(property "Footprint" "TPS631010YBGR:IC_TPS631010YBGR"
@@ -536,8 +275,8 @@
 			)
 			(symbol "TPS631010YBGR_0_0"
 				(rectangle
-					(start -10.16 12.7)
-					(end 10.16 -10.16)
+					(start -10.16 -10.16)
+					(end 10.16 12.7)
 					(stroke
 						(width 0.254)
 						(type default)
@@ -565,25 +304,7 @@
 					)
 				)
 				(pin input line
-					(at -15.24 2.54 0)
-					(length 5.08)
-					(name "EN"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "A2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -15.24 -5.08 0)
+					(at -15.24 5.08 0)
 					(length 5.08)
 					(name "MODE"
 						(effects
@@ -600,17 +321,17 @@
 						)
 					)
 				)
-				(pin power_in line
-					(at -15.24 -7.62 0)
+				(pin input line
+					(at -15.24 2.54 0)
 					(length 5.08)
-					(name "GND"
+					(name "EN"
 						(effects
 							(font
 								(size 1.016 1.016)
 							)
 						)
 					)
-					(number "C2"
+					(number "A2"
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -637,7 +358,7 @@
 					)
 				)
 				(pin input line
-					(at 15.24 2.54 180)
+					(at 15.24 5.08 180)
 					(length 5.08)
 					(name "FB"
 						(effects
@@ -655,7 +376,7 @@
 					)
 				)
 				(pin passive line
-					(at 15.24 -5.08 180)
+					(at 15.24 0 180)
 					(length 5.08)
 					(name "LX1"
 						(effects
@@ -673,7 +394,7 @@
 					)
 				)
 				(pin passive line
-					(at 15.24 -7.62 180)
+					(at 15.24 -2.54 180)
 					(length 5.08)
 					(name "LX2"
 						(effects
@@ -683,6 +404,24 @@
 						)
 					)
 					(number "C1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 15.24 -7.62 180)
+					(length 5.08)
+					(name "GND"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "C2"
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -45052,17 +44791,31 @@
 		)
 		(uuid "84e44edc-2f74-42c3-bfe3-bd866ccb2291")
 	)
-	(junction
-		(at 190.5 90.17)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "05b1fe17-dd05-4b4e-a954-4dac12f9a866")
+	(text_box "Connecting the MODE pin to GND keeps the regulator in auto PFM/PWM mode selection."
+		(exclude_from_sim no)
+		(at 90.424 87.63 0)
+		(size 33.02 7.366)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "cdb20a3a-6142-4d2e-8299-80387c8ec1f1")
 	)
 	(junction
-		(at 128.27 93.98)
+		(at 158.75 99.06)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "85a9d260-352b-4e14-9068-4c0dce6c1ac0")
+		(uuid "4834d22e-e25a-4071-9c41-8eed33a2f657")
 	)
 	(junction
 		(at 114.3 76.2)
@@ -45070,27 +44823,9 @@
 		(color 0 0 0 0)
 		(uuid "8bd650ca-6cee-451f-8f30-63952ec6e640")
 	)
-	(junction
-		(at 190.5 76.2)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c99e9aa5-a578-49c1-8083-20d65a096c8c")
-	)
-	(junction
-		(at 210.82 76.2)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "cfde87b5-eeb0-4c2d-a946-ce6843514cb3")
-	)
-	(junction
-		(at 101.6 76.2)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "dcfb2aa4-08b7-4720-bf69-6b71374eb3a8")
-	)
 	(wire
 		(pts
-			(xy 158.75 91.44) (xy 162.56 91.44)
+			(xy 158.75 86.36) (xy 162.56 86.36)
 		)
 		(stroke
 			(width 0)
@@ -45100,27 +44835,17 @@
 	)
 	(wire
 		(pts
-			(xy 128.27 93.98) (xy 128.27 99.06)
+			(xy 158.75 99.06) (xy 158.75 101.6)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "0b85309f-5612-47a3-8344-e9dcbfd2ec41")
+		(uuid "10ed31ec-525a-4c87-8058-d3bbf1e554d8")
 	)
 	(wire
 		(pts
-			(xy 101.6 87.63) (xy 101.6 93.98)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1fa365cb-3ea0-4021-a3ba-0cc0a4ad34b6")
-	)
-	(wire
-		(pts
-			(xy 128.27 91.44) (xy 128.27 93.98)
+			(xy 158.75 93.98) (xy 158.75 99.06)
 		)
 		(stroke
 			(width 0)
@@ -45140,17 +44865,7 @@
 	)
 	(wire
 		(pts
-			(xy 190.5 76.2) (xy 210.82 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "291453a3-ee8c-48fe-ac9c-9ac02a5d5307")
-	)
-	(wire
-		(pts
-			(xy 158.75 76.2) (xy 190.5 76.2)
+			(xy 158.75 76.2) (xy 187.96 76.2)
 		)
 		(stroke
 			(width 0)
@@ -45160,27 +44875,17 @@
 	)
 	(wire
 		(pts
-			(xy 215.9 76.2) (xy 210.82 76.2)
+			(xy 127 99.06) (xy 158.75 99.06)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "5275c7e1-f82c-4dfb-9f87-14e0f1662ea0")
+		(uuid "5a74ead2-dd95-430b-8da8-67581fc40b69")
 	)
 	(wire
 		(pts
-			(xy 190.5 76.2) (xy 190.5 80.01)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "69ed9598-40c5-433f-9c45-5c12b13de4cf")
-	)
-	(wire
-		(pts
-			(xy 158.75 83.82) (xy 176.53 83.82)
+			(xy 158.75 81.28) (xy 162.56 81.28)
 		)
 		(stroke
 			(width 0)
@@ -45190,17 +44895,7 @@
 	)
 	(wire
 		(pts
-			(xy 190.5 87.63) (xy 190.5 90.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8847eaf7-68c0-44a0-b86b-bdbb4a198ec5")
-	)
-	(wire
-		(pts
-			(xy 170.18 91.44) (xy 173.99 91.44)
+			(xy 170.18 86.36) (xy 173.99 86.36)
 		)
 		(stroke
 			(width 0)
@@ -45210,27 +44905,7 @@
 	)
 	(wire
 		(pts
-			(xy 176.53 90.17) (xy 190.5 90.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a2538fdc-4e08-4e54-8c5b-42b3f281f926")
-	)
-	(wire
-		(pts
-			(xy 101.6 76.2) (xy 101.6 80.01)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a607b7ec-1173-4015-b0db-3e31dbcd504c")
-	)
-	(wire
-		(pts
-			(xy 158.75 93.98) (xy 173.99 93.98)
+			(xy 158.75 88.9) (xy 173.99 88.9)
 		)
 		(stroke
 			(width 0)
@@ -45240,37 +44915,17 @@
 	)
 	(wire
 		(pts
-			(xy 97.79 76.2) (xy 101.6 76.2)
+			(xy 128.27 93.98) (xy 127 93.98)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "b4149326-f5e3-47cb-9ca5-876041c36ea9")
+		(uuid "cb607c60-d421-46d2-b9a7-ab9e76c97dcb")
 	)
 	(wire
 		(pts
-			(xy 190.5 100.33) (xy 190.5 102.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b6be66a5-1725-4fb3-b752-3aa2c7891a4e")
-	)
-	(wire
-		(pts
-			(xy 210.82 91.44) (xy 210.82 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d1d12d23-e18f-4d63-b5da-e66e506b6786")
-	)
-	(wire
-		(pts
-			(xy 173.99 91.44) (xy 173.99 93.98)
+			(xy 173.99 86.36) (xy 173.99 88.9)
 		)
 		(stroke
 			(width 0)
@@ -45280,27 +44935,7 @@
 	)
 	(wire
 		(pts
-			(xy 210.82 76.2) (xy 210.82 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dbfd232f-09b3-4830-af30-7ebd623b6eec")
-	)
-	(wire
-		(pts
-			(xy 190.5 90.17) (xy 190.5 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "df928440-2096-4b79-9420-68a34582d69b")
-	)
-	(wire
-		(pts
-			(xy 101.6 76.2) (xy 114.3 76.2)
+			(xy 97.79 76.2) (xy 114.3 76.2)
 		)
 		(stroke
 			(width 0)
@@ -45320,13 +44955,13 @@
 	)
 	(wire
 		(pts
-			(xy 176.53 83.82) (xy 176.53 90.17)
+			(xy 127 93.98) (xy 127 99.06)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "fe0a37de-072b-432e-aeaf-80eb408acb84")
+		(uuid "fd175e94-aba0-4291-81b3-7cda2fba19a6")
 	)
 	(wire
 		(pts
@@ -45338,20 +44973,9 @@
 		)
 		(uuid "fea89ec6-6075-4902-a6da-505309b5f555")
 	)
-	(hierarchical_label "GND"
-		(shape input)
-		(at 190.5 102.87 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "0d255d43-6f62-4a72-9797-e45b10378bc5")
-	)
 	(hierarchical_label "VOUT"
 		(shape output)
-		(at 215.9 76.2 0)
+		(at 187.96 76.2 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -45362,7 +44986,7 @@
 	)
 	(hierarchical_label "GND"
 		(shape input)
-		(at 128.27 99.06 270)
+		(at 158.75 101.6 270)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -45382,31 +45006,20 @@
 		)
 		(uuid "82dd0520-669e-496a-a9e4-5297ade7de1f")
 	)
-	(hierarchical_label "GND"
+	(hierarchical_label "FB"
 		(shape input)
-		(at 210.82 95.25 270)
+		(at 162.56 81.28 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
-		(uuid "cd5b2ed2-2879-43e5-8269-ab5a510dae91")
-	)
-	(hierarchical_label "GND"
-		(shape input)
-		(at 101.6 93.98 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "cfbaf9b0-55d5-4f37-a570-b2bedcd5dcef")
+		(uuid "d25076f9-f770-4c71-a5bb-8cef32b5df97")
 	)
 	(symbol
 		(lib_id "Device:L")
-		(at 166.37 91.44 90)
+		(at 166.37 86.36 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -45414,7 +45027,7 @@
 		(dnp no)
 		(uuid "1414663c-3f43-44c9-84e8-803e19ff2f6f")
 		(property "Reference" "L2"
-			(at 162.052 89.916 90)
+			(at 162.052 84.836 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -45422,7 +45035,7 @@
 			)
 		)
 		(property "Value" "1uH"
-			(at 166.37 88.9 90)
+			(at 166.37 83.82 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -45430,7 +45043,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 166.37 91.44 0)
+			(at 166.37 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -45438,8 +45051,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "kicad-embed://m_dfe252012p.pdf"
-			(at 166.37 91.44 0)
+		(property "Datasheet" "~"
+			(at 166.37 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -45447,8 +45060,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Murata DFE252012P-1R0M=P2"
-			(at 166.37 91.44 0)
+		(property "Description" "Inductor"
+			(at 166.37 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -45457,155 +45070,19 @@
 			)
 		)
 		(pin "2"
-			(uuid "acf765e5-4fb1-4a81-8d19-e7ce1ae7f5b1")
+			(uuid "356536c3-e023-4995-8148-dd749b626321")
 		)
 		(pin "1"
-			(uuid "0839a53f-ff0a-4eec-a62f-aba63ca35712")
+			(uuid "90080fc7-7a8e-404c-9fe9-35bdfb6eb09e")
 		)
 		(instances
-			(project ""
+			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/33bb74cb-874c-4792-9754-f72a20576d07"
 					(reference "L2")
 					(unit 1)
 				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 190.5 83.82 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "3b71342c-5908-4425-bbfd-a718e8f071f8")
-		(property "Reference" "R7"
-			(at 193.04 82.5499 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "511k"
-			(at 193.04 85.0899 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 188.722 83.82 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 190.5 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 190.5 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "d16e6d80-8a98-4f43-ad0f-cfd434d8a0c8")
-		)
-		(pin "1"
-			(uuid "4a6b8609-9c6d-44dd-9de8-d8d3983dfbce")
-		)
-		(instances
-			(project ""
-				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/33bb74cb-874c-4792-9754-f72a20576d07"
-					(reference "R7")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 101.6 83.82 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "7badf34d-b515-456d-aa56-dd38e7bdf692")
-		(property "Reference" "C17"
-			(at 105.41 82.5499 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "22uF"
-			(at 105.41 85.0899 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 102.5652 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 101.6 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 101.6 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "fbe3e3a6-44b4-4a78-849b-baffeea4a863")
-		)
-		(pin "2"
-			(uuid "10b450e4-7075-44d4-a3a4-48854a9bf21b")
-		)
-		(instances
-			(project ""
-				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/33bb74cb-874c-4792-9754-f72a20576d07"
-					(reference "C17")
+				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/e40534b4-86b2-44fa-9b4b-4985bdae1c57"
+					(reference "L3")
 					(unit 1)
 				)
 			)
@@ -45716,173 +45193,37 @@
 			)
 		)
 		(pin "B2"
-			(uuid "035edd04-d54a-464c-b324-f3eae008a643")
+			(uuid "6e708a73-4180-490d-a9d0-c3930c85304b")
 		)
 		(pin "A1"
-			(uuid "4b4434da-1b30-4fcb-99ab-1d929fe0ba29")
+			(uuid "26cc3f0e-65ad-4d4e-ae12-a76e8450703c")
 		)
 		(pin "C2"
-			(uuid "477fcc87-b44c-4735-989a-9e6ac937f53e")
+			(uuid "8bd4e41a-a46d-49e6-a909-00606319b0f5")
 		)
 		(pin "D2"
-			(uuid "3aa9d313-7c6e-4558-81c6-3a6cd8e3849a")
+			(uuid "8e04c876-2b36-402e-a984-2cccecb92c26")
 		)
 		(pin "A2"
-			(uuid "9667611a-c0cd-428d-ad37-2cc34f6cc882")
+			(uuid "2cf5ad37-b0a6-4879-9c8e-74e4e32fbed9")
 		)
 		(pin "D1"
-			(uuid "3d35e3d0-1724-432c-82cc-139d3d8d8368")
+			(uuid "de08cc33-df8a-49bc-86c9-9bf1b5f4ac6d")
 		)
 		(pin "B1"
-			(uuid "8330ae11-bbab-49d3-918c-1e40e01082ab")
+			(uuid "684debdc-2ca9-49e9-aa76-5b599e4549a7")
 		)
 		(pin "C1"
-			(uuid "f5bafb09-e357-494f-bec1-6ca2e8f3444f")
+			(uuid "1689f33d-914a-4d82-a9fa-0cffe49173e0")
 		)
 		(instances
-			(project ""
+			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/33bb74cb-874c-4792-9754-f72a20576d07"
 					(reference "U3")
 					(unit 1)
 				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 210.82 87.63 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "e1b02d67-ea78-4ffc-b8a0-728cb2de9de1")
-		(property "Reference" "C18"
-			(at 214.63 86.3599 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "47uF"
-			(at 214.63 88.8999 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 211.7852 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 210.82 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 210.82 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "793ccd78-3b0d-46f7-a0f9-1669797eefad")
-		)
-		(pin "2"
-			(uuid "557c8e60-ef20-4fe1-84bc-4545e287502a")
-		)
-		(instances
-			(project "LoRa Water Quality Management System Sensor Node"
-				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/33bb74cb-874c-4792-9754-f72a20576d07"
-					(reference "C18")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 190.5 96.52 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "ec8b72fc-c37e-4fd9-ac06-47a911acc0da")
-		(property "Reference" "R8"
-			(at 193.04 95.2499 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "91k"
-			(at 193.04 97.7899 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 188.722 96.52 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 190.5 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 190.5 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "57d7bf2f-a44a-4987-bd46-012c5619611d")
-		)
-		(pin "1"
-			(uuid "2708a8c2-1e1b-4249-b19e-25fd24d149a5")
-		)
-		(instances
-			(project "LoRa Water Quality Management System Sensor Node"
-				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/33bb74cb-874c-4792-9754-f72a20576d07"
-					(reference "R8")
+				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/e40534b4-86b2-44fa-9b4b-4985bdae1c57"
+					(reference "U4")
 					(unit 1)
 				)
 			)
