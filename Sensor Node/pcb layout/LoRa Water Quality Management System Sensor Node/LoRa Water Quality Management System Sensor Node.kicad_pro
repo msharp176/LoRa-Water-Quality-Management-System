@@ -2,12 +2,213 @@
   "board": {
     "3dviewports": [],
     "design_settings": {
-      "defaults": {},
+      "defaults": {
+        "apply_defaults_to_fp_fields": false,
+        "apply_defaults_to_fp_shapes": false,
+        "apply_defaults_to_fp_text": false,
+        "board_outline_line_width": 0.05,
+        "copper_line_width": 0.2,
+        "copper_text_italic": false,
+        "copper_text_size_h": 1.5,
+        "copper_text_size_v": 1.5,
+        "copper_text_thickness": 0.3,
+        "copper_text_upright": false,
+        "courtyard_line_width": 0.05,
+        "dimension_precision": 4,
+        "dimension_units": 3,
+        "dimensions": {
+          "arrow_length": 1270000,
+          "extension_offset": 500000,
+          "keep_text_aligned": true,
+          "suppress_zeroes": true,
+          "text_position": 0,
+          "units_format": 0
+        },
+        "fab_line_width": 0.1,
+        "fab_text_italic": false,
+        "fab_text_size_h": 1.0,
+        "fab_text_size_v": 1.0,
+        "fab_text_thickness": 0.15,
+        "fab_text_upright": false,
+        "other_line_width": 0.1,
+        "other_text_italic": false,
+        "other_text_size_h": 1.0,
+        "other_text_size_v": 1.0,
+        "other_text_thickness": 0.15,
+        "other_text_upright": false,
+        "pads": {
+          "drill": 0.8,
+          "height": 1.27,
+          "width": 2.54
+        },
+        "silk_line_width": 0.1,
+        "silk_text_italic": false,
+        "silk_text_size_h": 1.0,
+        "silk_text_size_v": 1.0,
+        "silk_text_thickness": 0.1,
+        "silk_text_upright": false,
+        "zones": {
+          "min_clearance": 0.5
+        }
+      },
       "diff_pair_dimensions": [],
       "drc_exclusions": [],
-      "rules": {},
+      "meta": {
+        "version": 2
+      },
+      "rule_severities": {
+        "annular_width": "error",
+        "clearance": "error",
+        "connection_width": "warning",
+        "copper_edge_clearance": "error",
+        "copper_sliver": "warning",
+        "courtyards_overlap": "error",
+        "creepage": "error",
+        "diff_pair_gap_out_of_range": "error",
+        "diff_pair_uncoupled_length_too_long": "error",
+        "drill_out_of_range": "error",
+        "duplicate_footprints": "warning",
+        "extra_footprint": "warning",
+        "footprint": "error",
+        "footprint_filters_mismatch": "ignore",
+        "footprint_symbol_mismatch": "warning",
+        "footprint_type_mismatch": "ignore",
+        "hole_clearance": "error",
+        "hole_to_hole": "warning",
+        "holes_co_located": "warning",
+        "invalid_outline": "error",
+        "isolated_copper": "warning",
+        "item_on_disabled_layer": "error",
+        "items_not_allowed": "error",
+        "length_out_of_range": "error",
+        "lib_footprint_issues": "warning",
+        "lib_footprint_mismatch": "warning",
+        "malformed_courtyard": "error",
+        "microvia_drill_out_of_range": "error",
+        "mirrored_text_on_front_layer": "warning",
+        "missing_courtyard": "ignore",
+        "missing_footprint": "warning",
+        "net_conflict": "warning",
+        "nonmirrored_text_on_back_layer": "warning",
+        "npth_inside_courtyard": "ignore",
+        "padstack": "warning",
+        "pth_inside_courtyard": "ignore",
+        "shorting_items": "error",
+        "silk_edge_clearance": "warning",
+        "silk_over_copper": "warning",
+        "silk_overlap": "warning",
+        "skew_out_of_range": "error",
+        "solder_mask_bridge": "error",
+        "starved_thermal": "error",
+        "text_height": "warning",
+        "text_on_edge_cuts": "error",
+        "text_thickness": "warning",
+        "through_hole_pad_without_hole": "error",
+        "too_many_vias": "error",
+        "track_angle": "error",
+        "track_dangling": "warning",
+        "track_segment_length": "error",
+        "track_width": "error",
+        "tracks_crossing": "error",
+        "unconnected_items": "error",
+        "unresolved_variable": "error",
+        "via_dangling": "warning",
+        "zones_intersect": "error"
+      },
+      "rules": {
+        "max_error": 0.005,
+        "min_clearance": 0.0,
+        "min_connection": 0.0,
+        "min_copper_edge_clearance": 0.5,
+        "min_groove_width": 0.0,
+        "min_hole_clearance": 0.25,
+        "min_hole_to_hole": 0.25,
+        "min_microvia_diameter": 0.2,
+        "min_microvia_drill": 0.1,
+        "min_resolved_spokes": 2,
+        "min_silk_clearance": 0.0,
+        "min_text_height": 0.8,
+        "min_text_thickness": 0.08,
+        "min_through_hole_diameter": 0.3,
+        "min_track_width": 0.0,
+        "min_via_annular_width": 0.1,
+        "min_via_diameter": 0.5,
+        "solder_mask_to_copper_clearance": 0.0,
+        "use_height_for_length_calcs": true
+      },
+      "teardrop_options": [
+        {
+          "td_onpthpad": true,
+          "td_onroundshapesonly": false,
+          "td_onsmdpad": true,
+          "td_ontrackend": false,
+          "td_onvia": true
+        }
+      ],
+      "teardrop_parameters": [
+        {
+          "td_allow_use_two_tracks": true,
+          "td_curve_segcount": 0,
+          "td_height_ratio": 1.0,
+          "td_length_ratio": 0.5,
+          "td_maxheight": 2.0,
+          "td_maxlen": 1.0,
+          "td_on_pad_in_zone": false,
+          "td_target_name": "td_round_shape",
+          "td_width_to_size_filter_ratio": 0.9
+        },
+        {
+          "td_allow_use_two_tracks": true,
+          "td_curve_segcount": 0,
+          "td_height_ratio": 1.0,
+          "td_length_ratio": 0.5,
+          "td_maxheight": 2.0,
+          "td_maxlen": 1.0,
+          "td_on_pad_in_zone": false,
+          "td_target_name": "td_rect_shape",
+          "td_width_to_size_filter_ratio": 0.9
+        },
+        {
+          "td_allow_use_two_tracks": true,
+          "td_curve_segcount": 0,
+          "td_height_ratio": 1.0,
+          "td_length_ratio": 0.5,
+          "td_maxheight": 2.0,
+          "td_maxlen": 1.0,
+          "td_on_pad_in_zone": false,
+          "td_target_name": "td_track_end",
+          "td_width_to_size_filter_ratio": 0.9
+        }
+      ],
       "track_widths": [],
-      "via_dimensions": []
+      "tuning_pattern_settings": {
+        "diff_pair_defaults": {
+          "corner_radius_percentage": 80,
+          "corner_style": 1,
+          "max_amplitude": 1.0,
+          "min_amplitude": 0.2,
+          "single_sided": false,
+          "spacing": 1.0
+        },
+        "diff_pair_skew_defaults": {
+          "corner_radius_percentage": 80,
+          "corner_style": 1,
+          "max_amplitude": 1.0,
+          "min_amplitude": 0.2,
+          "single_sided": false,
+          "spacing": 0.6
+        },
+        "single_track_defaults": {
+          "corner_radius_percentage": 80,
+          "corner_style": 1,
+          "max_amplitude": 1.0,
+          "min_amplitude": 0.2,
+          "single_sided": false,
+          "spacing": 0.6
+        }
+      },
+      "via_dimensions": [],
+      "zones_allow_external_fillets": false
     },
     "ipc2581": {
       "dist": "",
@@ -25,7 +226,60 @@
     "equivalence_files": []
   },
   "erc": {
-    "erc_exclusions": [],
+    "erc_exclusions": [
+      [
+        "label_dangling|1612900|342900|a211d316-0db4-4f57-8897-184acbfa5df9|00000000-0000-0000-0000-000000000000|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727||",
+        "Placeholder label for future use"
+      ],
+      [
+        "label_dangling|1612900|368300|7980a548-5464-4c37-9f40-2d3651d688a3|00000000-0000-0000-0000-000000000000|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727||",
+        "Placeholder label reserved for future use"
+      ],
+      [
+        "label_dangling|3251200|1168400|e2a346df-33a0-47db-ba41-507d8f6ebea1|00000000-0000-0000-0000-000000000000|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0||",
+        "See comment on UART violation."
+      ],
+      [
+        "label_dangling|3251200|1193800|a74af8d4-f23b-4ffb-9800-8f5b6cfb8dec|00000000-0000-0000-0000-000000000000|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0||",
+        "See comment on UART violation."
+      ],
+      [
+        "lib_symbol_mismatch|279400|292100|e9721b7b-05ca-4dff-a7a3-8637cbad5ebc|00000000-0000-0000-0000-000000000000|||",
+        "Pin connection types changed to reflect usage as battery terminal input."
+      ],
+      [
+        "lib_symbol_mismatch|647700|368300|b534625e-2a0d-4d79-b6d4-d4cf22bb4123|00000000-0000-0000-0000-000000000000|||",
+        "Symbol used from KiCad standard library instead."
+      ],
+      [
+        "multiple_net_names|2247900|2032000|987f9ce5-0947-488e-b94f-bc60be4551a8|4a05eaf5-8704-416c-950c-39dfca12e96a|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727",
+        "PH_GND explicitly called out to indicate a direct, short connection referenced to ground, rather than a connection to GND plane."
+      ],
+      [
+        "pin_to_pin|1803400|2032000|663cb912-8a2a-49dc-842b-b1cfffc56566|eb847cac-3098-4294-ae5a-74bbbcb540b5|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727",
+        "SP4T switch selectively provides a connection to ground for each sensor."
+      ],
+      [
+        "pin_to_pin|1803400|2057400|ebce5765-722c-407e-a645-436f974185eb|eb847cac-3098-4294-ae5a-74bbbcb540b5|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727",
+        "SP4T switch selectively provides ground connection to determine which sensor is turned on."
+      ],
+      [
+        "pin_to_pin|2286000|2032000|a4784362-bb72-4414-88e7-47a30858adc5|eb847cac-3098-4294-ae5a-74bbbcb540b5|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727",
+        "PH is referenced to global ground. This pin is used to provide the differential output."
+      ],
+      [
+        "power_pin_not_driven|1282700|762000|26cc3f0e-65ad-4d4e-ae12-a76e8450703c|00000000-0000-0000-0000-000000000000|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/33bb74cb-874c-4792-9754-f72a20576d07|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/33bb74cb-874c-4792-9754-f72a20576d07|",
+        ""
+      ],
+      [
+        "power_pin_not_driven|1816100|1028700|dd41c3ff-5145-4464-a214-12957e4083b4|00000000-0000-0000-0000-000000000000|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0|",
+        "1.1V produced by switching regulator circuit built into the VREG of RP2350"
+      ],
+      [
+        "power_pin_not_driven|2362200|1104900|77897be1-8245-4b55-85ba-99906ff7ba00|00000000-0000-0000-0000-000000000000|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0|",
+        "Power input to analog switching circuitry fed through RC LPF."
+      ]
+    ],
     "meta": {
       "version": 0
     },
@@ -211,7 +465,7 @@
       "endpoint_off_grid": "warning",
       "extra_units": "error",
       "footprint_filter": "ignore",
-      "footprint_link_issues": "warning",
+      "footprint_link_issues": "ignore",
       "four_way_junction": "ignore",
       "global_label_dangling": "warning",
       "hier_label_mismatch": "error",
@@ -246,7 +500,9 @@
   },
   "libraries": {
     "pinned_footprint_libs": [],
-    "pinned_symbol_libs": []
+    "pinned_symbol_libs": [
+      "LoRaWaterQualityManagementSystem"
+    ]
   },
   "meta": {
     "filename": "LoRa Water Quality Management System Sensor Node.kicad_pro",
@@ -395,6 +651,14 @@
       "version": 1
     },
     "net_format_name": "",
+    "ngspice": {
+      "fix_include_paths": true,
+      "meta": {
+        "version": 0
+      },
+      "model_mode": 4,
+      "workbook_filename": ""
+    },
     "page_layout_descr_file": "",
     "plot_directory": "",
     "space_save_all_events": true,
@@ -425,8 +689,8 @@
       "Buck-Boost Regulator (TPS631010YBGR) Layout1"
     ],
     [
-      "ce8791e3-ad50-4e4b-819b-a517400a2b6d",
-      "sx1262 Layout"
+      "b5335518-ac8e-4539-89ae-0ba6483d5923",
+      "Software-Defined Instrumentation Amplifier"
     ]
   ],
   "text_variables": {}

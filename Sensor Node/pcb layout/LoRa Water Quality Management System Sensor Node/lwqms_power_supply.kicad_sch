@@ -286,24 +286,6 @@
 					)
 				)
 				(pin input line
-					(at -15.24 10.16 0)
-					(length 5.08)
-					(name "VIN"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "A1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
 					(at -15.24 5.08 0)
 					(length 5.08)
 					(name "MODE"
@@ -332,24 +314,6 @@
 						)
 					)
 					(number "A2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 15.24 10.16 180)
-					(length 5.08)
-					(name "VOUT"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "D1"
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -422,6 +386,44 @@
 						)
 					)
 					(number "C2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+			)
+			(symbol "TPS631010YBGR_1_0"
+				(pin power_in line
+					(at -15.24 10.16 0)
+					(length 5.08)
+					(name "VIN"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "A1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 15.24 10.16 180)
+					(length 5.08)
+					(name "VOUT"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "D1"
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -44751,26 +44753,6 @@
 		)
 		(uuid "91f3adb6-8090-419d-be4c-1bc2ee0cb894")
 	)
-	(text_box "DSBGA Package ---> Need to check manufacturability with Terry before moving forward with this design."
-		(exclude_from_sim no)
-		(at 123.444 56.896 0)
-		(size 42.164 7.874)
-		(margins 0.9525 0.9525 0.9525 0.9525)
-		(stroke
-			(width 0)
-			(type solid)
-		)
-		(fill
-			(type none)
-		)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left top)
-		)
-		(uuid "7b51f9ec-a2ec-46c0-8ae4-c8ce10342183")
-	)
 	(text_box "Maximum Current Throughput:\n\nRP2350: ~100mA max\nsx1262: 118mA max in +22dBm TX Mode\n+200mA headroom\n\nLet's call it 500mA expected worst case input current. Most of the time we will be in sleep mode and never come close to this.\n\nEnergizer considers the useable life of their D-Cell batteries to be up to 0.8V, meaning a minimum expected input voltage of 2.4V is reasonable. To add some factor of safety, I'll do the calculations with 2V input:\n\nD.C. (boost mode) = (3.3 - 2) / 3.3 = 0.394\n\nI_{Lpeak} = 1A = (0.5A / (0.9 * (1 - 0.394))) + ((2 * 0.394) / (2 * 2MHz * L))\n\nThis gives an inductor value of about 2uH. If we tolerate another 100mA of peak inductor current, we can use a 1uH inductor recommended by TI."
 		(exclude_from_sim no)
 		(at 41.656 112.014 0)
@@ -44905,6 +44887,16 @@
 	)
 	(wire
 		(pts
+			(xy 127 99.06) (xy 127 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9b09a243-7f6f-41b4-b736-799c608ade6a")
+	)
+	(wire
+		(pts
 			(xy 158.75 88.9) (xy 173.99 88.9)
 		)
 		(stroke
@@ -44912,16 +44904,6 @@
 			(type default)
 		)
 		(uuid "a951fb38-0070-4046-afac-70dbc4bf1e47")
-	)
-	(wire
-		(pts
-			(xy 128.27 93.98) (xy 127 93.98)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cb607c60-d421-46d2-b9a7-ab9e76c97dcb")
 	)
 	(wire
 		(pts
@@ -44955,13 +44937,13 @@
 	)
 	(wire
 		(pts
-			(xy 127 93.98) (xy 127 99.06)
+			(xy 127 81.28) (xy 128.27 81.28)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "fd175e94-aba0-4291-81b3-7cda2fba19a6")
+		(uuid "f2bf030d-de25-4312-8633-ea83014dc262")
 	)
 	(wire
 		(pts
@@ -45042,7 +45024,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Inductor_SMD:L_1008_2520Metric_Pad1.43x2.20mm_HandSolder"
 			(at 166.37 86.36 0)
 			(effects
 				(font
@@ -45051,7 +45033,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "kicad-embed://m_dfe252012p.pdf"
 			(at 166.37 86.36 0)
 			(effects
 				(font
@@ -45060,7 +45042,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Inductor"
+		(property "Description" "DFE252012P-1R0M=P2"
 			(at 166.37 86.36 0)
 			(effects
 				(font
@@ -45098,7 +45080,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c6f53536-f61b-4c56-8bb1-85ab14f4a7e4")
-		(property "Reference" "U3"
+		(property "Reference" "U9"
 			(at 143.51 68.58 0)
 			(effects
 				(font
@@ -45114,7 +45096,7 @@
 				)
 			)
 		)
-		(property "Footprint" "TPS631010YBGR:IC_TPS631010YBGR"
+		(property "Footprint" "LWQMS:IC_TPS631010YBGR"
 			(at 143.51 86.36 0)
 			(effects
 				(font
@@ -45219,11 +45201,11 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/33bb74cb-874c-4792-9754-f72a20576d07"
-					(reference "U3")
+					(reference "U9")
 					(unit 1)
 				)
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/e40534b4-86b2-44fa-9b4b-4985bdae1c57"
-					(reference "U4")
+					(reference "U10")
 					(unit 1)
 				)
 			)
