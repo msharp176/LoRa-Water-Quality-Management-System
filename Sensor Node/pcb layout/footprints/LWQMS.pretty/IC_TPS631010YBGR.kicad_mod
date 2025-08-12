@@ -625,4 +625,15 @@
 		(uuid "09b63a36-344d-493a-a277-26eacca964c9")
 	)
 	(embedded_fonts no)
+	(model "C:/Users/mshar/Documents/capstone/Sensor Node/pcb layout/models/TPS631010YBGR.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 -0 -0)
+		)
+	)
 )
