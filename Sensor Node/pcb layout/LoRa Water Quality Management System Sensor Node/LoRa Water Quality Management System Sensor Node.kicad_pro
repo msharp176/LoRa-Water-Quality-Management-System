@@ -37,9 +37,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.95,
-          "height": 1.6,
-          "width": 1.6
+          "drill": 1.5,
+          "height": 2.3,
+          "width": 2.3
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -553,7 +553,7 @@
         "clearance": 0.13,
         "name": "DSBGA Power",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 2,
+        "priority": 3,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.1
       },
@@ -561,17 +561,25 @@
         "clearance": 0.13,
         "name": "Input Power Traces",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 3,
+        "priority": 4,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 1.0,
         "via_diameter": 0.6,
         "via_drill": 0.3
       },
       {
+        "clearance": 0.27,
+        "name": "RF Traces",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.2
+      },
+      {
         "clearance": 0.15,
         "name": "Standard Power Traces",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 1,
+        "priority": 2,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.6,
         "via_diameter": 0.6,
@@ -582,7 +590,7 @@
         "diff_pair_width": 0.127,
         "name": "USB_Differential_Pair",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 0,
+        "priority": 1,
         "schematic_color": "rgba(0, 0, 0, 0.000)"
       }
     ],

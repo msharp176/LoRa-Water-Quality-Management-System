@@ -1,4 +1,4 @@
-26529366458447263
+26430368024845170
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -1533,13 +1533,6 @@ Light Touch Switch, https://industrial.panasonic.com/cdbs/www-data/pdf/ATK0000/A
 4
 2
 Button_Switch_SMD
-SW_SPST_EVQP2
-Light Touch Switch, https://industrial.panasonic.com/cdbs/www-data/pdf/ATK0000/ATK0000C374.pdf
-SMD SMT SPST EVQP2
-0
-4
-2
-Button_Switch_SMD
 SW_SPST_EVQP2_MiddlePushTravel_H2.5mm
 Tactile switch, 4.7 x 3.5 mm, middle push travel, H2.5mm, https://industry.panasonic.com/ac/cdn/e/control/switch/light-touch/catalog/sw_lt_eng_4735s.pdf
 SMD SMT SPST EVQP2
@@ -1613,13 +1606,6 @@ Button_Switch_SMD
 SW_SPST_Omron_B3FS-105xP
 Surface Mount Tactile Switch for High-Density Mounting, 7.3mm height, https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3fs.pdf
 Tactile Switch
-0
-4
-2
-Button_Switch_SMD
-SW_SPST_PTS645
-C&K Components SPST SMD PTS645 Series 6mm Tact Switch
-SPST Button Switch
 0
 4
 2
@@ -57694,13 +57680,6 @@ DCDC-Converter TRACO TMRxxxxWI Single/Dual_output
 7
 7
 Converter_DCDC
-Converter_DCDC_TRACO_TMR-xxxx_THT
-DCDC-Converter, TRACO, TMR xxxx, Single/Dual output, http://www.datasheetlib.com/datasheet/135136/tmr-2-2410e_traco-power.html?page=3#datasheet
-DCDC-Converter TRACO TMRxxxx Single/Dual_output
-0
-7
-7
-Converter_DCDC
 Converter_DCDC_TRACO_TMR4-xxxxWI_THT
 DCDC-Converter, TRACO, TMR4-xxxxWI, 4W, Rev. December 06. 2023, https://www.tracopower.com/products/tmr4wi.pdf, generated with kicad-footprint-generator StandardBox_generator.py
 DCDC-Converter TRACO TMR4WI THT SIP-8 4W
@@ -64820,13 +64799,6 @@ high-current power shielded
 2
 2
 Inductor_SMD
-L_Murata_DEM35xxC
-https://www.murata.com/~/media/webrenewal/products/inductor/chip/tokoproducts/wirewoundferritetypeforpl/m_dem3518c.ashx
-Inductor SMD DEM35xxC
-0
-2
-2
-Inductor_SMD
 L_Murata_DEM3512C
 Inductor, Murata, DEM3512C, 3.9x3.7x1.2mm, (https://www.murata.com/~/media/webrenewal/products/inductor/chip/tokoproducts/wirewoundferritetypeforpl/m_dem3512c.ashx), generated with kicad-footprint-generator gen_inductor.py
 power shielded
@@ -70209,125 +70181,6 @@ Yellow 5381 Series LED
 0
 2
 2
-LWQMS
-ABM8-272-T3
-
-
-0
-4
-4
-LWQMS
-AOTA-B201610S3R3-101-T
-
-
-0
-2
-2
-LWQMS
-CONN_031-5431-10RFX_AMP
-
-031-5431-10RFX 
-0
-2
-2
-LWQMS
-Core1262
-
-
-0
-16
-16
-LWQMS
-DSBGA_8_0.4_0.4
-
-
-0
-16
-8
-LWQMS
-END4263D
-
-
-0
-4
-4
-LWQMS
-IC_TPS631010YBGR
-
-
-0
-8
-8
-LWQMS
-QFN16_4x4MC_MCH
-
-MCP4651T-104E/ML 
-0
-17
-17
-LWQMS
-QFN16_4x4MC_MCH-L
-
-MCP4651T-104E/ML 
-0
-17
-17
-LWQMS
-QFN16_4x4MC_MCH-M
-
-MCP4651T-104E/ML 
-0
-17
-17
-LWQMS
-QFN50P400X400X100-25N
-
-
-0
-25
-25
-LWQMS
-RP2350-QFN-60-1EP_7x7_P0.4mm_EP3.4x3.4mm_ThermalVias
-Raspberry Pi RP2350 QFN-60
-QFN DFN_QFN
-0
-74
-61
-LWQMS
-SOIC127P790X216-8N
-
-
-0
-8
-8
-LWQMS
-SOIC_208MIL_WIN
-
-W25Q128JVSIQ TR 
-0
-8
-8
-LWQMS
-SOIC_208MIL_WIN-L
-
-W25Q128JVSIQ TR 
-0
-8
-8
-LWQMS
-SOIC_208MIL_WIN-M
-
-W25Q128JVSIQ TR 
-0
-8
-8
-LWQMS
-SW4_1825910-B_TEC
-
-1825910-6 
-0
-4
-4
 Module
 A20_OLINUXINO_LIME2
 A20 Olinuxino LIME2, 1.2GHz, 512-1024MB RAM, Micro-SD, NAND or eMMC, 1000Mbit Ethernet
@@ -71918,76 +71771,6 @@ Mounting M3 9771150360
 6
 1
 Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-4.5mm_H1mm_9774010482
-Mounting Hardware, inside through hole 4.5mm, height 1, Wuerth electronics 9774010482 (https://katalog.we-online.de/em/datasheet/9774010482.pdf), generated with kicad-footprint-generator
-Mounting 4.5mm 9774010482
-0
-8
-1
-Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-4.5mm_H2mm_9774020482
-Mounting Hardware, inside through hole 4.5mm, height 2, Wuerth electronics 9774020482 (https://katalog.we-online.de/em/datasheet/9774020482.pdf), generated with kicad-footprint-generator
-Mounting 4.5mm 9774020482
-0
-8
-1
-Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-4.5mm_H3mm_9774030482
-Mounting Hardware, inside through hole 4.5mm, height 3, Wuerth electronics 9774030482 (https://katalog.we-online.de/em/datasheet/9774030482.pdf), generated with kicad-footprint-generator
-Mounting 4.5mm 9774030482
-0
-8
-1
-Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-4.5mm_H4mm_9774040482
-Mounting Hardware, inside through hole 4.5mm, height 4, Wuerth electronics 9774040482 (https://katalog.we-online.de/em/datasheet/9774040482.pdf), generated with kicad-footprint-generator
-Mounting 4.5mm 9774040482
-0
-8
-1
-Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-4.5mm_H5mm_9774050482
-Mounting Hardware, inside through hole 4.5mm, height 5, Wuerth electronics 9774050482 (https://katalog.we-online.de/em/datasheet/9774050482.pdf), generated with kicad-footprint-generator
-Mounting 4.5mm 9774050482
-0
-8
-1
-Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-4.5mm_H6mm_9774060482
-Mounting Hardware, inside through hole 4.5mm, height 6, Wuerth electronics 9774060482 (https://katalog.we-online.de/em/datasheet/9774060482.pdf), generated with kicad-footprint-generator
-Mounting 4.5mm 9774060482
-0
-8
-1
-Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-4.5mm_H7mm_9774070482
-Mounting Hardware, inside through hole 4.5mm, height 7, Wuerth electronics 9774070482 (https://katalog.we-online.de/em/datasheet/9774070482.pdf), generated with kicad-footprint-generator
-Mounting 4.5mm 9774070482
-0
-8
-1
-Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-4.5mm_H8mm_9774080482
-Mounting Hardware, inside through hole 4.5mm, height 8, Wuerth electronics 9774080482 (https://katalog.we-online.de/em/datasheet/9774080482.pdf), generated with kicad-footprint-generator
-Mounting 4.5mm 9774080482
-0
-8
-1
-Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-4.5mm_H9mm_9774090482
-Mounting Hardware, inside through hole 4.5mm, height 9, Wuerth electronics 9774090482 (https://katalog.we-online.de/em/datasheet/9774090482.pdf), generated with kicad-footprint-generator
-Mounting 4.5mm 9774090482
-0
-8
-1
-Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-4.5mm_H10mm_9774100482
-Mounting Hardware, inside through hole 4.5mm, height 10, Wuerth electronics 9774100482 (https://katalog.we-online.de/em/datasheet/9774100482.pdf), generated with kicad-footprint-generator
-Mounting 4.5mm 9774100482
-0
-8
-1
-Mounting_Wuerth
 Mounting_Wuerth_WA-SMSI-M1.6_H0.5mm_9774005633
 Mounting Hardware, inside through hole M1.6, height 0.5, Wuerth electronics 9774005633 (https://www.we-online.com/components/products/datasheet/9774005633R.pdf), generated with kicad-footprint-generator
 Mounting M1.6 9774005633
@@ -72170,23 +71953,9 @@ Mounting M2.5 9774005151
 8
 1
 Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H0.5mm_9774005151R
-Mounting Hardware, inside through hole M2.5, height 0.5, Wuerth electronics 9774005151R (https://www.we-online.com/components/products/datasheet/9774005151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774005151R
-0
-8
-1
-Mounting_Wuerth
 Mounting_Wuerth_WA-SMSI-M2.5_H1.5mm_9774015151
 Mounting Hardware, inside through hole M2.5, height 1.5, Wuerth electronics 9774015151 (https://www.we-online.com/components/products/datasheet/9774015151R.pdf), generated with kicad-footprint-generator
 Mounting M2.5 9774015151
-0
-8
-1
-Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H1.5mm_9774015151R
-Mounting Hardware, inside through hole M2.5, height 1.5, Wuerth electronics 9774015151R (https://www.we-online.com/components/products/datasheet/9774015151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774015151R
 0
 8
 1
@@ -72198,23 +71967,9 @@ Mounting M2.5 9774010151
 8
 1
 Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H1mm_9774010151R
-Mounting Hardware, inside through hole M2.5, height 1, Wuerth electronics 9774010151R (https://www.we-online.com/components/products/datasheet/9774010151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774010151R
-0
-8
-1
-Mounting_Wuerth
 Mounting_Wuerth_WA-SMSI-M2.5_H2.5mm_9774025151
 Mounting Hardware, inside through hole M2.5, height 2.5, Wuerth electronics 9774025151 (https://www.we-online.com/components/products/datasheet/9774025151R.pdf), generated with kicad-footprint-generator
 Mounting M2.5 9774025151
-0
-8
-1
-Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H2.5mm_9774025151R
-Mounting Hardware, inside through hole M2.5, height 2.5, Wuerth electronics 9774025151R (https://www.we-online.com/components/products/datasheet/9774025151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774025151R
 0
 8
 1
@@ -72226,23 +71981,9 @@ Mounting M2.5 9774027151
 8
 1
 Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H2.7mm_9774027151R
-Mounting Hardware, inside through hole M2.5, height 2.7, Wuerth electronics 9774027151R (https://www.we-online.com/components/products/datasheet/9774027151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774027151R
-0
-8
-1
-Mounting_Wuerth
 Mounting_Wuerth_WA-SMSI-M2.5_H2mm_9774020151
 Mounting Hardware, inside through hole M2.5, height 2, Wuerth electronics 9774020151 (https://www.we-online.com/components/products/datasheet/9774020151R.pdf), generated with kicad-footprint-generator
 Mounting M2.5 9774020151
-0
-8
-1
-Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H2mm_9774020151R
-Mounting Hardware, inside through hole M2.5, height 2, Wuerth electronics 9774020151R (https://www.we-online.com/components/products/datasheet/9774020151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774020151R
 0
 8
 1
@@ -72254,23 +71995,9 @@ Mounting M2.5 9774035151
 8
 1
 Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H3.5mm_9774035151R
-Mounting Hardware, inside through hole M2.5, height 3.5, Wuerth electronics 9774035151R (https://www.we-online.com/components/products/datasheet/9774035151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774035151R
-0
-8
-1
-Mounting_Wuerth
 Mounting_Wuerth_WA-SMSI-M2.5_H3mm_9774030151
 Mounting Hardware, inside through hole M2.5, height 3, Wuerth electronics 9774030151 (https://www.we-online.com/components/products/datasheet/9774030151R.pdf), generated with kicad-footprint-generator
 Mounting M2.5 9774030151
-0
-8
-1
-Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H3mm_9774030151R
-Mounting Hardware, inside through hole M2.5, height 3, Wuerth electronics 9774030151R (https://www.we-online.com/components/products/datasheet/9774030151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774030151R
 0
 8
 1
@@ -72282,23 +72009,9 @@ Mounting M2.5 9774045151
 8
 1
 Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H4.5mm_9774045151R
-Mounting Hardware, inside through hole M2.5, height 4.5, Wuerth electronics 9774045151R (https://www.we-online.com/components/products/datasheet/9774045151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774045151R
-0
-8
-1
-Mounting_Wuerth
 Mounting_Wuerth_WA-SMSI-M2.5_H4mm_9774040151
 Mounting Hardware, inside through hole M2.5, height 4, Wuerth electronics 9774040151 (https://www.we-online.com/components/products/datasheet/9774040151R.pdf), generated with kicad-footprint-generator
 Mounting M2.5 9774040151
-0
-8
-1
-Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H4mm_9774040151R
-Mounting Hardware, inside through hole M2.5, height 4, Wuerth electronics 9774040151R (https://www.we-online.com/components/products/datasheet/9774040151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774040151R
 0
 8
 1
@@ -72310,23 +72023,9 @@ Mounting M2.5 9774055151
 8
 1
 Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H5.5mm_9774055151R
-Mounting Hardware, inside through hole M2.5, height 5.5, Wuerth electronics 9774055151R (https://www.we-online.com/components/products/datasheet/9774055151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774055151R
-0
-8
-1
-Mounting_Wuerth
 Mounting_Wuerth_WA-SMSI-M2.5_H5mm_9774050151
 Mounting Hardware, inside through hole M2.5, height 5, Wuerth electronics 9774050151 (https://www.we-online.com/components/products/datasheet/9774050151R.pdf), generated with kicad-footprint-generator
 Mounting M2.5 9774050151
-0
-8
-1
-Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H5mm_9774050151R
-Mounting Hardware, inside through hole M2.5, height 5, Wuerth electronics 9774050151R (https://www.we-online.com/components/products/datasheet/9774050151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774050151R
 0
 8
 1
@@ -72338,23 +72037,9 @@ Mounting M2.5 9774065151
 8
 1
 Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H6.5mm_9774065151R
-Mounting Hardware, inside through hole M2.5, height 6.5, Wuerth electronics 9774065151R (https://www.we-online.com/components/products/datasheet/9774065151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774065151R
-0
-8
-1
-Mounting_Wuerth
 Mounting_Wuerth_WA-SMSI-M2.5_H6mm_9774060151
 Mounting Hardware, inside through hole M2.5, height 6, Wuerth electronics 9774060151 (https://www.we-online.com/components/products/datasheet/9774060151R.pdf), generated with kicad-footprint-generator
 Mounting M2.5 9774060151
-0
-8
-1
-Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H6mm_9774060151R
-Mounting Hardware, inside through hole M2.5, height 6, Wuerth electronics 9774060151R (https://www.we-online.com/components/products/datasheet/9774060151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774060151R
 0
 8
 1
@@ -72366,23 +72051,9 @@ Mounting M2.5 9774075151
 8
 1
 Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H7.5mm_9774075151R
-Mounting Hardware, inside through hole M2.5, height 7.5, Wuerth electronics 9774075151R (https://www.we-online.com/components/products/datasheet/9774075151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774075151R
-0
-8
-1
-Mounting_Wuerth
 Mounting_Wuerth_WA-SMSI-M2.5_H7mm_9774070151
 Mounting Hardware, inside through hole M2.5, height 7, Wuerth electronics 9774070151 (https://www.we-online.com/components/products/datasheet/9774070151R.pdf), generated with kicad-footprint-generator
 Mounting M2.5 9774070151
-0
-8
-1
-Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H7mm_9774070151R
-Mounting Hardware, inside through hole M2.5, height 7, Wuerth electronics 9774070151R (https://www.we-online.com/components/products/datasheet/9774070151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774070151R
 0
 8
 1
@@ -72394,23 +72065,9 @@ Mounting M2.5 9774085151
 8
 1
 Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H8.5mm_9774085151R
-Mounting Hardware, inside through hole M2.5, height 8.5, Wuerth electronics 9774085151R (https://www.we-online.com/components/products/datasheet/9774085151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774085151R
-0
-8
-1
-Mounting_Wuerth
 Mounting_Wuerth_WA-SMSI-M2.5_H8mm_9774080151
 Mounting Hardware, inside through hole M2.5, height 8, Wuerth electronics 9774080151 (https://www.we-online.com/components/products/datasheet/9774080151R.pdf), generated with kicad-footprint-generator
 Mounting M2.5 9774080151
-0
-8
-1
-Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H8mm_9774080151R
-Mounting Hardware, inside through hole M2.5, height 8, Wuerth electronics 9774080151R (https://www.we-online.com/components/products/datasheet/9774080151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774080151R
 0
 8
 1
@@ -72422,13 +72079,6 @@ Mounting M2.5 9774095151
 8
 1
 Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H9.5mm_9774095151R
-Mounting Hardware, inside through hole M2.5, height 9.5, Wuerth electronics 9774095151R (https://www.we-online.com/components/products/datasheet/9774095151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774095151R
-0
-8
-1
-Mounting_Wuerth
 Mounting_Wuerth_WA-SMSI-M2.5_H9mm_9774090151
 Mounting Hardware, inside through hole M2.5, height 9, Wuerth electronics 9774090151 (https://www.we-online.com/components/products/datasheet/9774090151R.pdf), generated with kicad-footprint-generator
 Mounting M2.5 9774090151
@@ -72436,23 +72086,9 @@ Mounting M2.5 9774090151
 8
 1
 Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H9mm_9774090151R
-Mounting Hardware, inside through hole M2.5, height 9, Wuerth electronics 9774090151R (https://www.we-online.com/components/products/datasheet/9774090151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774090151R
-0
-8
-1
-Mounting_Wuerth
 Mounting_Wuerth_WA-SMSI-M2.5_H10mm_9774100151
 Mounting Hardware, inside through hole M2.5, height 10, Wuerth electronics 9774100151 (https://www.we-online.com/components/products/datasheet/9774100151R.pdf), generated with kicad-footprint-generator
 Mounting M2.5 9774100151
-0
-8
-1
-Mounting_Wuerth
-Mounting_Wuerth_WA-SMSI-M2.5_H10mm_9774100151R
-Mounting Hardware, inside through hole M2.5, height 10, Wuerth electronics 9774100151R (https://www.we-online.com/components/products/datasheet/9774100151R.pdf), generated with kicad-footprint-generator
-Mounting M2.5 9774100151R
 0
 8
 1
@@ -85589,13 +85225,6 @@ Microchip PQFP QFP P-QFP 44-Lead-MQFP S-44-2
 44
 44
 Package_QFP
-PQFP-32_5x5mm_P0.5mm
-PQFP, 32 Pin (https://www.ti.com/lit/ds/symlink/ads127l01.pdf#page=87), generated with kicad-footprint-generator ipc_gullwing_generator.py
-PQFP QFP
-0
-32
-32
-Package_QFP
 PQFP-44_10x10mm_P0.8mm
 PQFP, 44 Pin (JEDEC MS-022 variation AB, https://www.jedec.org/document_search?search_api_views_fulltext=MS-022, https://ww1.microchip.com/downloads/aemDocuments/documents/package-outline-drawings/c04-21291a.pdf), generated with kicad-footprint-generator ipc_gullwing_generator.py
 PQFP QFP P-QFP QQZ M44-2 44L-MQFP-10x10x2mm
@@ -85932,13 +85561,6 @@ Texas HTQFP QFP
 88
 49
 Package_QFP
-VQFP-80_14x14mm_P0.65mm
-VQFP, 80 Pin (http://www.microsemi.com/index.php?option=com_docman&task=doc_download&gid=131095), generated with kicad-footprint-generator ipc_gullwing_generator.py
-VQFP QFP
-0
-80
-80
-Package_QFP
 VQFP-128_14x14mm_P0.4mm
 VQFP, 128 Pin (http://www.microsemi.com/index.php?option=com_docman&task=doc_download&gid=131095), generated with kicad-footprint-generator ipc_gullwing_generator.py
 VQFP QFP
@@ -86204,20 +85826,6 @@ HTSOP SO
 0
 20
 9
-Package_SO
-HTSSOP-14-1EP_4.4x5mm_P0.65mm_EP3.4x5mm_Mask3x3.1mm
-HTSSOP, 14 Pin (http://www.ti.com/lit/ds/symlink/lm5161.pdf#page=34), generated with kicad-footprint-generator ipc_gullwing_generator.py
-HTSSOP SO TI-PWP0014A
-0
-20
-15
-Package_SO
-HTSSOP-14-1EP_4.4x5mm_P0.65mm_EP3.4x5mm_Mask3x3.1mm_ThermalVias
-HTSSOP, 14 Pin (http://www.ti.com/lit/ds/symlink/lm5161.pdf#page=34), generated with kicad-footprint-generator ipc_gullwing_generator.py
-HTSSOP SO TI-PWP0014A
-0
-36
-15
 Package_SO
 HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3.4x5mm
 16-Lead Plastic HTSSOP (4.4x5x1.2mm); Thermal pad; (http://www.ti.com/lit/ds/symlink/drv8833.pdf)
@@ -86709,20 +86317,6 @@ Linear HTSSOP SO FE38-(31)
 54
 32
 Package_SO
-MFSOP6-4_4.4x3.6mm_P1.27mm
-https://toshiba.semicon-storage.com/ap-en/design-support/package/detail.4pin%20MFSOP6.html
-MFSOP 4 pin SMD
-0
-4
-4
-Package_SO
-MFSOP6-5_4.4x3.6mm_P1.27mm
-https://toshiba.semicon-storage.com/ap-en/design-support/package/detail.5pin%20MFSOP6.html
-MFSOP 4 pin SMD
-0
-5
-5
-Package_SO
 MSOP-8-1EP_3x3mm_P0.65mm_EP1.5x1.8mm
 MSOP, 8 Pin (https://www.diodes.com/assets/Package-Files/MSOP-8EP.pdf), generated with kicad-footprint-generator ipc_gullwing_generator.py
 MSOP SO
@@ -87069,13 +86663,6 @@ Package_SO
 SO-5-6_4.55x3.7mm_P1.27mm
 SO, 5 Pin (https://toshiba.semicon-storage.com/us/semiconductor/design-development/package/detail.5pin%20SO6.html), generated with kicad-footprint-generator ipc_gullwing_generator.py
 SO SO TLP2310 Toshiba
-0
-5
-5
-Package_SO
-SO-5_4.4x3.6mm_P1.27mm
-5-Lead Plastic Small Outline (SO), see https://docs.broadcom.com/cs/Satellite?blobcol=urldata&blobheader=application%2Fpdf&blobheadername1=Content-Disposition&blobheadername2=Content-Type&blobheadername3=MDT-Type&blobheadervalue1=attachment%3Bfilename%3DIPD-Selection-Guide_AV00-0254EN_030617.pdf&blobheadervalue2=application%2Fx-download&blobheadervalue3=abinary%253B%2Bcharset%253DUTF-8&blobkey=id&blobnocache=true&blobtable=MungoBlobs&blobwhere=1430884105675&ssbinary=true
-SO SOIC 1.27
 0
 5
 5
@@ -87513,13 +87100,6 @@ SOP SO
 0
 20
 9
-Package_SO
-SOP-8_3.9x4.9mm_P1.27mm
-SOP, 8 Pin (http://www.macronix.com/Lists/Datasheet/Attachments/7534/MX25R3235F,%20Wide%20Range,%2032Mb,%20v1.6.pdf#page=79), generated with kicad-footprint-generator ipc_gullwing_generator.py
-SOP SO
-0
-8
-8
 Package_SO
 SOP-8_3.76x4.96mm_P1.27mm
 SOP, 8 Pin (https://ww2.minicircuits.com/case_style/XX211.pdf), generated with kicad-footprint-generator ipc_gullwing_generator.py
@@ -88234,13 +87814,6 @@ TSSOP SO
 0
 20
 20
-Package_SO
-TSSOP-24-1EP_4.4x7.8mm_P0.65mm_EP3.2x5mm
-TSSOP, 24 Pin (https://www.st.com/resource/en/datasheet/led1642gw.pdf#page=37), generated with kicad-footprint-generator ipc_gullwing_generator.py
-TSSOP SO
-0
-31
-25
 Package_SO
 TSSOP-24_4.4x5mm_P0.4mm
 TSSOP, 24 Pin (JEDEC MO-153 Var CA https://www.jedec.org/document_search?search_api_views_fulltext=MO-153), generated with kicad-footprint-generator ipc_gullwing_generator.py
