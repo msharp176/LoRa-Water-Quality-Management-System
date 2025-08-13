@@ -48743,7 +48743,7 @@
 		)
 		(uuid "b3eab2a7-8c81-49f5-b2e2-4b4c02c092ef")
 	)
-	(text "One Decoupling Capacitor for pins 1, 11, 20, 30, 38, 54\n(pin 45 may need one as well, not shown in reference design)"
+	(text "One Decoupling Capacitor for pins 1, 11, 20, 30, 38, (44,45), 54"
 		(exclude_from_sim no)
 		(at 344.17 54.864 0)
 		(effects

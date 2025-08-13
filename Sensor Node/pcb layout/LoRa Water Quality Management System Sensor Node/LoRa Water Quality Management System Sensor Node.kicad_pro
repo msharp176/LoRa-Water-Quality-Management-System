@@ -553,15 +553,15 @@
         "clearance": 0.13,
         "name": "DSBGA Power",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 1,
+        "priority": 2,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.1
       },
       {
         "clearance": 0.13,
-        "name": "Power Traces",
+        "name": "Input Power Traces",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 2,
+        "priority": 3,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 1.0,
         "via_diameter": 0.6,
@@ -569,13 +569,21 @@
       },
       {
         "clearance": 0.15,
-        "name": "RP2350 Power Traces",
+        "name": "Standard Power Traces",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 0,
+        "priority": 1,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.6,
         "via_diameter": 0.6,
         "via_drill": 0.3
+      },
+      {
+        "diff_pair_gap": 0.2,
+        "diff_pair_width": 0.127,
+        "name": "USB_Differential_Pair",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)"
       }
     ],
     "meta": {
@@ -585,28 +593,36 @@
     "netclass_assignments": null,
     "netclass_patterns": [
       {
-        "netclass": "Power Traces",
+        "netclass": "Input Power Traces",
         "pattern": "/V_{BATT}"
       },
       {
-        "netclass": "Power Traces",
+        "netclass": "Input Power Traces",
         "pattern": "/USB_VBUS"
       },
       {
-        "netclass": "Power Traces",
+        "netclass": "Input Power Traces",
         "pattern": "/V_{IN}"
       },
       {
-        "netclass": "RP2350 Power Traces",
+        "netclass": "Standard Power Traces",
         "pattern": "+1V1"
       },
       {
-        "netclass": "Power Traces",
+        "netclass": "Standard Power Traces",
         "pattern": "+3V3"
       },
       {
-        "netclass": "Power Traces",
+        "netclass": "Standard Power Traces",
         "pattern": "+5V"
+      },
+      {
+        "netclass": "USB_Differential_Pair",
+        "pattern": "/USB_D*"
+      },
+      {
+        "netclass": "Standard Power Traces",
+        "pattern": "GND"
       }
     ]
   },
