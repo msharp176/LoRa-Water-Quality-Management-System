@@ -435,4 +435,15 @@
 		(uuid "3e03ecad-f9f6-45d5-94ce-2abf572d5446")
 	)
 	(embedded_fonts no)
+	(model "${LWQMS_MODELS}/c-1825910-6-c-3d.stp"
+		(offset
+			(xyz -3.25 2.5 5)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -0 -0 -90)
+		)
+	)
 )

@@ -37,9 +37,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 1.5,
-          "height": 2.3,
-          "width": 2.3
+          "drill": 0.0,
+          "height": 4.0,
+          "width": 1.6
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -48,7 +48,7 @@
         "silk_text_thickness": 0.1,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.15
+          "min_clearance": 0.2
         }
       },
       "diff_pair_dimensions": [
@@ -58,7 +58,68 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        [
+          "items_not_allowed|114653912|29575730|a347cf80-15d6-46c3-a25e-3d47619176fb|00000000-0000-0000-0000-000000000000",
+          "Referring to RF-related rule area. Not a violation."
+        ],
+        [
+          "items_not_allowed|115054466|40144466|6d0bd7de-ed44-4154-b669-fced10ea48b8|00000000-0000-0000-0000-000000000000",
+          "Referring to RF-related rule area. Not a violation."
+        ],
+        [
+          "lib_footprint_mismatch|114684466|26094466|01e89dad-9521-44fd-a1c3-ec4b693ed84c|00000000-0000-0000-0000-000000000000",
+          "Edge cuts line on footprint moved to user layer"
+        ],
+        [
+          "silk_edge_clearance|111729432|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|cb3bdd20-59b2-4bdb-96ad-11d968f61923",
+          "Edge connector"
+        ],
+        [
+          "silk_edge_clearance|129189432|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|7b2ea252-0c04-4bb0-a014-e0aad041e3c5",
+          "Edge connector"
+        ],
+        [
+          "silk_edge_clearance|132759466|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|a1b4a7ad-3037-4e07-a8b6-dcf8327af789",
+          "Edge connector"
+        ],
+        [
+          "silk_edge_clearance|150219466|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|3e61acfb-44c0-46a6-a568-e3512c2c4bb0",
+          "Edge connector"
+        ],
+        [
+          "silk_edge_clearance|153944466|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|fedec035-a325-4bd9-89e0-683dbd3ad71f",
+          "Edge connector"
+        ],
+        [
+          "silk_edge_clearance|171404466|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|33974ac8-7ef7-4b96-b20c-d2218509ecd4",
+          "Edge connector"
+        ],
+        [
+          "silk_edge_clearance|174853332|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|657d1c07-ecbf-4665-8dc4-f7878c4c4929",
+          "Edge connector"
+        ],
+        [
+          "silk_edge_clearance|189915532|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|3572ff75-f511-4b8d-8c89-abec11f0f2df",
+          "Edge connector"
+        ],
+        [
+          "silk_edge_clearance|200464432|45234466|94d9fa18-ee9a-4df9-8063-2bcbc1a4b4a2|74de0b67-0540-4852-96fb-76044baf5002",
+          "Edge connector"
+        ],
+        [
+          "silk_edge_clearance|200464432|57614466|94d9fa18-ee9a-4df9-8063-2bcbc1a4b4a2|cff41e99-0a24-4a25-bff3-3bce7c3daec3",
+          "Edge connector"
+        ],
+        [
+          "silk_edge_clearance|200464432|60529466|94d9fa18-ee9a-4df9-8063-2bcbc1a4b4a2|4e9cf0c7-4533-4d13-9ff8-180040955cf8",
+          "Edge connector"
+        ],
+        [
+          "silk_edge_clearance|200464432|72749466|94d9fa18-ee9a-4df9-8063-2bcbc1a4b4a2|48f9075e-30f0-43e6-8cb1-92532a5ade5b",
+          "Edge connector"
+        ]
+      ],
       "meta": {
         "version": 2
       },
@@ -118,7 +179,7 @@
         "tracks_crossing": "error",
         "unconnected_items": "error",
         "unresolved_variable": "error",
-        "via_dangling": "warning",
+        "via_dangling": "ignore",
         "zones_intersect": "error"
       },
       "rules": {
@@ -133,7 +194,7 @@
         "min_microvia_drill": 0.1,
         "min_resolved_spokes": 2,
         "min_silk_clearance": 0.0,
-        "min_text_height": 0.8,
+        "min_text_height": 0.5,
         "min_text_thickness": 0.08,
         "min_through_hole_diameter": 0.3,
         "min_track_width": 0.0,
@@ -247,60 +308,7 @@
     "equivalence_files": []
   },
   "erc": {
-    "erc_exclusions": [
-      [
-        "label_dangling|1612900|342900|a211d316-0db4-4f57-8897-184acbfa5df9|00000000-0000-0000-0000-000000000000|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727||",
-        "Placeholder label for future use"
-      ],
-      [
-        "label_dangling|1612900|368300|7980a548-5464-4c37-9f40-2d3651d688a3|00000000-0000-0000-0000-000000000000|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727||",
-        "Placeholder label reserved for future use"
-      ],
-      [
-        "label_dangling|3251200|1168400|e2a346df-33a0-47db-ba41-507d8f6ebea1|00000000-0000-0000-0000-000000000000|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0||",
-        "See comment on UART violation."
-      ],
-      [
-        "label_dangling|3251200|1193800|a74af8d4-f23b-4ffb-9800-8f5b6cfb8dec|00000000-0000-0000-0000-000000000000|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0||",
-        "See comment on UART violation."
-      ],
-      [
-        "lib_symbol_mismatch|279400|292100|e9721b7b-05ca-4dff-a7a3-8637cbad5ebc|00000000-0000-0000-0000-000000000000|||",
-        "Pin connection types changed to reflect usage as battery terminal input."
-      ],
-      [
-        "lib_symbol_mismatch|647700|368300|b534625e-2a0d-4d79-b6d4-d4cf22bb4123|00000000-0000-0000-0000-000000000000|||",
-        "Symbol used from KiCad standard library instead."
-      ],
-      [
-        "multiple_net_names|2247900|2032000|987f9ce5-0947-488e-b94f-bc60be4551a8|4a05eaf5-8704-416c-950c-39dfca12e96a|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727",
-        "PH_GND explicitly called out to indicate a direct, short connection referenced to ground, rather than a connection to GND plane."
-      ],
-      [
-        "pin_to_pin|1803400|2032000|663cb912-8a2a-49dc-842b-b1cfffc56566|eb847cac-3098-4294-ae5a-74bbbcb540b5|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727",
-        "SP4T switch selectively provides a connection to ground for each sensor."
-      ],
-      [
-        "pin_to_pin|1803400|2057400|ebce5765-722c-407e-a645-436f974185eb|eb847cac-3098-4294-ae5a-74bbbcb540b5|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727",
-        "SP4T switch selectively provides ground connection to determine which sensor is turned on."
-      ],
-      [
-        "pin_to_pin|2286000|2032000|a4784362-bb72-4414-88e7-47a30858adc5|eb847cac-3098-4294-ae5a-74bbbcb540b5|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727",
-        "PH is referenced to global ground. This pin is used to provide the differential output."
-      ],
-      [
-        "power_pin_not_driven|1282700|762000|26cc3f0e-65ad-4d4e-ae12-a76e8450703c|00000000-0000-0000-0000-000000000000|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/33bb74cb-874c-4792-9754-f72a20576d07|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/33bb74cb-874c-4792-9754-f72a20576d07|",
-        ""
-      ],
-      [
-        "power_pin_not_driven|1816100|1028700|dd41c3ff-5145-4464-a214-12957e4083b4|00000000-0000-0000-0000-000000000000|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0|",
-        "1.1V produced by switching regulator circuit built into the VREG of RP2350"
-      ],
-      [
-        "power_pin_not_driven|2362200|1104900|77897be1-8245-4b55-85ba-99906ff7ba00|00000000-0000-0000-0000-000000000000|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0|/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0|",
-        "Power input to analog switching circuitry fed through RC LPF."
-      ]
-    ],
+    "erc_exclusions": [],
     "meta": {
       "version": 0
     },

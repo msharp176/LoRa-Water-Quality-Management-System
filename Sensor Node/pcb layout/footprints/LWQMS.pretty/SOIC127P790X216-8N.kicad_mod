@@ -4,7 +4,7 @@
 	(generator_version "9.0")
 	(layer "F.Cu")
 	(property "Reference" "REF**"
-		(at -1.905 -3.683 0)
+		(at -5.6 -2 0)
 		(layer "F.SilkS")
 		(uuid "6cb049a4-407e-4d6b-a213-c4b1cb2908c0")
 		(effects
@@ -12,10 +12,11 @@
 				(size 0.8 0.8)
 				(thickness 0.15)
 			)
+			(justify right)
 		)
 	)
 	(property "Value" "SOIC127P790X216-8N"
-		(at 4.699 3.683 0)
+		(at 0 3.9 0)
 		(layer "F.Fab")
 		(uuid "2b041044-071c-4f47-a73e-0768067d260d")
 		(effects
@@ -70,16 +71,17 @@
 		(layer "F.SilkS")
 		(uuid "deded85d-743d-483f-be9a-636c7c87ef20")
 	)
-	(fp_circle
-		(center -5.215 -2.515)
-		(end -5.115 -2.515)
+	(fp_poly
+		(pts
+			(xy -5.4 -2.158824) (xy -5.4 -1.558824) (xy -4.9 -1.858824)
+		)
 		(stroke
-			(width 0.2)
+			(width 0.1)
 			(type solid)
 		)
-		(fill no)
+		(fill yes)
 		(layer "F.SilkS")
-		(uuid "9d946cbb-27c3-43ea-a347-137887ee2e5a")
+		(uuid "7b63ee4a-ff75-475f-a5ec-b6a5f41ab21f")
 	)
 	(fp_line
 		(start -4.66 -2.865)
@@ -160,17 +162,6 @@
 		)
 		(layer "F.Fab")
 		(uuid "7ea5e2be-fbcb-419d-b141-06bb43d83725")
-	)
-	(fp_circle
-		(center -5.215 -2.515)
-		(end -5.115 -2.515)
-		(stroke
-			(width 0.2)
-			(type solid)
-		)
-		(fill no)
-		(layer "F.Fab")
-		(uuid "406eace5-22b7-43aa-9198-7de07ebc6e85")
 	)
 	(pad "1" smd roundrect
 		(at -3.605 -1.905)
