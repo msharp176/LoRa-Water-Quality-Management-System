@@ -51572,7 +51572,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "07161346-eb8d-4f8e-a8e1-8852d1c208d3")
-		(property "Reference" "#PWR047"
+		(property "Reference" "#PWR050"
 			(at 190.5 223.52 0)
 			(effects
 				(font
@@ -51622,7 +51622,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR047")
+					(reference "#PWR050")
 					(unit 1)
 				)
 			)
@@ -51638,7 +51638,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0d13bdb4-5c16-400d-9270-e50e23e67cf8")
-		(property "Reference" "#PWR045"
+		(property "Reference" "#PWR048"
 			(at 179.07 162.56 0)
 			(effects
 				(font
@@ -51688,7 +51688,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR045")
+					(reference "#PWR048")
 					(unit 1)
 				)
 			)
@@ -51844,7 +51844,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "21714761-4493-4d3f-bb8d-84ecbaabdc45")
-		(property "Reference" "J8"
+		(property "Reference" "J9"
 			(at 55.88 198.1199 0)
 			(effects
 				(font
@@ -51898,7 +51898,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "J8")
+					(reference "J9")
 					(unit 1)
 				)
 			)
@@ -52051,7 +52051,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "432c7787-5290-4e9a-af5e-f74f2904f5ca")
-		(property "Reference" "#PWR048"
+		(property "Reference" "#PWR051"
 			(at 208.28 66.04 0)
 			(effects
 				(font
@@ -52101,7 +52101,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR048")
+					(reference "#PWR051")
 					(unit 1)
 				)
 			)
@@ -52117,7 +52117,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "47ca70f9-d301-4dd8-bc98-e5a27d4249a7")
-		(property "Reference" "#PWR039"
+		(property "Reference" "#PWR042"
 			(at 82.55 194.31 0)
 			(effects
 				(font
@@ -52167,7 +52167,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR039")
+					(reference "#PWR042")
 					(unit 1)
 				)
 			)
@@ -52253,7 +52253,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5b384203-c6b9-4fef-89f2-0d09b66f96fa")
-		(property "Reference" "#PWR049"
+		(property "Reference" "#PWR052"
 			(at 210.82 111.76 0)
 			(effects
 				(font
@@ -52303,7 +52303,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR049")
+					(reference "#PWR052")
 					(unit 1)
 				)
 			)
@@ -52319,7 +52319,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5d3445b4-1db3-4eeb-af18-59c988283f49")
-		(property "Reference" "#PWR053"
+		(property "Reference" "#PWR056"
 			(at 375.92 90.17 0)
 			(effects
 				(font
@@ -52369,7 +52369,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR053")
+					(reference "#PWR056")
 					(unit 1)
 				)
 			)
@@ -52594,7 +52594,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "76bf068f-a82d-4637-bd11-85569ec5cef4")
-		(property "Reference" "#PWR050"
+		(property "Reference" "#PWR053"
 			(at 245.11 44.45 0)
 			(effects
 				(font
@@ -52644,7 +52644,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR050")
+					(reference "#PWR053")
 					(unit 1)
 				)
 			)
@@ -52659,7 +52659,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "78147a5f-f2e4-4e1e-8714-62a1d9a9b73b")
-		(property "Reference" "#PWR044"
+		(property "Reference" "#PWR047"
 			(at 170.18 128.27 0)
 			(effects
 				(font
@@ -52709,7 +52709,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR044")
+					(reference "#PWR047")
 					(unit 1)
 				)
 			)
@@ -52795,7 +52795,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7ed6beca-b8bb-4772-9889-ba8ca7acf1af")
-		(property "Reference" "#PWR042"
+		(property "Reference" "#PWR045"
 			(at 166.37 162.56 0)
 			(effects
 				(font
@@ -52845,7 +52845,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR042")
+					(reference "#PWR045")
 					(unit 1)
 				)
 			)
@@ -53275,7 +53275,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a859f41c-6811-4d31-a5c1-b57c9e225921")
-		(property "Reference" "#PWR037"
+		(property "Reference" "#PWR040"
 			(at 48.26 214.63 0)
 			(effects
 				(font
@@ -53325,7 +53325,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR037")
+					(reference "#PWR040")
 					(unit 1)
 				)
 			)
@@ -53546,7 +53546,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "bf580165-8629-4c28-a356-96b3afe8d996")
-		(property "Reference" "#PWR038"
+		(property "Reference" "#PWR041"
 			(at 82.55 153.67 0)
 			(effects
 				(font
@@ -53596,7 +53596,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR038")
+					(reference "#PWR041")
 					(unit 1)
 				)
 			)
@@ -53679,7 +53679,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c6afb8c9-101c-4599-81f2-4e86cbda66b5")
-		(property "Reference" "#PWR040"
+		(property "Reference" "#PWR043"
 			(at 114.3 173.99 0)
 			(effects
 				(font
@@ -53729,7 +53729,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR040")
+					(reference "#PWR043")
 					(unit 1)
 				)
 			)
@@ -53745,7 +53745,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cb84d9ec-bb1f-47b1-abe9-5a48ef7db73f")
-		(property "Reference" "#PWR052"
+		(property "Reference" "#PWR055"
 			(at 284.48 53.34 0)
 			(effects
 				(font
@@ -53795,7 +53795,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR052")
+					(reference "#PWR055")
 					(unit 1)
 				)
 			)
@@ -54040,7 +54040,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e188ef90-4c1f-40f8-8ee5-560f5a5ce6b6")
-		(property "Reference" "#PWR051"
+		(property "Reference" "#PWR054"
 			(at 267.97 213.36 0)
 			(effects
 				(font
@@ -54090,7 +54090,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR051")
+					(reference "#PWR054")
 					(unit 1)
 				)
 			)
@@ -54244,7 +54244,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "eeccf77c-a638-4291-b461-2e739df9fb82")
-		(property "Reference" "J9"
+		(property "Reference" "J10"
 			(at 182.88 203.2 0)
 			(effects
 				(font
@@ -54299,7 +54299,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "J9")
+					(reference "J10")
 					(unit 1)
 				)
 			)
@@ -54315,7 +54315,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f438a424-75b8-4202-a9f9-bcb7a568209d")
-		(property "Reference" "#PWR046"
+		(property "Reference" "#PWR049"
 			(at 181.61 106.68 0)
 			(effects
 				(font
@@ -54365,7 +54365,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR046")
+					(reference "#PWR049")
 					(unit 1)
 				)
 			)
@@ -54628,7 +54628,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ff21d14d-39e9-43b6-9b9f-6d5edb003ef0")
-		(property "Reference" "#PWR043"
+		(property "Reference" "#PWR046"
 			(at 170.18 90.17 0)
 			(effects
 				(font
@@ -54678,7 +54678,7 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR043")
+					(reference "#PWR046")
 					(unit 1)
 				)
 			)
@@ -54694,7 +54694,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ffc03edb-589a-452f-997e-a38b8d02f956")
-		(property "Reference" "#PWR041"
+		(property "Reference" "#PWR044"
 			(at 153.67 181.61 0)
 			(effects
 				(font
@@ -54744,7 +54744,7 @@
 		(instances
 			(project "LoRa Water Quality Management System Sensor Node"
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/8ed505b3-7460-4c84-b5db-8c51c81aa9b0"
-					(reference "#PWR041")
+					(reference "#PWR044")
 					(unit 1)
 				)
 			)
