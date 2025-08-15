@@ -48,7 +48,7 @@
         "silk_text_thickness": 0.1,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.25
+          "min_clearance": 0.15
         }
       },
       "diff_pair_dimensions": [
@@ -60,16 +60,24 @@
       ],
       "drc_exclusions": [
         [
+          "courtyards_overlap|113216966|35699466|158561d5-b641-4db5-beb5-9be9e37c698a|67dccb49-cfbb-4dbf-983d-637d4497c970",
+          "TVS diode fitting"
+        ],
+        [
+          "items_not_allowed|114314466|36144466|6393f3e2-997e-444e-b895-6c04899130bb|00000000-0000-0000-0000-000000000000",
+          "TVS diode allowed"
+        ],
+        [
           "items_not_allowed|114715020|29575730|553a0e64-7d07-41f4-a3ee-e3c7c991e6bb|00000000-0000-0000-0000-000000000000",
           "SMA connector pad"
         ],
         [
-          "items_not_allowed|114989666|34595289|6393f3e2-997e-444e-b895-6c04899130bb|00000000-0000-0000-0000-000000000000",
-          "TVS diode allowed"
-        ],
-        [
           "items_not_allowed|115054466|40144466|6d0bd7de-ed44-4154-b669-fced10ea48b8|00000000-0000-0000-0000-000000000000",
           "Referring to RF-related rule area. Not a violation."
+        ],
+        [
+          "lib_footprint_mismatch|115194466|90271966|7ec15197-8838-417e-b0d1-7963d6e2f1f9|00000000-0000-0000-0000-000000000000",
+          "Modified fideucial"
         ],
         [
           "silk_edge_clearance|111729432|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|cb3bdd20-59b2-4bdb-96ad-11d968f61923",
