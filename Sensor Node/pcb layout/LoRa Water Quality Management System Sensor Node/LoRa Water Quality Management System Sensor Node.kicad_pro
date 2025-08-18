@@ -37,9 +37,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 3.2,
-          "height": 5.6,
-          "width": 5.6
+          "drill": 0.0,
+          "height": 1.5,
+          "width": 1.5
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -48,7 +48,7 @@
         "silk_text_thickness": 0.1,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.15
+          "min_clearance": 0.25
         }
       },
       "diff_pair_dimensions": [
@@ -80,44 +80,32 @@
           "Modified fideucial"
         ],
         [
-          "silk_edge_clearance|111729432|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|cb3bdd20-59b2-4bdb-96ad-11d968f61923",
-          "Edge connector"
+          "silk_edge_clearance|112950000|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|b5cae8a8-04bb-417a-9663-a6124884fe11",
+          ""
         ],
         [
-          "silk_edge_clearance|129189432|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|7b2ea252-0c04-4bb0-a014-e0aad041e3c5",
-          "Edge connector"
+          "silk_edge_clearance|134550000|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|a2de01a4-1686-4fe6-a24f-d72fbb08a938",
+          ""
         ],
         [
-          "silk_edge_clearance|132759466|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|a1b4a7ad-3037-4e07-a8b6-dcf8327af789",
-          "Edge connector"
+          "silk_edge_clearance|156150000|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|801630d7-972b-4c74-9ade-70242a3bc254",
+          ""
         ],
         [
-          "silk_edge_clearance|150219466|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|3e61acfb-44c0-46a6-a568-e3512c2c4bb0",
-          "Edge connector"
+          "silk_edge_clearance|174975000|100420000|839b3328-055e-41b1-951a-a5bfe39d6af9|f1d1cdbb-d5f7-47d6-a6da-438eab2fd835",
+          ""
         ],
         [
-          "silk_edge_clearance|153944466|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|fedec035-a325-4bd9-89e0-683dbd3ad71f",
-          "Edge connector"
+          "silk_edge_clearance|189725000|100420000|839b3328-055e-41b1-951a-a5bfe39d6af9|0306e497-57c0-4db0-aa6e-862b9c293c5a",
+          ""
         ],
         [
-          "silk_edge_clearance|171404466|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|33974ac8-7ef7-4b96-b20c-d2218509ecd4",
-          "Edge connector"
+          "silk_edge_clearance|189725000|100420000|839b3328-055e-41b1-951a-a5bfe39d6af9|b12fafe9-038e-40a5-8ff4-aa413466bede",
+          ""
         ],
         [
-          "silk_edge_clearance|174853332|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|657d1c07-ecbf-4665-8dc4-f7878c4c4929",
-          "Edge connector"
-        ],
-        [
-          "silk_edge_clearance|189915532|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|3572ff75-f511-4b8d-8c89-abec11f0f2df",
-          "Edge connector"
-        ],
-        [
-          "silk_edge_clearance|200464432|45234466|94d9fa18-ee9a-4df9-8063-2bcbc1a4b4a2|74de0b67-0540-4852-96fb-76044baf5002",
-          "Edge connector"
-        ],
-        [
-          "silk_edge_clearance|200464432|57614466|94d9fa18-ee9a-4df9-8063-2bcbc1a4b4a2|cff41e99-0a24-4a25-bff3-3bce7c3daec3",
-          "Edge connector"
+          "silk_edge_clearance|200464432|47640000|94d9fa18-ee9a-4df9-8063-2bcbc1a4b4a2|67a2c919-15fa-46de-a8e0-c6de474be64d",
+          ""
         ],
         [
           "silk_edge_clearance|200464432|60529466|94d9fa18-ee9a-4df9-8063-2bcbc1a4b4a2|4e9cf0c7-4533-4d13-9ff8-180040955cf8",
@@ -530,6 +518,7 @@
       "single_global_label": "ignore",
       "unannotated": "error",
       "unconnected_wire_endpoint": "warning",
+      "undefined_netclass": "error",
       "unit_value_mismatch": "error",
       "unresolved_variable": "error",
       "wire_dangling": "error"
