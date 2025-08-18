@@ -1,0 +1,17 @@
+### Missing 3D models - created on 2025-08-18 19:06
+### Printed by checking_3D_models plugin
+Board file: C:\Users\mshar\Documents\capstone\Sensor Node\pcb layout\LoRa Water Quality Management System Sensor Node\LoRa Water Quality Management System Sensor Node.kicad_pcb
+3D missing models written to:
+C:\Users\mshar\Documents\capstone\Sensor Node\pcb layout\LoRa Water Quality Management System Sensor Node\LoRa Water Quality Management System Sensor Node_missing3Dmodels.txt
+-------
+('D7', 'C:\\Program Files\\KiCad\\9.0\\share\\kicad\\3dmodels\\Diode_SMD.3dshapes\\D_0201_0603Metric.step')
+('D10', 'C:\\Program Files\\KiCad\\9.0\\share\\kicad\\3dmodels\\Diode_SMD.3dshapes\\D_0201_0603Metric.step')
+('U1', 'C:\\Program Files\\KiCad\\9.0\\share\\kicad\\3dmodels\\Package_SO.3dshapes\\Texas_DYY0016A_TSOT-23-16_2x4.2mm_P0.5mm.step')
+('U3', 'C:\\Program Files\\KiCad\\9.0\\share\\kicad\\3dmodels\\Package_SO.3dshapes\\Texas_DYY0016A_TSOT-23-16_2x4.2mm_P0.5mm.step')
+('D5', 'C:\\Program Files\\KiCad\\9.0\\share\\kicad\\3dmodels\\Diode_SMD.3dshapes\\D_0201_0603Metric.step')
+('D9', 'C:\\Program Files\\KiCad\\9.0\\share\\kicad\\3dmodels\\Diode_SMD.3dshapes\\D_0201_0603Metric.step')
+('D6', 'C:\\Program Files\\KiCad\\9.0\\share\\kicad\\3dmodels\\Diode_SMD.3dshapes\\D_0201_0603Metric.step')
+('U8', '${KISYS3DMOD}/Package_DFN_QFN.3dshapes/QFN-56-1EP_7x7mm_P0.4mm_EP5.6x5.6mm.wrl')
+-------
+NUM of 3D missing models:8
+checked extensions ['.stp', '.step', '.stpZ']
