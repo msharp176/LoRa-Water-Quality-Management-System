@@ -1407,7 +1407,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LWQMS:IND_LQH3NPZ2R2MMEL"
 			(at 170.18 115.57 0)
 			(effects
 				(font
@@ -1487,7 +1487,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LWQMS:CONV_TPS63000DRCR"
 			(at 204.47 124.46 0)
 			(effects
 				(font
