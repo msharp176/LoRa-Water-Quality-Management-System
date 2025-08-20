@@ -1,4 +1,4 @@
-26538144259634520
+26541655582512280
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -70231,6 +70231,13 @@ CONN_031-5431-10RFX_AMP
 2
 2
 LWQMS
+CONV_TPS63000DRCR
+
+
+0
+19
+19
+LWQMS
 Core1262
 
 
@@ -70258,6 +70265,13 @@ IC_TPS631010YBGR
 0
 8
 8
+LWQMS
+IND_LQH3NPZ2R2MMEL
+
+
+0
+2
+2
 LWQMS
 LINX_CONBNC002
 
