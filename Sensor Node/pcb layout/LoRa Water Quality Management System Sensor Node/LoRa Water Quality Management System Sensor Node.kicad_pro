@@ -38,8 +38,8 @@
         "other_text_upright": false,
         "pads": {
           "drill": 0.0,
-          "height": 1.5,
-          "width": 1.5
+          "height": 0.7,
+          "width": 0.6
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -48,7 +48,7 @@
         "silk_text_thickness": 0.1,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.25
+          "min_clearance": 0.15
         }
       },
       "diff_pair_dimensions": [
@@ -60,75 +60,103 @@
       ],
       "drc_exclusions": [
         [
-          "courtyards_overlap|113216966|35699466|158561d5-b641-4db5-beb5-9be9e37c698a|67dccb49-cfbb-4dbf-983d-637d4497c970",
-          "TVS diode fitting"
+          "items_not_allowed|119700717|68059425|4320b7e5-6cad-49f3-952d-24c361f812a2|00000000-0000-0000-0000-000000000000",
+          "pi filter components"
         ],
         [
-          "items_not_allowed|114314466|36144466|6393f3e2-997e-444e-b895-6c04899130bb|00000000-0000-0000-0000-000000000000",
-          "TVS diode allowed"
+          "items_not_allowed|120024470|62025581|553a0e64-7d07-41f4-a3ee-e3c7c991e6bb|00000000-0000-0000-0000-000000000000",
+          "SMA connector"
         ],
         [
-          "items_not_allowed|114715020|29575730|553a0e64-7d07-41f4-a3ee-e3c7c991e6bb|00000000-0000-0000-0000-000000000000",
-          "SMA connector pad"
+          "items_not_allowed|120104252|71144415|449e8602-4d58-4c9d-984b-6bc7a88052ad|00000000-0000-0000-0000-000000000000",
+          "pi filter components"
         ],
         [
-          "items_not_allowed|115054466|40144466|6d0bd7de-ed44-4154-b669-fced10ea48b8|00000000-0000-0000-0000-000000000000",
-          "Referring to RF-related rule area. Not a violation."
+          "items_not_allowed|120310298|70469152|971c7e8b-0a6a-4ce1-967a-a179ce510238|00000000-0000-0000-0000-000000000000",
+          "pi filter components"
         ],
         [
-          "lib_footprint_mismatch|115194466|90231966|7ec15197-8838-417e-b0d1-7963d6e2f1f9|00000000-0000-0000-0000-000000000000",
-          "Minor silkscreen modification"
+          "items_not_allowed|120345675|69214530|53e9fc5b-d700-4dce-96cf-adc339d79e04|00000000-0000-0000-0000-000000000000",
+          "pi filter components"
         ],
         [
-          "silk_edge_clearance|112964470|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|7d697638-cdd2-44e9-bc28-fe7b7e880424",
+          "items_not_allowed|120348493|73014540|8ae97cbf-941e-489e-ad46-0ebd378e3458|00000000-0000-0000-0000-000000000000",
+          "pi filter components"
+        ],
+        [
+          "items_not_allowed|120349470|78459470|6d0bd7de-ed44-4154-b669-fced10ea48b8|00000000-0000-0000-0000-000000000000",
+          "LoRa modulator"
+        ],
+        [
+          "lib_footprint_mismatch|120734470|127596970|7ec15197-8838-417e-b0d1-7963d6e2f1f9|00000000-0000-0000-0000-000000000000",
+          "minor silkscreen change"
+        ],
+        [
+          "lib_footprint_mismatch|203516970|104004470|83ce8e90-2f76-4f68-ba82-82c399e80d1d|00000000-0000-0000-0000-000000000000",
           ""
         ],
         [
-          "silk_edge_clearance|125584470|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|9cc5397b-4de9-4be8-8d8a-93add73b3d2b",
+          "lib_footprint_mismatch|205649474|89334474|dc3b2618-0e2e-4755-a8d5-790f87d4b688|00000000-0000-0000-0000-000000000000",
+          "add solid ground connection"
+        ],
+        [
+          "silk_overlap|120476135|68699470|1e651488-e97f-4a9f-a5aa-0f63f7dc6e1b|53e9fc5b-d700-4dce-96cf-adc339d79e04",
           ""
         ],
         [
-          "silk_edge_clearance|132964470|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|3d1081b5-2280-4eb5-abe0-e4833051ab76",
+          "silk_overlap|120476135|69419470|f445d565-69e5-47b1-b5a0-ecee73725ca5|53e9fc5b-d700-4dce-96cf-adc339d79e04",
           ""
         ],
         [
-          "silk_edge_clearance|145584470|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|9e2f5d75-f37a-4c68-b543-b2683ae761ce",
+          "silk_overlap|120476135|72499470|25c68903-ad3f-4cb7-baab-a20a6f38d5e7|8ae97cbf-941e-489e-ad46-0ebd378e3458",
           ""
         ],
         [
-          "silk_edge_clearance|152964470|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|3e9ee857-e920-4a9d-83df-86f763c8c773",
+          "silk_overlap|120476135|73219470|f5f74d2a-2f1f-4914-8728-db54af8560cf|8ae97cbf-941e-489e-ad46-0ebd378e3458",
           ""
         ],
         [
-          "silk_edge_clearance|165584470|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|78dbc564-bdbe-49f4-b41e-5da67485d84b",
+          "silk_overlap|120707805|68699470|1e651488-e97f-4a9f-a5aa-0f63f7dc6e1b|e08e62b2-8161-4ed3-91c3-bf892474b358",
           ""
         ],
         [
-          "silk_edge_clearance|174949470|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|e3efb3cb-30ea-480a-97c1-6e85c5709501",
+          "silk_overlap|120707805|69419470|f445d565-69e5-47b1-b5a0-ecee73725ca5|e08e62b2-8161-4ed3-91c3-bf892474b358",
           ""
         ],
         [
-          "silk_edge_clearance|189699470|100464432|839b3328-055e-41b1-951a-a5bfe39d6af9|40d8ce9c-aea0-4468-b20c-91088d9f82e2",
+          "silk_overlap|120707805|72499470|25c68903-ad3f-4cb7-baab-a20a6f38d5e7|6a0d9894-b63c-4fde-8cf5-3482b4c60283",
           ""
         ],
         [
-          "silk_edge_clearance|189699470|100464470|839b3328-055e-41b1-951a-a5bfe39d6af9|e94447fc-e0ed-430c-8a28-244510839831",
+          "silk_overlap|120707805|73219470|f5f74d2a-2f1f-4914-8728-db54af8560cf|6a0d9894-b63c-4fde-8cf5-3482b4c60283",
           ""
         ],
         [
-          "silk_edge_clearance|200464432|47564470|94d9fa18-ee9a-4df9-8063-2bcbc1a4b4a2|4e2b1895-5a23-4930-97f5-689e2c9370d7",
+          "silk_overlap|168422543|72159470|d772ed34-d9a3-410d-a209-40b99bd96a5b|8e9f10e7-4668-4293-b943-d8630c700199",
           ""
         ],
         [
-          "silk_edge_clearance|200464432|56374470|94d9fa18-ee9a-4df9-8063-2bcbc1a4b4a2|d02e4134-be9b-4ac2-80b5-820f8db9d628",
+          "silk_overlap|168422543|73109470|d772ed34-d9a3-410d-a209-40b99bd96a5b|17e2fe60-8ea3-4a9d-b0a1-d8b7a57e2ff7",
           ""
         ],
         [
-          "silk_edge_clearance|200464432|60529466|94d9fa18-ee9a-4df9-8063-2bcbc1a4b4a2|9addf32a-68d0-48ce-aac2-5e4076553290",
+          "silk_overlap|168708257|71086316|d772ed34-d9a3-410d-a209-40b99bd96a5b|6613c9b7-2c34-4730-976a-beeb0432b487",
           ""
         ],
         [
-          "silk_edge_clearance|200464432|72749466|94d9fa18-ee9a-4df9-8063-2bcbc1a4b4a2|ab39ba09-a36c-45d4-a8cf-5d9e993fbf15",
+          "silk_overlap|184493971|72501232|d772ed34-d9a3-410d-a209-40b99bd96a5b|d4557fb9-6266-420b-a985-f5d7d7f31011",
+          ""
+        ],
+        [
+          "silk_overlap|184708258|71086316|d772ed34-d9a3-410d-a209-40b99bd96a5b|0fea5435-10b7-4a29-9cd5-04b126ab9556",
+          ""
+        ],
+        [
+          "silk_overlap|184922543|73109470|d772ed34-d9a3-410d-a209-40b99bd96a5b|0046180f-a560-41b6-9666-95e9a2c35b5e",
+          ""
+        ],
+        [
+          "silk_overlap|185779685|72001232|d772ed34-d9a3-410d-a209-40b99bd96a5b|f26453ed-cafd-48ab-a7c1-e66c6834663a",
           ""
         ]
       ],
@@ -173,7 +201,7 @@
         "padstack": "warning",
         "pth_inside_courtyard": "ignore",
         "shorting_items": "error",
-        "silk_edge_clearance": "warning",
+        "silk_edge_clearance": "ignore",
         "silk_over_copper": "warning",
         "silk_overlap": "warning",
         "skew_out_of_range": "error",
@@ -264,6 +292,7 @@
         0.1,
         0.2,
         0.3,
+        0.35,
         0.6
       ],
       "tuning_pattern_settings": {
@@ -589,12 +618,12 @@
         "via_drill": 0.3
       },
       {
-        "clearance": 0.27,
+        "clearance": 0.15,
         "name": "RF Traces",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 0,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.2
+        "track_width": 0.35
       },
       {
         "clearance": 0.15,
@@ -607,8 +636,8 @@
         "via_drill": 0.3
       },
       {
-        "diff_pair_gap": 0.2,
-        "diff_pair_width": 0.127,
+        "diff_pair_gap": 0.14,
+        "diff_pair_width": 0.2,
         "name": "USB_Differential_Pair",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 1,
