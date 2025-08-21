@@ -38,8 +38,8 @@
         "other_text_upright": false,
         "pads": {
           "drill": 0.0,
-          "height": 0.7,
-          "width": 0.6
+          "height": 4.0,
+          "width": 1.6
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -60,8 +60,8 @@
       ],
       "drc_exclusions": [
         [
-          "items_not_allowed|119700717|68059425|4320b7e5-6cad-49f3-952d-24c361f812a2|00000000-0000-0000-0000-000000000000",
-          "pi filter components"
+          "items_not_allowed|119700592|68284444|4320b7e5-6cad-49f3-952d-24c361f812a2|00000000-0000-0000-0000-000000000000",
+          "TSV Diode"
         ],
         [
           "items_not_allowed|120024470|62025581|553a0e64-7d07-41f4-a3ee-e3c7c991e6bb|00000000-0000-0000-0000-000000000000",
@@ -90,14 +90,6 @@
         [
           "lib_footprint_mismatch|120734470|127596970|7ec15197-8838-417e-b0d1-7963d6e2f1f9|00000000-0000-0000-0000-000000000000",
           "minor silkscreen change"
-        ],
-        [
-          "lib_footprint_mismatch|203516970|104004470|83ce8e90-2f76-4f68-ba82-82c399e80d1d|00000000-0000-0000-0000-000000000000",
-          ""
-        ],
-        [
-          "lib_footprint_mismatch|205649474|89334474|dc3b2618-0e2e-4755-a8d5-790f87d4b688|00000000-0000-0000-0000-000000000000",
-          "add solid ground connection"
         ],
         [
           "silk_overlap|120476135|68699470|1e651488-e97f-4a9f-a5aa-0f63f7dc6e1b|53e9fc5b-d700-4dce-96cf-adc339d79e04",
@@ -137,10 +129,6 @@
         ],
         [
           "silk_overlap|168422543|73109470|d772ed34-d9a3-410d-a209-40b99bd96a5b|17e2fe60-8ea3-4a9d-b0a1-d8b7a57e2ff7",
-          ""
-        ],
-        [
-          "silk_overlap|168708257|71086316|d772ed34-d9a3-410d-a209-40b99bd96a5b|6613c9b7-2c34-4730-976a-beeb0432b487",
           ""
         ],
         [
