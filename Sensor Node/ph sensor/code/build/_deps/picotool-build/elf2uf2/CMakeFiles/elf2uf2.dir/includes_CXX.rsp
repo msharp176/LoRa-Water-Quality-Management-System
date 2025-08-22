@@ -1,0 +1,1 @@
+-IC:/Users/Cole/DOCUME~1/CAPSTO~1/capstone/SENSOR~1/PHSENS~1/code/build/_deps/PICOTO~2/elf2uf2 -IC:/Users/Cole/DOCUME~1/CAPSTO~1/capstone/SENSOR~1/PHSENS~1/code/build/_deps/PICOTO~2/elf -IC:/Users/Cole/DOCUME~1/CAPSTO~1/capstone/SENSOR~1/PHSENS~1/code/build/_deps/PICOTO~2/errors -isystem "C:/VSARM/sdk/pico/pico-sdk/src/common/boot_uf2_headers/include"

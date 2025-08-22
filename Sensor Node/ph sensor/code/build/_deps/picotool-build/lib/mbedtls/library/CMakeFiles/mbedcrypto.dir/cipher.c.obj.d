@@ -1,0 +1,69 @@
+lib/mbedtls/library/CMakeFiles/mbedcrypto.dir/cipher.c.obj: \
+ C:\VSARM\sdk\pico\pico-sdk\lib\mbedtls\library\cipher.c \
+ C:\VSARM\sdk\pico\pico-sdk\lib\mbedtls\library\common.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/config.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/check_config.h \
+ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/limits.h \
+ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/syslimits.h \
+ C:/msys64/mingw64/include/limits.h C:/msys64/mingw64/include/crtdefs.h \
+ C:/msys64/mingw64/include/corecrt.h C:/msys64/mingw64/include/_mingw.h \
+ C:/msys64/mingw64/include/_mingw_mac.h \
+ C:/msys64/mingw64/include/_mingw_secapi.h \
+ C:/msys64/mingw64/include/vadefs.h \
+ C:/msys64/mingw64/include/sdks/_mingw_ddk.h \
+ C:/msys64/mingw64/include/assert.h \
+ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/stddef.h \
+ C:/msys64/mingw64/include/stddef.h \
+ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/stdint.h \
+ C:/msys64/mingw64/include/stdint.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/cipher.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/platform_util.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/platform_time.h \
+ C:/msys64/mingw64/include/time.h C:/msys64/mingw64/include/sys/timeb.h \
+ C:/msys64/mingw64/include/sec_api/sys/timeb_s.h \
+ C:/msys64/mingw64/include/_timeval.h \
+ C:/msys64/mingw64/include/pthread_time.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/cipher_internal.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/error.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/constant_time.h \
+ C:\VSARM\sdk\pico\pico-sdk\lib\mbedtls\library\constant_time_internal.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/bignum.h \
+ C:/msys64/mingw64/include/stdio.h \
+ C:/msys64/mingw64/include/corecrt_stdio_config.h \
+ C:/msys64/mingw64/include/_mingw_off_t.h \
+ C:/msys64/mingw64/include/swprintf.inl \
+ C:/msys64/mingw64/include/sec_api/stdio_s.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/ssl_internal.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/ssl.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/ecp.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/ssl_ciphersuites.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/pk.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/md.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/rsa.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/ecdsa.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/x509_crt.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/x509.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/asn1.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/x509_crl.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/dhm.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/ecdh.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/md5.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/sha1.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/sha256.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/sha512.h \
+ C:/msys64/mingw64/include/stdlib.h \
+ C:/msys64/mingw64/include/corecrt_wstdlib.h \
+ C:/msys64/mingw64/include/sec_api/stdlib_s.h \
+ C:/msys64/mingw64/include/malloc.h \
+ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/mm_malloc.h \
+ C:/msys64/mingw64/include/errno.h C:/msys64/mingw64/include/string.h \
+ C:/msys64/mingw64/include/sec_api/string_s.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/chachapoly.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/poly1305.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/chacha20.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/gcm.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/ccm.h \
+ C:/VSARM/sdk/pico/pico-sdk/lib/mbedtls/include/mbedtls/platform.h \
+ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/stdarg.h \
+ C:/msys64/mingw64/include/stdarg.h \
+ C:/msys64/mingw64/include/_mingw_stdarg.h

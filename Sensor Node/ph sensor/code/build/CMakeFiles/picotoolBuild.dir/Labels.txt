@@ -1,0 +1,14 @@
+# Target labels
+ picotoolBuild
+# Source files and their labels
+C:/Users/Cole/Documents/CapstoneGit/capstone/Sensor Node/ph sensor/code/build/CMakeFiles/picotoolBuild
+C:/Users/Cole/Documents/CapstoneGit/capstone/Sensor Node/ph sensor/code/build/CMakeFiles/picotoolBuild.rule
+C:/Users/Cole/Documents/CapstoneGit/capstone/Sensor Node/ph sensor/code/build/CMakeFiles/picotoolBuild-complete.rule
+C:/Users/Cole/Documents/CapstoneGit/capstone/Sensor Node/ph sensor/code/build/picotool/src/picotoolBuild-stamp/picotoolBuild-build.rule
+C:/Users/Cole/Documents/CapstoneGit/capstone/Sensor Node/ph sensor/code/build/picotool/src/picotoolBuild-stamp/picotoolBuild-configure.rule
+C:/Users/Cole/Documents/CapstoneGit/capstone/Sensor Node/ph sensor/code/build/picotool/src/picotoolBuild-stamp/picotoolBuild-download.rule
+C:/Users/Cole/Documents/CapstoneGit/capstone/Sensor Node/ph sensor/code/build/picotool/src/picotoolBuild-stamp/picotoolBuild-install.rule
+C:/Users/Cole/Documents/CapstoneGit/capstone/Sensor Node/ph sensor/code/build/picotool/src/picotoolBuild-stamp/picotoolBuild-mkdir.rule
+C:/Users/Cole/Documents/CapstoneGit/capstone/Sensor Node/ph sensor/code/build/picotool/src/picotoolBuild-stamp/picotoolBuild-patch.rule
+C:/Users/Cole/Documents/CapstoneGit/capstone/Sensor Node/ph sensor/code/build/picotool/src/picotoolBuild-stamp/picotoolBuild-test.rule
+C:/Users/Cole/Documents/CapstoneGit/capstone/Sensor Node/ph sensor/code/build/picotool/src/picotoolBuild-stamp/picotoolBuild-update.rule

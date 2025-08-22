@@ -1,0 +1,5 @@
+C:/Users/Cole/Documents/CapstoneGit/capstone/Sensor Node/ph sensor/code/build/_deps/picotool/picotool.exe
+C:/Users/Cole/Documents/CapstoneGit/capstone/Sensor Node/ph sensor/code/build/_deps/picotool/picotoolTargets.cmake
+C:/Users/Cole/Documents/CapstoneGit/capstone/Sensor Node/ph sensor/code/build/_deps/picotool/picotoolTargets-release.cmake
+C:/Users/Cole/Documents/CapstoneGit/capstone/Sensor Node/ph sensor/code/build/_deps/picotool/picotoolConfig.cmake
+C:/Users/Cole/Documents/CapstoneGit/capstone/Sensor Node/ph sensor/code/build/_deps/picotool/picotoolConfigVersion.cmake
