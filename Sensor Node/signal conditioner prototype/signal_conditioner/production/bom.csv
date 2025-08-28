@@ -1,0 +1,12 @@
+﻿Designator,Footprint,Quantity,Value,LCSC Part #
+"J1, J2",PinHeader_1x04_P2.54mm_Vertical,2,Conn_01x04_Pin,
+"J3, J4",PinHeader_1x03_P2.54mm_Vertical,2,Conn_01x03_Pin,
+"J5, J6, J7",PinHeader_1x02_P2.54mm_Vertical,3,Conn_01x02_Pin,
+"R1, R2, R4, R5",0805,4,4k,
+"R10, R11, R12, R13, R14, R15, R6, R7, R8, R9",0805,10,10k,
+R3,0805,1,200k,
+"TP3, TP4, TP5",TestPoint_Pad_D1.5mm,3,TestPoint_Small,
+U1,(S)SOP16,1,TMUX1309,
+U2,(S)SOP8,1,LSF0102,
+U3,(S)SOP14,1,LMV324,
+"U4, U5",(S)SOP14,2,MCP4651T-503E_ST,
