@@ -43,6 +43,7 @@
 #include "hardware/watchdog.h"
 #include "hardware/irq.h"
 #include "hardware/resets.h"
+#include "hardware/i2c.h"
 #include "tusb.h"
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------

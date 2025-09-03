@@ -57,6 +57,7 @@ target_link_libraries(LWQMS_Firmware
         hardware_watchdog
         hardware_irq
         hardware_resets
+        hardware_i2c
 )
 
 # Include these directories in the source search
