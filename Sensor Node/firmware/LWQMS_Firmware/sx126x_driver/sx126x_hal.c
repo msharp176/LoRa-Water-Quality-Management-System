@@ -30,7 +30,7 @@ sx126x_hal_status_t sx126x_hal_write(   const void* context,
     CHECK_RADIO_BUSY(context);
 
     // Assert Chip Select
-    gpio_write_hal(&(radio_inst->cs), GPIO_LOW);
+    gpio_write_hal(radio_inst->cs, GPIO_LOW);
 
     // Write the command
     if (command_length > 0) {
@@ -43,7 +43,7 @@ sx126x_hal_status_t sx126x_hal_write(   const void* context,
     }
 
     // De-Assert Chip Select
-    gpio_write_hal(&(radio_inst->cs), GPIO_HIGH);
+    gpio_write_hal(radio_inst->cs, GPIO_HIGH);
 
     // Return a success
     return SX126X_HAL_STATUS_OK;
@@ -63,7 +63,7 @@ sx126x_hal_status_t sx126x_hal_read(const void* context,
     CHECK_RADIO_BUSY(context);
 
     // Assert Chip Select
-    gpio_write_hal(&(radio_inst->cs), GPIO_LOW);
+    gpio_write_hal(radio_inst->cs, GPIO_LOW);
 
     // Write the command
     if (command_length > 0) {
@@ -76,7 +76,7 @@ sx126x_hal_status_t sx126x_hal_read(const void* context,
     }
 
     // De-Assert Chip Select
-    gpio_write_hal(&(radio_inst->cs), GPIO_HIGH);
+    gpio_write_hal(radio_inst->cs, GPIO_HIGH);
 
     // Return a success
     return SX126X_HAL_STATUS_OK;
@@ -92,13 +92,13 @@ sx126x_hal_status_t sx126x_hal_reset( const void* context ) {
     const sx126x_context_t* radio_inst = (const sx126x_context_t*)context;
 
     // Assert the RESET Pin LOW
-    gpio_write_hal(&(radio_inst->rst), GPIO_LOW);
+    gpio_write_hal(radio_inst->rst, GPIO_LOW);
 
     // Hold RESET LOW for 100us
     sleep_us(150);  // to be safe
 
     // De-Assert RESET Pin
-    gpio_write_hal(&(radio_inst->rst), GPIO_HIGH);
+    gpio_write_hal(radio_inst->rst, GPIO_HIGH);
 
     // Wait for the radio to no longer be busy
     CHECK_RADIO_BUSY(context);
@@ -115,7 +115,7 @@ sx126x_hal_status_t sx126x_hal_wakeup( const void* context ) {
     CHECK_RADIO_BUSY(context);   // In case this function gets called when the sx126x is not in SLEEP mode - should not be HIGH under normal operation.
 
     // Pull Chip Select LOW to wakeup the chip
-    gpio_write_hal(&(radio_inst->cs), GPIO_LOW);
+    gpio_write_hal(radio_inst->cs, GPIO_LOW);
 
     // Wait for the radio to enter STDBY_RC mode
     CHECK_RADIO_BUSY(context);
@@ -139,7 +139,7 @@ sx126x_hal_status_t wait_for_radio_ready(const void* context) {
 
     int busy_signal_checks = 0;
 
-    while (gpio_read_hal(&(radio_inst->busy))) {
+    while (gpio_read_hal(radio_inst->busy)) {
         
         busy_signal_checks++;
 
@@ -164,19 +164,19 @@ void sx126x_hal_init(const void* context) {
     /* Initialize all GPIO pins */
 
     // Outputs to Radio
-    gpio_setup_hal(&(radio_inst->cs), true);
-    gpio_setup_hal(&(radio_inst->rst), true);
+    gpio_setup_hal(radio_inst->cs, true);
+    gpio_setup_hal(radio_inst->rst, true);
 
     // Inputs from radio
-    gpio_setup_hal(&(radio_inst->busy), false);
-    gpio_setup_hal(&(radio_inst->irq_context->pin), false);
+    gpio_setup_hal(radio_inst->busy, false);
+    gpio_setup_hal(radio_inst->irq_context->pin, false);
 
     // Setup the SPI instance
     uint baud = spi_init_hal(radio_inst->spi_context);
 
     // Put initial values on the output pins
-    gpio_write_hal(&(radio_inst->cs), GPIO_HIGH);
-    gpio_write_hal(&(radio_inst->rst), GPIO_HIGH);
+    gpio_write_hal(radio_inst->cs, GPIO_HIGH);
+    gpio_write_hal(radio_inst->rst, GPIO_HIGH);
 
     return;
 }

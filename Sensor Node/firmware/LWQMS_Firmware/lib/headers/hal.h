@@ -73,58 +73,68 @@ extern void unregister_gpio_isr(gpio_driven_irq_context_t *context);
  * 
  * @brief Sets up a GPIO pin within the HAL
  * 
- * @param  gpio_context     (uint8_t) GPIO pin identifier information
+ * @param  pin     (uint8_t) GPIO pin identifier information
  * @param  IsOutput         Specify if the pin is an output or input.
  * 
  * @returns None
  * 
  */
-void gpio_setup_hal(const void *gpio_context, bool IsOutput);
+void gpio_setup_hal(const uint8_t pin, bool IsOutput);
+
+/**
+ * @brief Sets the pull resistor direction on a given GPIO pin
+ * 
+ * @param pin GPIO Pin Identifier Information
+ * @param IsPullUp True for pull up resistor, false for pull down
+ * 
+ * @returns None
+ */
+void gpio_set_pull_resistor_hal(const uint8_t pin, bool IsPullUp);
 
 /**
  * 
  * @brief De-Initializes a GPIO pin within the HAL
  * 
- * @param gpio_context (uint8_t) GPIO pin identifier information
+ * @param pin (uint8_t) GPIO pin identifier information
  * 
  * @returns None
  * 
  */
-void gpio_terminate_hal(const void *gpio_context);
+void gpio_terminate_hal(const uint8_t pin);
 
 /**
  * 
  * @brief Writes a boolean status to a GPIO pin using the HAL
  * 
- * @param  gpio_context     (uint8_t) GPIO pin identifier information
+ * @param  pin     (uint8_t) GPIO pin identifier information
  * @param  state            Desired State (HIGH/LOW) of GPIO pin
  * 
  * @returns None
  * 
  */
-void gpio_write_hal(const void *gpio_context, bool state);
+void gpio_write_hal(const uint8_t pin, bool state);
 
 /**
  * 
  * @brief Reads the current state of a GPIO pin using the HAL
  * 
- * @param  gpio_context: (uint8_t) GPIO pin identifier information
+ * @param  pin: (uint8_t) GPIO pin identifier information
  * 
  * @returns The state of the GPIO pin
  * 
  */
-bool gpio_read_hal(const void *gpio_context);
+bool gpio_read_hal(const uint8_t pin);
 
 /**
  * 
  * @brief Convenience method to invert the current state of a GPIO pin
  * 
- * @param  gpio_context: (uint8_t) GPIO pin identifier information
+ * @param  pin: (uint8_t) GPIO pin identifier information
  * 
  * @returns The final state of the gpio pin
  * 
  */
-bool gpio_toggle_hal(const void *gpio_context);
+bool gpio_toggle_hal(const uint8_t pin);
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -168,7 +178,7 @@ void spi_terminate_hal(const void* spi_context);
  * @returns The number of bytes written.
  * 
  */
-uint spi_write_hal(const void *spi_context, char * data, int len);
+uint spi_write_hal(const void *spi_context, uint8_t * data, int len);
 
 /**
  * 
@@ -181,20 +191,21 @@ uint spi_write_hal(const void *spi_context, char * data, int len);
  * @returns The number of bytes read.
  * 
  */
-uint spi_read_hal(const void *spi_context, char * buf, int len);
+uint spi_read_hal(const void *spi_context, uint8_t * buf, int len);
 
 /**
  * 
  * @brief Writes a buffer to the SPI bus, and reads data from that same bus simultaneously using the HAL.
  * 
  * @param spi_context: (spi_context_t) Implementation Information for the desired SPI instance to use
- * @param txData:      Buffer containing bytes to write to the SPI bus. This buffer will be overwritten in-place by the bytes read back in
+ * @param txData:      Buffer containing bytes to write to the SPI bus.
+ * @param rxData:      Buffer to contain read in bytes.
  * @param len:         The number of bytes to be written/read
  * 
  * @returns The number of bytes written/read
  * 
  */
-uint spi_rw_hal(const void *spi_context, char * txData, int len);
+uint spi_rw_hal(const void *spi_context, uint8_t *txData, uint8_t *rxData, int len);
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -205,6 +216,63 @@ uint spi_rw_hal(const void *spi_context, char * txData, int len);
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // I2C
 
+/**
+ * @brief Initializes the given I2C context using the HAL
+ * 
+ * @param i2c_context: `(i2c_context_t)` Implementation Information for the desired I2C instance to use
+ * 
+ * @returns The actual baud rate set for the I2C instance
+ */
+uint i2c_init_hal(const void* i2c_context);
+
+/**
+ * @brief Terminates the given I2C context using the HAL
+ * 
+ * @param i2c_context: `(i2c_context_t)` Implementation Information for the desired I2C instance to use
+ * 
+ * @returns None
+ */
+void i2c_terminate_hal(const void* i2c_context);
+
+/**
+ * @brief Writes the provided data to the given I2C instance
+ * 
+ * @param i2c_context: `(i2c_context_t)` Implementation Information for the desired I2C instance to use
+ * @param address: Slave address to write to
+ * @param txData: Data to be written
+ * @param len: Length of data stored in `txData`.
+ * 
+ * @returns Number of bytes written or error code if an error occurs. (error codes are <0).
+ */
+int i2c_write_hal(const void* i2c_context, uint8_t address, const uint8_t* txData, uint len);
+
+/**
+ * @brief Reads data from the given I2C intance
+ * 
+ * @param i2c_context: `(i2c_context_t)` Implementation Information for the desired I2C instance to use
+ * @param address:  Slave address to read from
+ * @param rxData: Data buffer to store received data
+ * @param len: Capacity of `rxData` buffer.
+ * 
+ * @returns Number of bytes read or error code if an error occurs. (error codes are <0).
+ */
+int i2c_read_hal(const void* i2c_context, uint8_t address, uint8_t* rxData, uint len);
+
+/**
+ * @brief Writes data to the given I2C instance, then reads back the slave response
+ * 
+ * @param i2c_context: `(i2c_context_t)` Implementation Information for the desired I2C instance to use
+ * @param address: Slave address to write to/read from
+ * @param txData: Data to be written
+ * @param rxData: Data buffer to store received data
+ * @param txLen: Length of data stored in `txData`.
+ * @param rxLen: Capactiy of `rxData` buffer.
+ * 
+ * @returns Number of bytes read back, or an error code if an error occurs. (error codes are <0).
+ */
+int i2c_write_then_read_hal(const void* i2c_context, uint8_t address, uint8_t *txData, uint8_t *rxData, uint txLen, uint rxLen);
+
+void i2c_scan_hal(const i2c_context_t* i2c_context);
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma endregion

@@ -1,0 +1,191 @@
+
+**** 09/10/25 19:41:44 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-VRef2_Sweep"  [ C:\Users\mshar\Documents\capstone\simulation\Software-Defined Instrumentation Amplifier\Soft
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "VRef2_Sweep.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+* From [PSPICE NETLIST] section of C:\cds_spb_home\cdssetup\OrCAD_PSpiceTIPSpice_Install\23.1.0\PSpice.ini file:
+.lib "nom_pspti.lib" 
+.lib "nom.lib" 
+
+*Analysis directives: 
+.DC LIN PARAM VRef2 0 5 0.1 
+.OPTIONS ADVCONV
+.OPTIONS FILEMODELSEARCH
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source SOFTWARE_DEFINED_INSTRUMENTATION_AMPLIFIER
+X_U1         VREF1 N00582 VDD VSS N00550 LMV324
+X_U2         N00602 N00586 VDD VSS VOUT LMV324
+X_U3         N00271 N00578 VDD VSS N00564 LMV324
+X_U4         N00840 N00800 VDD VSS N00271 LMV324
+R_R1         VSEN N00840  10k TC=0,0 
+R_R2         VOFF+ N00840  10k TC=0,0 
+R_R3         N00550 N00586  10k TC=0,0 
+R_R4         N00586 VOUT  10k TC=0,0 
+R_R5         N00582 N00550  10k TC=0,0 
+R_R6         N00578 N00582  10k TC=0,0 
+R_R7         N00564 N00578  10k TC=0,0 
+R_R8         N00602 N00564  10k TC=0,0 
+R_R9         VREF2 N00602  10k TC=0,0 
+R_R10         VOFF- N00800  10k TC=0,0 
+R_R11         N00800 N00271  10k TC=0,0 
+V_V1         VDD 0 5
+V_V2         VOFF+ 0 0
+V_V3         VOFF- 0 0
+V_V7         VREF1 0 0Vdc
+V_V8         VREF2 0 {VRef2}
+V_V9         VSEN 0 1Vdc
+V_V10         0 VSS 0
+.PARAM  vref2=0v
+
+**** RESUMING VRef2_Sweep.cir ****
+.END
+
+**** 09/10/25 19:41:44 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-VRef2_Sweep"  [ C:\Users\mshar\Documents\capstone\simulation\Software-Defined Instrumentation Amplifier\Soft
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U1.DMOD1      X_U1.DMOD2      X_U2.DMOD1      X_U2.DMOD2      
+          IS   10.000000E-15   10.000000E-18   10.000000E-15   10.000000E-18 
+
+
+               X_U3.DMOD1      X_U3.DMOD2      X_U4.DMOD1      X_U4.DMOD2      
+          IS   10.000000E-15   10.000000E-18   10.000000E-15   10.000000E-18 
+
+
+**** 09/10/25 19:41:44 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-VRef2_Sweep"  [ C:\Users\mshar\Documents\capstone\simulation\Software-Defined Instrumentation Amplifier\Soft
+
+
+ ****     BJT MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U1.NPN1       X_U1.PNP1       X_U2.NPN1       X_U2.PNP1       
+               NPN             PNP             NPN             PNP             
+       LEVEL    1               1               1               1            
+          IS    1.000000E-15    1.000000E-15    1.000000E-15    1.000000E-15 
+          BF  100             100             100             100            
+          NF    1               1               1               1            
+          BR    1               1               1               1            
+          NR    1               1               1               1            
+         ISS    0               0               0               0            
+          RE    0               0               0               0            
+          RC    0               0               0               0            
+         CJE    0               0               0               0            
+         VJE     .75             .75             .75             .75         
+         CJC    0               0               0               0            
+         VJC     .75             .75             .75             .75         
+         MJC     .33             .33             .33             .33         
+        XCJC    1               1               1               1            
+         CJS    0               0               0               0            
+         VJS     .75             .75             .75             .75         
+          KF    0               0               0               0            
+          AF    1               1               1               1            
+          CN    2.42            2.2             2.42            2.2          
+           D     .87             .52             .87             .52         
+
+
+               X_U3.NPN1       X_U3.PNP1       X_U4.NPN1       X_U4.PNP1       
+               NPN             PNP             NPN             PNP             
+       LEVEL    1               1               1               1            
+          IS    1.000000E-15    1.000000E-15    1.000000E-15    1.000000E-15 
+          BF  100             100             100             100            
+          NF    1               1               1               1            
+          BR    1               1               1               1            
+          NR    1               1               1               1            
+         ISS    0               0               0               0            
+          RE    0               0               0               0            
+          RC    0               0               0               0            
+         CJE    0               0               0               0            
+         VJE     .75             .75             .75             .75         
+         CJC    0               0               0               0            
+         VJC     .75             .75             .75             .75         
+         MJC     .33             .33             .33             .33         
+        XCJC    1               1               1               1            
+         CJS    0               0               0               0            
+         VJS     .75             .75             .75             .75         
+          KF    0               0               0               0            
+          AF    1               1               1               1            
+          CN    2.42            2.2             2.42            2.2          
+           D     .87             .52             .87             .52         
+
+
+**** 09/10/25 19:41:44 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-VRef2_Sweep"  [ C:\Users\mshar\Documents\capstone\simulation\Software-Defined Instrumentation Amplifier\Soft
+
+
+ ****     Resistor MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U1.MRAX       X_U1.MRIB       X_U1.MRISC      X_U2.MRAX       
+           R    1               1               1               1            
+         TC1   10.000000E-06    2.837130E-03   -3.000000E-03   10.000000E-06 
+
+
+               X_U2.MRIB       X_U2.MRISC      X_U3.MRAX       X_U3.MRIB       
+           R    1               1               1               1            
+         TC1    2.837130E-03   -3.000000E-03   10.000000E-06    2.837130E-03 
+
+
+               X_U3.MRISC      X_U4.MRAX       X_U4.MRIB       X_U4.MRISC      
+           R    1               1               1               1            
+         TC1   -3.000000E-03   10.000000E-06    2.837130E-03   -3.000000E-03 
+
+
+
+          JOB CONCLUDED
+
+**** 09/10/25 19:41:44 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-VRef2_Sweep"  [ C:\Users\mshar\Documents\capstone\simulation\Software-Defined Instrumentation Amplifier\Soft
+
+
+ ****     JOB STATISTICS SUMMARY
+
+
+******************************************************************************
+
+
+
+  Total job time (using Solver 1)   =        1.48
+

@@ -1,0 +1,14 @@
+* source INA333_TEST
+X_U1         N00613 0 VDD 0 VOUT VREF N00632 N00636 INA333
+R_R1         N00636 N00632  100k TC=0,0 
+X_U2         N00488 N00513 VDD 0 N00613 LMV321A
+V_V1         VDD 0 5
+V_V2         VREF 0 0Vdc
+V_V3         VOFF+ 0 0Vdc
+V_V4         VOFF- 0 0Vdc
+R_R2         VOFF+ N00488  10k TC=0,0 
+R_R3         VOFF- N00513  10k TC=0,0 
+R_R4         VSEN N00488  10k TC=0,0 
+R_R5         N00513 N00613  10k TC=0,0 
+V_V5         VSEN 0  AC 1k
++SIN 1 1 1k 0 0 0

@@ -17,45 +17,41 @@
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // GPIO Functions
 
-void gpio_setup_hal(const void *gpio_context, bool IsOutput) {
-    const uint8_t* pin = (const uint8_t *)gpio_context;
-    
-    gpio_init(*pin);
-    gpio_set_dir(*pin, IsOutput);
+void gpio_setup_hal(const uint8_t pin, bool IsOutput) {
+
+    gpio_init(pin);
+    gpio_set_dir(pin, IsOutput);
     
     return;
 }
 
-void gpio_terminate_hal(const void *gpio_context) {
-    const uint8_t* pin = (const uint8_t *)gpio_context;
-    gpio_deinit(*pin);
-    
+void gpio_set_pull_resistor_hal(const uint8_t pin, bool IsPullUp) {
+    gpio_set_pulls(pin, IsPullUp, !IsPullUp);
     return;
 }
 
-void gpio_write_hal(const void *gpio_context, bool state) {
-    
-    const uint8_t* pin = (const uint8_t *)gpio_context;
-    
-    gpio_put(*pin, state);
+void gpio_terminate_hal(const uint8_t pin) {
+    gpio_deinit(pin);
+    return;
+}
+
+void gpio_write_hal(const uint8_t pin, bool state) {
+        
+    gpio_put(pin, state);
     
 }
 
-bool gpio_read_hal(const void *gpio_context) {
-    
-    const uint8_t* pin = (const uint8_t *)gpio_context;
-    
-    return gpio_get(*pin);
+bool gpio_read_hal(const uint8_t pin) {    
+    return gpio_get(pin);
 }
 
-bool gpio_toggle_hal(const void *gpio_context) {
+bool gpio_toggle_hal(const uint8_t pin) {
 
-    bool current_pin_state = gpio_read_hal(gpio_context);
+    bool current_pin_state = gpio_read_hal(pin);
 
-    gpio_write_hal(gpio_context, !current_pin_state);
+    gpio_write_hal(pin, !current_pin_state);
 
     return !current_pin_state;
-
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -113,7 +109,7 @@ void spi_reset_hal(const void* spi_context) {
 
 }
 
-uint spi_write_hal(const void* spi_context, char * data, int len) {
+uint spi_write_hal(const void* spi_context, uint8_t * data, int len) {
     
     const spi_context_t * cxt = (const spi_context_t *)spi_context;
     
@@ -121,7 +117,7 @@ uint spi_write_hal(const void* spi_context, char * data, int len) {
     
 }
 
-uint spi_read_hal(const void* spi_context, char * buf, int len) {
+uint spi_read_hal(const void* spi_context, uint8_t * buf, int len) {
     
     const spi_context_t * cxt = (const spi_context_t *)spi_context;
     
@@ -132,19 +128,11 @@ uint spi_read_hal(const void* spi_context, char * buf, int len) {
     return bytes;
 }
 
-uint spi_rw_hal(const void* spi_context, char * txData, int len) {
+uint spi_rw_hal(const void* spi_context, uint8_t *txData, uint8_t *rxData, int len) {
     
     const spi_context_t * cxt = (const spi_context_t *)spi_context;
-    
-    char * rxData = malloc(len);
-    
+        
     uint bytes = spi_write_read_blocking(cxt->inst, txData, rxData, len);
-    
-    memcpy(txData, rxData, len);    // something something memory unsafe something something
-    
-    free(rxData);
-    
-    // TODO: Verify that the txData buffer indeed is overwritten.
     
     return bytes;
 }
@@ -158,7 +146,122 @@ uint spi_rw_hal(const void* spi_context, char * txData, int len) {
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // I2C
 
+uint i2c_init_hal(const void* i2c_context) {
+    
+    const i2c_context_t *setup = (const i2c_context_t*)i2c_context;
 
+    uint baud = i2c_init(setup->inst, setup->baud);
+
+    gpio_set_function(setup->sda, GPIO_FUNC_I2C);
+    gpio_set_function(setup->scl, GPIO_FUNC_I2C);
+    
+    gpio_pull_up(setup->sda);
+    gpio_pull_up(setup->scl);
+
+    return baud;    
+}
+
+void i2c_terminate_hal(const void* i2c_context) {
+
+    const i2c_context_t *setup = (const i2c_context_t*)i2c_context;
+
+    // De-initialize the i2c instance on the MPU
+    i2c_deinit(setup->inst);
+
+    // De-init the GPIO
+    gpio_deinit(setup->sda);
+    gpio_deinit(setup->scl);
+
+    return;
+}
+
+int i2c_write_hal(const void* i2c_context, uint8_t address, const uint8_t* txData, uint len) {
+
+    const i2c_context_t *setup = (const i2c_context_t*)i2c_context;
+
+    // Write the data and catch errors as they occur.
+    int bytes_written = i2c_write_blocking(setup->inst, address, txData, len, false);
+
+    if (bytes_written < 0) {
+        err_raise(ERR_I2C_TRANSACTION_FAIL, ERR_SEV_NONFATAL, "I2C Transaction failure!", "i2c_write_hal");
+    }
+
+    return bytes_written;
+}
+
+int i2c_read_hal(const void* i2c_context, uint8_t address, uint8_t* rxData, uint len) {
+
+    const i2c_context_t *setup = (const i2c_context_t*)i2c_context;
+
+    // Write the data and catch errors as they occur.
+    int bytes_read = i2c_read_blocking(setup->inst, address, rxData, len, false);
+
+    if (bytes_read < 0) {
+        err_raise(ERR_I2C_TRANSACTION_FAIL, ERR_SEV_NONFATAL, "I2C Transaction failure!", "i2c_write_hal");
+    }
+
+    return bytes_read;
+
+}
+
+int i2c_write_then_read_hal(const void* i2c_context, uint8_t address, uint8_t *txData, uint8_t *rxData, uint txLen, uint rxLen) {
+
+    const i2c_context_t *setup = (const i2c_context_t*)i2c_context;
+
+    bool i2c_ok = false;
+
+    int bytes_written = 0, bytes_read = 0;
+
+    do {
+        bytes_written = i2c_write_blocking(setup->inst, address, txData, txLen, true);
+        if (bytes_written < 0) break;
+
+        bytes_read = i2c_read_blocking(setup->inst, address, rxData, rxLen, false);
+        if (bytes_read < 0) break;
+
+        i2c_ok = true;
+    } while (0);
+
+    if (!i2c_ok) {
+        err_raise(ERR_I2C_TRANSACTION_FAIL, ERR_SEV_NONFATAL, "I2C Transaction Failure", "i2c_write_then_read");
+    }
+
+    return bytes_written < 0 ? bytes_written : bytes_read;
+}
+
+
+static bool reserved_i2c_addr(uint8_t addr) {
+    return (addr & 0x78) == 0 || (addr & 0x78) == 0x78;
+}
+
+void i2c_scan_hal(const i2c_context_t* i2c_context) {
+    printf("\nI2C Bus Scan\n");
+    printf("   0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F\n");
+
+    for (int addr = 0; addr < (1 << 7); ++addr) {
+        if (addr % 16 == 0) {
+            printf("%02x ", addr);
+        }
+
+        // Perform a 1-byte dummy read from the probe address. If a slave
+        // acknowledges this address, the function returns the number of bytes
+        // transferred. If the address byte is ignored, the function returns
+        // -1.
+
+        // Skip over any reserved addresses.
+        int ret;
+        uint8_t rxdata;
+        if (reserved_i2c_addr(addr))
+            ret = PICO_ERROR_GENERIC;
+        else
+            ret = i2c_read_blocking(i2c_context->inst, addr, &rxdata, 1, false);
+
+        printf(ret < 0 ? "." : "@");
+        printf(addr % 16 == 15 ? "\n" : "  ");
+    }
+    printf("Done.\n");
+    return;
+}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

@@ -1,0 +1,101 @@
+(ExpressProject "Software_Defined_Instrumentation_Amplifier"
+  (ProjectVersion "19981106")
+  (SoftwareVersion "23.1-2024 S001-[09/11/25]")
+  (ProjectType "Analog or A/D Mixed Mode")
+  (Folder "Design Resources"
+    (Folder "Library")
+    ("Allegro Netlist Directory" "allegro")
+    (DOCKED "TRUE")
+    (DOCKING_POSITION "59420")
+    (NoModify)
+    (File ".\software_defined_instrumentation_amplifier.dsn"
+      (Type "Schematic Design"))
+    (BuildFileAddedOrDeleted "x")
+    (CompileFileAddedOrDeleted "x")
+    (PSPICE_Regenerate_Netlist_Flag "FALSE"))
+  (Folder "Layout")
+  (Folder "Outputs"
+    (File
+       ".\software_defined_instrumentation_amplifier-pspicefiles\schematic1\schematic1.net"
+      (Type "Report")))
+  (Folder "PSpice Resources"
+    (Folder "Simulation Profiles"
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\software_defined_instrumentation_amplifier-pspicefiles\schematic1\time_domain.sim"
+        (DisplayName "SCHEMATIC1-time_domain")
+        (Type "PSpice Profile"))
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\software_defined_instrumentation_amplifier-pspicefiles\schematic1\bias_point.sim"
+        (DisplayName "SCHEMATIC1-bias_point")
+        (Type "PSpice Profile"))
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\software_defined_instrumentation_amplifier-pspicefiles\schematic1\rg_sweep.sim"
+        (DisplayName "SCHEMATIC1-rg_sweep")
+        (Type "PSpice Profile"))
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\software_defined_instrumentation_amplifier-pspicefiles\schematic1\vref2_sweep.sim"
+        (DisplayName "SCHEMATIC1-VRef2_Sweep")
+        (Type "PSpice Profile"))
+      (ActiveProfile
+         ".\software_defined_instrumentation_amplifier-pspicefiles\schematic1\time_domain.sim"))
+    (Folder "Model Libraries"
+      (Sort User))
+    (Folder "Stimulus Files"
+      (Sort User))
+    (Folder "Include Files"
+      (Sort User)))
+  (DefaultLibraryBrowseDirectory "library\PSpice")
+  (Folder "Logs")
+  (PartMRUSelector
+    (VSIN
+      (FullPartName "VSIN.Normal")
+      (LibraryName
+         "C:\CADENCE\PSPICETI\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (VDC
+      (FullPartName "VDC.Normal")
+      (LibraryName
+         "C:\CADENCE\PSPICETI\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (PARAM
+      (FullPartName "PARAM.Normal")
+      (LibraryName
+         "C:\CADENCE\PSPICETI\TOOLS\CAPTURE\LIBRARY\PSPICE\SPECIAL.OLB")
+      (DeviceIndex "0"))
+    (0
+      (LibraryName "C:\CADENCE\PSPICETI\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB")
+      (DeviceIndex "0"))
+    (LMV324
+      (FullPartName "LMV324.Normal")
+      (LibraryName "C:\CDS_SPB_HOME\CDSSETUP\PSPTILIBDIR\LMV324.OLB")
+      (DeviceIndex "0"))
+    (R
+      (FullPartName "R.Normal")
+      (LibraryName
+         "C:\CADENCE\PSPICETI\TOOLS\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0")))
+  (MPSSessionName "mshar")
+  (LastUsedLibraryBrowseDirectory
+     "C:\Cadence\PSpiceTI\tools\capture\library\pspice")
+  (GlobalState
+    (FileView
+      (Path "Design Resources")
+      (Path "Outputs")
+      (Select "Design Resources"))
+    (HierarchyView)
+    (Doc
+      (Type "COrCapturePMDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 0 200 0 627"))
+      (Tab 0))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 5 24 5 884 24 645")
+        (Scroll "-35 -6")
+        (Zoom "80")
+        (Occurrence "/"))
+      (Path
+         "C:\USERS\MSHAR\DOCUMENTS\CAPSTONE\SIMULATION\SOFTWARE-DEFINED INSTRUMENTATION AMPLIFIER\SOFTWARE_DEFINED_INSTRUMENTATION_AMPLIFIER\SOFTWARE_DEFINED_INSTRUMENTATION_AMPLIFIER.DSN")
+      (Schematic "SCHEMATIC1")
+      (Page "PAGE1"))))

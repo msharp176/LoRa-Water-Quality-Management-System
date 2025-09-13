@@ -1,0 +1,499 @@
+
+**** 09/10/25 19:26:41 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-bias_point"  [ C:\Users\mshar\Documents\capstone\simulation\Software-Defined Instrumentation Amplifier\Softw
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "bias_point.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+* From [PSPICE NETLIST] section of C:\cds_spb_home\cdssetup\OrCAD_PSpiceTIPSpice_Install\23.1.0\PSpice.ini file:
+.lib "nom_pspti.lib" 
+.lib "nom.lib" 
+
+*Analysis directives: 
+.OPTIONS ADVCONV
+.OPTIONS FILEMODELSEARCH
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source SOFTWARE_DEFINED_INSTRUMENTATION_AMPLIFIER
+X_U1         VREF1 N00582 VDD 0 N00550 LMV324
+X_U2         N00602 N00586 VDD 0 VOUT LMV324
+X_U3         N00271 N00578 VDD 0 N00564 LMV324
+X_U4         N00840 N00800 VDD 0 N00271 LMV324
+R_R1         VSEN N00840  10k TC=0,0 
+R_R2         VOFF+ N00840  10k TC=0,0 
+R_R3         N00550 N00586  10k TC=0,0 
+R_R4         N00586 VOUT  10k TC=0,0 
+R_R5         N00582 N00550  10k TC=0,0 
+R_R6         N00578 N00582  20k TC=0,0 
+R_R7         N00564 N00578  10k TC=0,0 
+R_R8         N00602 N00564  10k TC=0,0 
+R_R9         VREF2 N00602  10k TC=0,0 
+R_R10         VOFF- N00800  10k TC=0,0 
+R_R11         N00800 N00271  10k TC=0,0 
+V_V1         VDD 0 5
+V_V2         VOFF+ 0 0
+V_V3         VOFF- 0 0
+V_V7         VREF1 0 0Vdc
+V_V8         VREF2 0 1.5
+V_V9         VSEN 0 1Vdc
+
+**** RESUMING bias_point.cir ****
+.END
+
+**** 09/10/25 19:26:41 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-bias_point"  [ C:\Users\mshar\Documents\capstone\simulation\Software-Defined Instrumentation Amplifier\Softw
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U1.DMOD1      X_U1.DMOD2      X_U2.DMOD1      X_U2.DMOD2      
+          IS   10.000000E-15   10.000000E-18   10.000000E-15   10.000000E-18 
+
+
+               X_U3.DMOD1      X_U3.DMOD2      X_U4.DMOD1      X_U4.DMOD2      
+          IS   10.000000E-15   10.000000E-18   10.000000E-15   10.000000E-18 
+
+
+**** 09/10/25 19:26:41 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-bias_point"  [ C:\Users\mshar\Documents\capstone\simulation\Software-Defined Instrumentation Amplifier\Softw
+
+
+ ****     BJT MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U1.NPN1       X_U1.PNP1       X_U2.NPN1       X_U2.PNP1       
+               NPN             PNP             NPN             PNP             
+       LEVEL    1               1               1               1            
+          IS    1.000000E-15    1.000000E-15    1.000000E-15    1.000000E-15 
+          BF  100             100             100             100            
+          NF    1               1               1               1            
+          BR    1               1               1               1            
+          NR    1               1               1               1            
+         ISS    0               0               0               0            
+          RE    0               0               0               0            
+          RC    0               0               0               0            
+         CJE    0               0               0               0            
+         VJE     .75             .75             .75             .75         
+         CJC    0               0               0               0            
+         VJC     .75             .75             .75             .75         
+         MJC     .33             .33             .33             .33         
+        XCJC    1               1               1               1            
+         CJS    0               0               0               0            
+         VJS     .75             .75             .75             .75         
+          KF    0               0               0               0            
+          AF    1               1               1               1            
+          CN    2.42            2.2             2.42            2.2          
+           D     .87             .52             .87             .52         
+
+
+               X_U3.NPN1       X_U3.PNP1       X_U4.NPN1       X_U4.PNP1       
+               NPN             PNP             NPN             PNP             
+       LEVEL    1               1               1               1            
+          IS    1.000000E-15    1.000000E-15    1.000000E-15    1.000000E-15 
+          BF  100             100             100             100            
+          NF    1               1               1               1            
+          BR    1               1               1               1            
+          NR    1               1               1               1            
+         ISS    0               0               0               0            
+          RE    0               0               0               0            
+          RC    0               0               0               0            
+         CJE    0               0               0               0            
+         VJE     .75             .75             .75             .75         
+         CJC    0               0               0               0            
+         VJC     .75             .75             .75             .75         
+         MJC     .33             .33             .33             .33         
+        XCJC    1               1               1               1            
+         CJS    0               0               0               0            
+         VJS     .75             .75             .75             .75         
+          KF    0               0               0               0            
+          AF    1               1               1               1            
+          CN    2.42            2.2             2.42            2.2          
+           D     .87             .52             .87             .52         
+
+
+**** 09/10/25 19:26:41 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-bias_point"  [ C:\Users\mshar\Documents\capstone\simulation\Software-Defined Instrumentation Amplifier\Softw
+
+
+ ****     Resistor MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U1.MRAX       X_U1.MRIB       X_U1.MRISC      X_U2.MRAX       
+           R    1               1               1               1            
+         TC1   10.000000E-06    2.837130E-03   -3.000000E-03   10.000000E-06 
+
+
+               X_U2.MRIB       X_U2.MRISC      X_U3.MRAX       X_U3.MRIB       
+           R    1               1               1               1            
+         TC1    2.837130E-03   -3.000000E-03   10.000000E-06    2.837130E-03 
+
+
+               X_U3.MRISC      X_U4.MRAX       X_U4.MRIB       X_U4.MRISC      
+           R    1               1               1               1            
+         TC1   -3.000000E-03   10.000000E-06    2.837130E-03   -3.000000E-03 
+
+
+**** 09/10/25 19:26:41 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-bias_point"  [ C:\Users\mshar\Documents\capstone\simulation\Software-Defined Instrumentation Amplifier\Softw
+
+
+ ****     SMALL SIGNAL BIAS SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(  VDD)    5.0000  ( VOUT)    2.8339  ( VSEN)    1.0000  (VOFF+)    0.0000      
+
+(VOFF-)    0.0000  (VREF1)    0.0000  (VREF2)    1.5000  (N00271)    1.0117     
+
+(N00550)     .0271 (N00564)    1.3483 (N00578)    1.0179 (N00582)     .3573     
+
+(N00586)    1.4304 (N00602)    1.4241 (N00800)     .5058 (N00840)     .4999     
+
+(X_U1.10)    2.5000                   (X_U1.11)     .2367                       
+
+(X_U1.17)    2.5000                   (X_U1.18)     .3573                       
+
+(X_U1.19)-17.28E-06                   (X_U1.21)    1.2500                       
+
+(X_U1.22)    6.2500                   (X_U1.23)    6.2500                       
+
+(X_U1.24)    4.1551                   (X_U1.25)    3.5000                       
+
+(X_U1.26)    3.5000                   (X_U1.27)    3.3338                       
+
+(X_U1.28)    3.0469                   (X_U1.29)    2.5000                       
+
+(X_U1.31)    6.5000                   (X_U1.32)    5.5000                       
+
+(X_U1.33)    4.5000                   (X_U1.34)    3.5000                       
+
+(X_U1.38)     .2367                   (X_U1.39)     .2367                       
+
+(X_U1.40)    5.0000                   (X_U1.41)     .2762                       
+
+(X_U1.42)    5.0000                   (X_U1.43)    2.5000                       
+
+(X_U1.44)    2.5000                   (X_U1.45)    2.5000                       
+
+(X_U1.50)    0.0000                   (X_U1.51)  101.8000                       
+
+(X_U1.52)  -96.8000                   (X_U1.57)  -97.5940                       
+
+(X_U1.58)    2.6380                   (X_U1.59)    -.9016                       
+
+(X_U1.71)    -.9010                   (X_U1.72)    -.6555                       
+
+(X_U1.73)    -.1991                   (X_U1.74)    5.0000                       
+
+(X_U1.75)     .0100                   (X_U1.76)    5.0000                       
+
+(X_U1.77)    0.0000                   (X_U1.78)     .0257                       
+
+(X_U1.79)     .0255                   (X_U1.81)     .0257                       
+
+(X_U1.86)     .0271                   (X_U1.91)    2.5000                       
+
+(X_U1.92)    2.5000                   (X_U1.93)    1.8902                       
+
+(X_U1.94)     .2367                   (X_U1.95)     .2000                       
+
+(X_U1.96)     .2367                   (X_U1.97)    4.2000                       
+
+(X_U1.98)     .2367                   (X_U1.99)     .2367                       
+
+(X_U2.10)    2.5000                   (X_U2.11)    1.4541                       
+
+(X_U2.17)    2.5000                   (X_U2.18)    1.4304                       
+
+(X_U2.19)    1.4240                   (X_U2.21)    1.2500                       
+
+(X_U2.22)    6.2500                   (X_U2.23)    6.2500                       
+
+(X_U2.24)    4.1551                   (X_U2.25)    3.5000                       
+
+(X_U2.26)    3.5000                   (X_U2.27)    3.3338                       
+
+(X_U2.28)    3.0469                   (X_U2.29)    2.5000                       
+
+(X_U2.31)    6.5000                   (X_U2.32)    5.5000                       
+
+(X_U2.33)    4.5000                   (X_U2.34)    3.5000                       
+
+(X_U2.38)    1.4541                   (X_U2.39)    1.4541                       
+
+(X_U2.40)    5.0000                   (X_U2.41)    1.4723                       
+
+(X_U2.42)    5.0000                   (X_U2.43)    2.5000                       
+
+(X_U2.44)    2.5000                   (X_U2.45)    2.5000                       
+
+(X_U2.50)    0.0000                   (X_U2.51)  101.8000                       
+
+(X_U2.52)  -96.8000                   (X_U2.57)    2.5029                       
+
+(X_U2.58)    2.5000                   (X_U2.59)    2.9000                       
+
+(X_U2.71)    2.8990                   (X_U2.72)    2.0769                       
+
+(X_U2.73)    3.5941                   (X_U2.74)    5.0000                       
+
+(X_U2.75)     .0100                   (X_U2.76)    5.0000                       
+
+(X_U2.77)    0.0000                   (X_U2.78)    2.8397                       
+
+(X_U2.79)    2.8305                   (X_U2.81)    2.8351                       
+
+(X_U2.86)    2.8339                   (X_U2.91)    2.5000                       
+
+(X_U2.92)    2.5000                   (X_U2.93)    3.1043                       
+
+(X_U2.94)    1.4541                   (X_U2.95)     .2000                       
+
+(X_U2.96)    1.4541                   (X_U2.97)    4.2000                       
+
+(X_U2.98)    1.4541                   (X_U2.99)    1.4541                       
+
+(X_U3.10)    2.5000                   (X_U3.11)    1.0519                       
+
+(X_U3.17)    2.5000                   (X_U3.18)    1.0179                       
+
+(X_U3.19)    1.0117                   (X_U3.21)    1.2500                       
+
+(X_U3.22)    6.2500                   (X_U3.23)    6.2500                       
+
+(X_U3.24)    4.1551                   (X_U3.25)    3.5000                       
+
+(X_U3.26)    3.5000                   (X_U3.27)    3.3338                       
+
+(X_U3.28)    3.0469                   (X_U3.29)    2.5000                       
+
+(X_U3.31)    6.5000                   (X_U3.32)    5.5000                       
+
+(X_U3.33)    4.5000                   (X_U3.34)    3.5000                       
+
+(X_U3.38)    1.0519                   (X_U3.39)    1.0519                       
+
+(X_U3.40)    5.0000                   (X_U3.41)    1.0772                       
+
+(X_U3.42)    5.0000                   (X_U3.43)    2.5000                       
+
+(X_U3.44)    2.5000                   (X_U3.45)    2.5000                       
+
+(X_U3.50)    0.0000                   (X_U3.51)  101.8000                       
+
+(X_U3.52)  -96.8000                   (X_U3.57)    2.4921                       
+
+(X_U3.58)    2.5000                   (X_U3.59)    1.4130                       
+
+(X_U3.71)    1.4120                   (X_U3.72)     .5900                       
+
+(X_U3.73)    2.1072                   (X_U3.74)    5.0000                       
+
+(X_U3.75)     .0100                   (X_U3.76)    5.0000                       
+
+(X_U3.77)    0.0000                   (X_U3.78)    1.3532                       
+
+(X_U3.79)    1.3439                   (X_U3.81)    1.3485                       
+
+(X_U3.86)    1.3483                   (X_U3.91)    2.5000                       
+
+(X_U3.92)    2.5000                   (X_U3.93)    3.0602                       
+
+(X_U3.94)    1.0519                   (X_U3.95)     .2000                       
+
+(X_U3.96)    1.0519                   (X_U3.97)    4.2000                       
+
+(X_U3.98)    1.0519                   (X_U3.99)    1.0519                       
+
+(X_U4.10)    2.5000                   (X_U4.11)     .5528                       
+
+(X_U4.17)    2.5000                   (X_U4.18)     .5058                       
+
+(X_U4.19)     .4999                   (X_U4.21)    1.2500                       
+
+(X_U4.22)    6.2500                   (X_U4.23)    6.2500                       
+
+(X_U4.24)    4.1551                   (X_U4.25)    3.5000                       
+
+(X_U4.26)    3.5000                   (X_U4.27)    3.3338                       
+
+(X_U4.28)    3.0469                   (X_U4.29)    2.5000                       
+
+(X_U4.31)    6.5000                   (X_U4.32)    5.5000                       
+
+(X_U4.33)    4.5000                   (X_U4.34)    3.5000                       
+
+(X_U4.38)     .5528                   (X_U4.39)     .5528                       
+
+(X_U4.40)    5.0000                   (X_U4.41)     .5868                       
+
+(X_U4.42)    5.0000                   (X_U4.43)    2.5000                       
+
+(X_U4.44)    2.5000                   (X_U4.45)    2.5000                       
+
+(X_U4.50)    0.0000                   (X_U4.51)  101.8000                       
+
+(X_U4.52)  -96.8000                   (X_U4.57)    2.4897                       
+
+(X_U4.58)    2.5000                   (X_U4.59)    1.0767                       
+
+(X_U4.71)    1.0757                   (X_U4.72)     .2537                       
+
+(X_U4.73)    1.7709                   (X_U4.74)    5.0000                       
+
+(X_U4.75)     .0100                   (X_U4.76)    5.0000                       
+
+(X_U4.77)    0.0000                   (X_U4.78)    1.0168                       
+
+(X_U4.79)    1.0076                   (X_U4.81)    1.0122                       
+
+(X_U4.86)    1.0117                   (X_U4.91)    2.5000                       
+
+(X_U4.92)    2.5000                   (X_U4.93)    3.0779                       
+
+(X_U4.94)     .5528                   (X_U4.95)     .2000                       
+
+(X_U4.96)     .5528                   (X_U4.97)    4.2000                       
+
+(X_U4.98)     .5528                   (X_U4.99)     .5528                       
+
+(X_U1.120)    4.5000                  (X_U1.121)    3.5000                      
+
+(X_U1.122)    3.5070                  (X_U1.710)    -.8410                      
+
+(X_U1.720)    -.6555                  (X_U2.120)    4.5000                      
+
+(X_U2.121)    3.5000                  (X_U2.122)    3.5070                      
+
+(X_U2.710)    2.9543                  (X_U2.720)    2.2324                      
+
+(X_U3.120)    4.5000                  (X_U3.121)    3.5000                      
+
+(X_U3.122)    3.5070                  (X_U3.710)    1.4674                      
+
+(X_U3.720)     .7455                  (X_U4.120)    4.5000                      
+
+(X_U4.121)    3.5000                  (X_U4.122)    3.5070                      
+
+(X_U4.710)    1.1311                  (X_U4.720)     .4092                  
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V1        -6.365E-04
+    V_V2         4.999E-05
+    V_V3         5.058E-05
+    V_V7        -1.728E-08
+    V_V8        -7.593E-06
+    V_V9        -5.001E-05
+    X_U1.VOFF   -2.105E-12
+    X_U1.VSENS1   1.000E-03
+    X_U1.VTEMP   1.522E-08
+    X_U1.VCMX   -2.224E-06
+    X_U1.VPSX    0.000E+00
+    X_U1.VCXX    3.929E-12
+    X_U1.VOOP    4.975E-08
+    X_U1.VOON    6.907E-05
+    X_U1.VOX    -1.733E-04
+    X_U1.VFX1   -6.198E-13
+    X_U1.VFX2    1.733E-04
+    X_U2.VOFF   -2.105E-12
+    X_U2.VSENS1   1.000E-03
+    X_U2.VTEMP   1.522E-08
+    X_U2.VCMX   -1.028E-06
+    X_U2.VPSX    0.000E+00
+    X_U2.VCXX    1.492E-12
+    X_U2.VOOP    4.644E-03
+    X_U2.VOON    4.505E-03
+    X_U2.VOX     1.403E-04
+    X_U2.VFX1    1.403E-04
+    X_U2.VFX2   -6.143E-13
+    X_U3.VOFF   -2.105E-12
+    X_U3.VSENS1   1.000E-03
+    X_U3.VTEMP   1.522E-08
+    X_U3.VCMX   -1.423E-06
+    X_U3.VPSX    0.000E+00
+    X_U3.VCXX    2.296E-12
+    X_U3.VOOP    4.587E-03
+    X_U3.VOON    4.562E-03
+    X_U3.VOX     2.547E-05
+    X_U3.VFX1    2.547E-05
+    X_U3.VFX2   -5.702E-13
+    X_U4.VOFF   -2.105E-12
+    X_U4.VSENS1   1.000E-03
+    X_U4.VTEMP   1.522E-08
+    X_U4.VCMX   -1.913E-06
+    X_U4.VPSX    0.000E+00
+    X_U4.VCXX    3.294E-12
+    X_U4.VOOP    4.599E-03
+    X_U4.VOON    4.549E-03
+    X_U4.VOX     5.061E-05
+    X_U4.VFX1    5.061E-05
+    X_U4.VFX2   -5.879E-13
+
+    TOTAL POWER DISSIPATION   3.24E-03  WATTS
+
+
+
+          JOB CONCLUDED
+
+**** 09/10/25 19:26:41 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-bias_point"  [ C:\Users\mshar\Documents\capstone\simulation\Software-Defined Instrumentation Amplifier\Softw
+
+
+ ****     JOB STATISTICS SUMMARY
+
+
+******************************************************************************
+
+
+
+  Total job time (using Solver 1)   =        2.13
+

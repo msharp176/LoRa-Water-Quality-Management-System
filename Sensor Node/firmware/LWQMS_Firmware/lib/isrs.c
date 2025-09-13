@@ -90,7 +90,7 @@ void isr_placeholder(void) {
 
 void isr_toggle_led(void) {
 
-    gpio_toggle_hal(&err_led);
+    gpio_toggle_hal(err_led);
 
 }
 

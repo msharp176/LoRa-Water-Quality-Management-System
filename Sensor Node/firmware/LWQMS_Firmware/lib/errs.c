@@ -18,8 +18,8 @@ void err_raise(lwqms_errs_t err_code, lwqms_err_severity_t severity, char * err_
 
     char err_info[100];
     
-    gpio_setup_hal(&err_led, true);
-    gpio_write_hal(&err_led, GPIO_HIGH);
+    gpio_setup_hal(err_led, true);
+    gpio_write_hal(err_led, GPIO_HIGH);
 
     switch (severity) {
         case ERR_SEV_FATAL:
@@ -37,16 +37,16 @@ void err_raise(lwqms_errs_t err_code, lwqms_err_severity_t severity, char * err_
             sprintf(err_info, "ERROR [%d] (non-fatal) Encountered in %s: %s", err_code, err_context, err_msg);
             log_error(err_info);
             for (int k = 0; k < 8; k++) {
-                gpio_write_hal(&err_led, GPIO_HIGH);
+                gpio_write_hal(err_led, GPIO_HIGH);
                 sleep_ms(250);
-                gpio_write_hal(&err_led, GPIO_LOW);
+                gpio_write_hal(err_led, GPIO_LOW);
                 sleep_ms(250);
             }
         default:
             // Do nothing
     }
 
-    gpio_write_hal(&err_led, GPIO_LOW);
+    gpio_write_hal(err_led, GPIO_LOW);
 }
 
 void err_clear() {
@@ -54,8 +54,8 @@ void err_clear() {
     uint8_t err_led = ERROR_LED;
 
     log_error("Errors cleared");
-    gpio_setup_hal(&err_led, true);
-    gpio_write_hal(&err_led, GPIO_LOW);
+    gpio_setup_hal(err_led, true);
+    gpio_write_hal(err_led, GPIO_LOW);
 }
 
 void log_error(char * err_msg_full) {
