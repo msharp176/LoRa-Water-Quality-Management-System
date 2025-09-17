@@ -1,0 +1,16 @@
+* source PH_SENSOR_PREAMP
+X_U1         N00410 N00445 VDD VSS N00485 TL082
+X_U2         0 N00530 VDD VSS OUT TL082
+V_V1         VDD 0 5
+V_V2         0 VSS 5
+R_R1         N00485 N00530  100k TC=0,0 
+R_R2         VSS N00530  200k TC=0,0 
+R_R3         OUT N00530  100k TC=0,0 
+R_R4         N00485 N00445  3k TC=0,0 
+R_R5         N00445 0  1k TC=0,0 
+C_C1         N00445 N00485  1u  TC=0,0 
+C_C2         0 N00410  2.2n  TC=0,0 
+R_R6         IN N00410  4.7Meg TC=0,0 
+V_V3         N00933 0  AC 5
++SIN 0 0.5 2 0 0 0
+R_R7         N00933 IN  10Meg TC=0,0 

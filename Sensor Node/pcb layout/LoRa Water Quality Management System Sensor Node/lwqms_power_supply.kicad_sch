@@ -1317,7 +1317,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "015032c9-6368-4a59-970b-81232eac720e")
-		(property "Reference" "R39"
+		(property "Reference" "R27"
 			(at 151.13 106.6799 0)
 			(effects
 				(font
@@ -1362,6 +1362,15 @@
 				(hide yes)
 			)
 		)
+		(property "SNAPEDA_PACKAGE_ID" ""
+			(at 148.59 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "6fcd6905-4c53-40d0-8577-4e45fea32acd")
 		)
@@ -1371,11 +1380,11 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/33bb74cb-874c-4792-9754-f72a20576d07"
-					(reference "R39")
+					(reference "R27")
 					(unit 1)
 				)
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/e40534b4-86b2-44fa-9b4b-4985bdae1c57"
-					(reference "R40")
+					(reference "R28")
 					(unit 1)
 				)
 			)
@@ -1391,7 +1400,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "350675c1-dd6b-48ad-ba0f-8d77f6830bb1")
-		(property "Reference" "C37"
+		(property "Reference" "C33"
 			(at 152.4 118.1099 0)
 			(effects
 				(font
@@ -1436,6 +1445,15 @@
 				(hide yes)
 			)
 		)
+		(property "SNAPEDA_PACKAGE_ID" ""
+			(at 148.59 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "7e800cb5-79db-465c-8fd5-df21a0cbbcfe")
 		)
@@ -1445,11 +1463,11 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/33bb74cb-874c-4792-9754-f72a20576d07"
-					(reference "C37")
+					(reference "C33")
 					(unit 1)
 				)
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/e40534b4-86b2-44fa-9b4b-4985bdae1c57"
-					(reference "C38")
+					(reference "C34")
 					(unit 1)
 				)
 			)
@@ -1465,7 +1483,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "52c22276-8b9b-44bc-b8d2-894c13be30ad")
-		(property "Reference" "#PWR082"
+		(property "Reference" "#PWR066"
 			(at 148.59 133.35 0)
 			(effects
 				(font
@@ -1515,11 +1533,11 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/33bb74cb-874c-4792-9754-f72a20576d07"
-					(reference "#PWR082")
+					(reference "#PWR066")
 					(unit 1)
 				)
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/e40534b4-86b2-44fa-9b4b-4985bdae1c57"
-					(reference "#PWR083")
+					(reference "#PWR067")
 					(unit 1)
 				)
 			)
@@ -1535,7 +1553,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b0dd48db-1608-4b13-8a92-4c97c54a03bc")
-		(property "Reference" "L2"
+		(property "Reference" "L3"
 			(at 183.896 81.28 90)
 			(effects
 				(font
@@ -1588,6 +1606,15 @@
 				)
 			)
 		)
+		(property "SNAPEDA_PACKAGE_ID" ""
+			(at 182.88 88.9 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "f7a03ece-705c-4c85-be3b-91b69c73265b")
 		)
@@ -1597,11 +1624,11 @@
 		(instances
 			(project ""
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/33bb74cb-874c-4792-9754-f72a20576d07"
-					(reference "L2")
+					(reference "L3")
 					(unit 1)
 				)
 				(path "/f090528b-8c52-4bf9-a2b8-0c17aa5e5727/e40534b4-86b2-44fa-9b4b-4985bdae1c57"
-					(reference "L3")
+					(reference "L4")
 					(unit 1)
 				)
 			)
@@ -1651,6 +1678,15 @@
 			)
 		)
 		(property "Description" "Buck-Boost Converter, 1.8-5.5V Input Voltage, 1.8A Switch Current, Adjustable 1.2-5.5V Output Voltage, VSON-10"
+			(at 182.88 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "SNAPEDA_PACKAGE_ID" ""
 			(at 182.88 110.49 0)
 			(effects
 				(font

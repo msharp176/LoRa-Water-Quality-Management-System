@@ -42,38 +42,15 @@ int main() {
     init_usb_console_hal();
 
     // Wait for the USB console to be opened on the host PC
-    //wait_for_usb_console_connection_hal();
+    wait_for_usb_console_connection_hal();
 
     print_banner();
 
     printf("Initializing Hardware...");
     i2c_init_hal(&context_i2c_1);
-    mcp4651_set_wiper(&context_digipot_offset, MCP4651_WIPER_BOTH, 0);
-    tmux1309_init(&context_mux_0);
-    tmux1309_set_output(&context_mux_0, 0);
     printf("DONE\n");
 
-    printf("Setting Gain...");
-    // Set a combined gain resistance of 20k --> G = 1 + 20k/20k = 2.
-    mcp4651_set_wiper(&context_digipot_gain, MCP4651_WIPER_B, 255);
-    mcp4651_set_wiper(&context_digipot_gain, MCP4651_WIPER_A, 154);
-    printf("DONE\n");
-
-    printf("Setting Reference to 2.5V...");
-    mcp4651_set_wiper(&context_digipot_reference, MCP4651_WIPER_A, 128);
-    printf("DONE\n");
-
-    while (true) {
-        while (context_digipot_gain.wiper_position_a < 256) {
-            mcp4651_increment_wiper(&context_digipot_gain, MCP4651_WIPER_A);
-            sleep_ms(DIGIPOT_STEP_TIME_MS);
-        }
-
-        while (context_digipot_gain.wiper_position_a > 0) {
-            mcp4651_decrement_wiper(&context_digipot_gain, MCP4651_WIPER_A);
-            sleep_ms(DIGIPOT_STEP_TIME_MS);
-        }
-    }
+    i2c_scan_hal(&context_i2c_1);
 
     /*
     while (true) {
