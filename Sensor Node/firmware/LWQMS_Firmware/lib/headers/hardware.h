@@ -33,10 +33,6 @@
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Global Definitions & Aliases
 
-#define RADIO_BUSY GP6
-#define RADIO_RESET GP7
-#define RADIO_DIO1 GP2
-#define RADIO_CS GP17
 #define SPI0_MOSI GP19
 #define SPI0_MISO GP16
 #define SPI0_SCK GP18

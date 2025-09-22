@@ -129,8 +129,8 @@ sx126x_pkt_params_lora_t prototyping_pkt_params = {
 };
 
 sx126x_dio_irq_masks_t prototyping_irq_masks = {
-    .system_mask = (SX126X_IRQ_TX_DONE) | (SX126X_IRQ_RX_DONE) | (SX126X_IRQ_TIMEOUT),
-    .dio1_mask = (SX126X_IRQ_TX_DONE) | (SX126X_IRQ_RX_DONE) | (SX126X_IRQ_TIMEOUT),
+    .system_mask = (SX126X_IRQ_TX_DONE) | (SX126X_IRQ_RX_DONE) | (SX126X_IRQ_TIMEOUT) | (SX126X_IRQ_CRC_ERROR) | (SX126X_IRQ_HEADER_ERROR),
+    .dio1_mask = (SX126X_IRQ_TX_DONE) | (SX126X_IRQ_RX_DONE) | (SX126X_IRQ_TIMEOUT) | (SX126X_IRQ_CRC_ERROR) | (SX126X_IRQ_HEADER_ERROR),
     .dio2_mask = 0x00,
     .dio3_mask = 0x00
 };

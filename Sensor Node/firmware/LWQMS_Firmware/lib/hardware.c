@@ -34,23 +34,23 @@ i2c_context_t context_i2c_0 = {
 };
 
 i2c_context_t context_i2c_1 = {
-    .baud = 400000,
+    .baud = 100000,
     .inst = i2c1,
     .scl = GP27,
     .sda = GP26
 };
 
 const gpio_driven_irq_context_t irq_radio_0 = {
-    .pin = RADIO_DIO1,
+    .pin = GP8,
     .source_mask = GPIO_IRQ_EDGE_RISE,
     .callback = &sx126x_master_isr
 };
 
 sx126x_context_t radio_0 = {
-    .busy = RADIO_BUSY,
+    .busy = GP9,
     .irq_context = &irq_radio_0,
-    .rst =  RADIO_RESET,
-    .cs =   RADIO_CS,
+    .rst =  GP10,
+    .cs =   GP11,
     .spi_context = &context_spi_0, // SPI Bus 0
     .radio_operation_timeout_us = RADIO_TIMEOUT_GLOBAL_US,
     .designator = "RADIO 0"

@@ -146,9 +146,7 @@ bool lora_init_rx(  sx126x_context_t* radio_context,
 bool lora_rx(   sx126x_context_t* radio_context,
                 sx126x_dio_irq_masks_t* interrupt_cfg,
                 uint8_t sync_word,
-                uint32_t timeout_ms,
-                uint8_t *buf, 
-                uint32_t len);
+                uint32_t timeout_ms);
 
 /**
  * @brief Chooses whether to turn on the LoRa Low Data Rate Optimization based on the selected LoRa Modulation Params.
@@ -161,6 +159,14 @@ bool lora_rx(   sx126x_context_t* radio_context,
  */
 void set_lora_ldro_val(sx126x_mod_params_lora_t* modulation_params);
 
+/**
+ * @brief Retrieves data stored in the RX Buffer from the last packet received.
+ * 
+ * @param radio_context sx126x hardware implementation info
+ * @param rxBuf Buffer to store received bytes. THIS BUFFER MUST HAVE A SIZE GREATER THAN OR EQUAL TO THE TOTAL DATA BUFFER CAPACITY (256 BYTES) TO AVOID SEG FAULTS!
+ * @param rxLen Received packet length
+ */
+bool lora_get_rx_data(sx126x_context_t* radio_context, uint8_t * rxBuf, uint8_t * rxLen);
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #endif

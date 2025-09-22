@@ -61,7 +61,7 @@ sx126x_status_t sx126x_radio_setup(const void* context) {
             if (sx126x_set_dio2_as_rf_sw_ctrl(context, true) != SX126X_STATUS_OK)       break;
 
             // 5. Set DIO3 to control the TCXO
-            if (sx126x_set_dio3_as_tcxo_ctrl(context, SX126X_TCXO_CTRL_3_3V, SX126X_TCXO_TIMEOUT) != SX126X_STATUS_OK)  break;
+            if (sx126x_set_dio3_as_tcxo_ctrl(context, SX126X_TCXO_CTRL_1_7V, SX126X_TCXO_TIMEOUT) != SX126X_STATUS_OK)  break;
 
             // 6. Calibrate the radio
             if (sx126x_cal(context, SX126X_CAL_ALL) != SX126X_STATUS_OK)                break;
@@ -251,6 +251,7 @@ bool lora_init_rx(sx126x_context_t* radio_context,
             // 6. Configure the LoRa packet
             if (sx126x_set_lora_pkt_params(radio_context, lora_packet_parameters) != SX126X_STATUS_OK)                      break;
 
+            init_ok = true;
 
         } while (0);
 
@@ -273,9 +274,7 @@ bool lora_init_rx(sx126x_context_t* radio_context,
 bool lora_rx(   sx126x_context_t* radio_context,
                 sx126x_dio_irq_masks_t* radio_interrupt_cfg,
                 uint8_t sync_word,
-                uint32_t timeout_ms,
-                uint8_t *buf, 
-                uint32_t len
+                uint32_t timeout_ms
 ) {
     /**
      * Per the datasheet, once the radio has been setup using lora_init_rx(), we can receive a packet as follows:
@@ -317,6 +316,36 @@ bool lora_rx(   sx126x_context_t* radio_context,
     }
 
     err_raise(ERR_SPI_TRANSACTION_FAIL, ERR_SEV_REBOOT, "SPI Communications failure with SX126X during packet reception", "lora_rx");
+
+    return false;
+}
+
+bool lora_get_rx_data(sx126x_context_t* radio_context, uint8_t * rxBuf, uint8_t * rxLen) {
+
+    bool data_retrieval_ok = false;
+
+    for (int k = 0; k < SPI_RETRIES; k++) {
+        do {
+            sx126x_rx_buffer_status_t bufStatus;
+
+            if (sx126x_get_rx_buffer_status(radio_context, &bufStatus) != SX126X_STATUS_OK) break;
+
+            if (sx126x_read_buffer(radio_context, bufStatus.buffer_start_pointer, rxBuf, bufStatus.pld_len_in_bytes) != SX126X_STATUS_OK) break;
+
+            data_retrieval_ok = true;
+
+            *rxLen = bufStatus.pld_len_in_bytes;
+
+        } while (0);
+
+        if (data_retrieval_ok) {
+            return true;
+        }
+    }
+
+    err_raise(ERR_SPI_TRANSACTION_FAIL, ERR_SEV_NONFATAL, "SPI Communications failure with SX126X during packet retrieval", "lora_get_rx_data");
+
+    return false;
 }
 
 #pragma endregion

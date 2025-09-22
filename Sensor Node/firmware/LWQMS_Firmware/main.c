@@ -31,90 +31,24 @@ char * gettysburg_address = "Four score and seven years ago our fathers brought 
  * Wait for interrupt
  */
 
+static bool tx_go = false;
+
+void isr_set_tx_go(void) {
+    tx_go = true;
+}
+
 void print_banner(void) {
     printf("-- LoRa Water Quality Management System Sensor Node --\n");
     printf("Version 0.1, compiled %s, %s\n\n", __DATE__, __TIME__);
 }
 
-
-int main() {
-
-    init_usb_console_hal();
-
-    // Wait for the USB console to be opened on the host PC
-    wait_for_usb_console_connection_hal();
-
-    print_banner();
-
-    printf("Initializing Hardware...");
-    i2c_init_hal(&context_i2c_1);
-    printf("DONE\n");
-
-    i2c_scan_hal(&context_i2c_1);
-
-    /*
-    while (true) {
-        while (context_digipot_offset.wiper_position_a < 256) {
-            mcp4651_increment_wiper(&context_digipot_offset, MCP4651_WIPER_A);
-            printf("%u\n", context_digipot_offset.wiper_position_a);
-            sleep_ms(DIGIPOT_STEP_TIME_MS);
-        }
-
-        while (context_digipot_offset.wiper_position_a > 0) {
-            mcp4651_decrement_wiper(&context_digipot_offset, MCP4651_WIPER_A);
-            printf("%u\n", context_digipot_offset.wiper_position_a);
-            sleep_ms(DIGIPOT_STEP_TIME_MS);
-        }
-
-        while (context_digipot_offset.wiper_position_b < 256) {
-            mcp4651_increment_wiper(&context_digipot_offset, MCP4651_WIPER_B);
-            printf("%u\n", context_digipot_offset.wiper_position_b);
-            sleep_ms(DIGIPOT_STEP_TIME_MS);
-        }
-
-        while (context_digipot_offset.wiper_position_b > 0) {
-            mcp4651_decrement_wiper(&context_digipot_offset, MCP4651_WIPER_B);
-            printf("%u\n", context_digipot_offset.wiper_position_b);
-            sleep_ms(DIGIPOT_STEP_TIME_MS);
-        }
-    }
-    */
-
-    /*
-    printf("Setting Pot Values...");
-    // Set the DC offsets to 0 and 0, with a gain of around 1 to check the op-amp connections.
-    mcp4651_set_wiper(&context_digipot_offset, MCP4651_WIPER_BOTH, 0);
-    mcp4651_set_wiper(&context_digipot_gain, MCP4651_WIPER_A, 154);
-    mcp4651_set_wiper(&context_digipot_gain, MCP4651_WIPER_B, 255);
-    printf("DONE\n");
-
-    printf("Enabling Output 0...");
-    tmux1309_set_output(&context_mux_0, 0);
-    printf("DONE\n");
-
-    */
-    // Idle
-    while (true) {};
-
-    /*
-    while (true) {
-        while (context_digipot_offset.wiper_position_a < 256) {
-            mcp4651_increment_wiper(&context_digipot_offset, MCP4651_WIPER_A);
-            printf("%u\n", context_digipot_offset.wiper_position_a);
-            sleep_ms(DIGIPOT_STEP_TIME_MS);
-        }
-
-        while (context_digipot_offset.wiper_position_a > 0) {
-            mcp4651_decrement_wiper(&context_digipot_offset, MCP4651_WIPER_A);
-            printf("%u\n", context_digipot_offset.wiper_position_a);
-            sleep_ms(DIGIPOT_STEP_TIME_MS);
-        }
-    }
-    */
-}
+const gpio_driven_irq_context_t context_irq_txInit = {
+    .callback = isr_set_tx_go,
+    .pin = GP12,
+    .source_mask = GPIO_IRQ_EDGE_FALL
+};
 
 
-/*
 int main()
 {
     init_usb_console_hal();
@@ -124,9 +58,15 @@ int main()
 
     sleep_ms(100);
 
-    /*
+    print_banner();
+
     usb_console_write_hal("Initializing Hardware...");
     sx126x_initialize_hardware_context(&radio_0);
+
+    //gpio_setup_hal(context_irq_txInit.pin, false);
+    gpio_setup_hal(err_led, true);
+    gpio_write_hal(err_led, false);
+
     usb_console_write_hal("DONE\n");
 
     usb_console_write_hal("Setting up the radio...");
@@ -137,36 +77,25 @@ int main()
     sx126x_interrupt_setup(&radio_0);
     usb_console_write_hal("DONE\n");
 
-    usb_console_write_hal("Setting up the radio for a transmit operation...");
+    usb_console_write_hal("Setting up the radio for a receive operation...");
     
-    lora_init_tx(   &radio_0, 
-                    &sx1262_14dBm_pa_params, 
-                    &prototyping_mod_params,
-                    14, 
-                    SX126X_RAMP_200_US,
-                    LWQMS_SYNC_WORD
-                );
+    lora_init_rx(
+        &radio_0,
+        &prototyping_mod_params,
+        &prototyping_pkt_params
+    );
 
     usb_console_write_hal("DONE\n\n\n");
+
+    gpio_write_hal(err_led, true);
 
     char * txBuf = "Four score and seven years ago our fathers brought forth on this continent a new nation.";
 
     while (true) {
 
-        usb_console_write_hal("To transmit a packet, press 't'.\n");
+        usb_console_write_hal("Setting RX Mode...");
 
-        // Wait for input
-        while ((usb_console_getchar_hal() | 0x20) != 't') {}  // t, case insensitive
-
-        usb_console_write_hal("Sending Packet...");
-
-        // Transmit a packet
-        lora_tx(&radio_0,
-                &prototyping_irq_masks,
-                &prototyping_pkt_params,
-                txBuf,
-                89
-        );
+        lora_rx(&radio_0, &prototyping_irq_masks, LWQMS_SYNC_WORD, 60000);
 
         usb_console_write_hal("DONE\n");
 
@@ -176,20 +105,35 @@ int main()
 
         sx126x_irq_mask_t serviced_interrupts = sx126x_service_interrupts();
 
-        if ((serviced_interrupts & SX126X_IRQ_TX_DONE) != 0) {
-            usb_console_write_hal("TX Success!");
+        if ((serviced_interrupts & SX126X_IRQ_RX_DONE) != 0) {
+            usb_console_write_hal("RX Success!");
+            // Retrieve the data
         }
         else if ((serviced_interrupts & SX126X_IRQ_TIMEOUT) != 0) {
             usb_console_write_hal("ERROR: TIMEOUT!");
+        }
+        else if ((serviced_interrupts & SX126X_IRQ_CRC_ERROR)) {
+            usb_console_write_hal("ERROR: Bad CRC!");
+        }
+        else if ((serviced_interrupts & SX126X_IRQ_HEADER_ERROR)) {
+            usb_console_write_hal("ERROR: Bad header!");
         }
         else {
             usb_console_write_hal("Bad operation!");
         }
 
         usb_console_write_hal("\n\n");
-    }
-    */
-//}
+
+        char packet[256];
+        uint8_t rxlen;
+
+        lora_get_rx_data(&radio_0, packet, &rxlen);
+
+        printf("Received packet: %s\n\n", packet);
+
+    }    
+}
+
 
 
 /* --- EOF ------------------------------------------------------------------ */
