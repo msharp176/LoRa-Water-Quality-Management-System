@@ -19,7 +19,7 @@
 #include "pico/stdlib.h"
 #include "pico/stdio.h"
 #include "hardware.h"
-#include "global_defs.h"
+#include "system_config.h"
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Global Interrupt Definitions

@@ -36,11 +36,13 @@ pico_sdk_init()
 # Add executable. Default name is the project name, version 0.1
 file(GLOB DRIVER_SOURCES "sx126x_driver/*.c")
 file(GLOB LIB "lib/*.c")
+file(GLOB LIB_EXTERNAL "lib/external/*.c")
 
 add_executable(LWQMS_Firmware 
     main.c
     ${DRIVER_SOURCES}
     ${LIB}
+    ${LIB_EXTERNAL}
 )
 
 pico_set_program_name(LWQMS_Firmware "LWQMS_Firmware")
@@ -67,6 +69,7 @@ target_include_directories(LWQMS_Firmware PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/sx126x_driver/headers
         ${CMAKE_CURRENT_LIST_DIR}/lib
         ${CMAKE_CURRENT_LIST_DIR}/lib/headers
+        ${CMAKE_CURRENT_LIST_DIR}/lib/external
 )
 
 # Enable creation of .uf2 file.

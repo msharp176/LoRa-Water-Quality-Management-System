@@ -17,8 +17,6 @@
 #define STATUS_LED GP14
 #define RX_LED GP15
 
-#define RX
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Global Variables
 
@@ -53,13 +51,6 @@ const gpio_driven_irq_context_t context_irq_txInit = {
     .source_mask = GPIO_IRQ_EDGE_FALL
 };
 
-// Example 128-bit key (16 bytes)
-static const uint8_t test_key[16] = {
-    0x00, 0x01, 0x02, 0x03,
-    0x04, 0x05, 0x06, 0x07,
-    0x08, 0x09, 0x0A, 0x0B,
-    0x0C, 0x0D, 0x0E, 0x0F
-};
 
 int main()
 {
@@ -73,7 +64,84 @@ int main()
 
     print_banner();
 
+    usb_console_write_hal("Initializing Hardware...");
+    sx126x_initialize_hardware_context(&radio_0);
+
+    //gpio_setup_hal(context_irq_txInit.pin, false);
+    gpio_setup_hal(STATUS_LED, true);
+    gpio_write_hal(STATUS_LED, false);
+    gpio_setup_hal(RX_LED, true);
+    gpio_write_hal(RX_LED, false);
+
+    usb_console_write_hal("DONE\n");
+
+    usb_console_write_hal("Setting up the radio...");
+    sx126x_radio_setup(&radio_0);    
+    usb_console_write_hal("DONE\n");
+
+    usb_console_write_hal("Setting up interrupts...");
+    sx126x_interrupt_setup(&radio_0);
+    usb_console_write_hal("DONE\n");
+
+    usb_console_write_hal("Setting up the radio for a receive operation...");
     
+    lora_init_rx(
+        &radio_0,
+        &prototyping_mod_params,
+        &prototyping_pkt_params
+    );
+
+    usb_console_write_hal("DONE\n\n\n");
+
+    gpio_write_hal(STATUS_LED, true);
+
+    char * txBuf = "Four score and seven years ago our fathers brought forth on this continent a new nation.";
+
+    while (true) {
+
+        usb_console_write_hal("Setting RX Mode...");
+
+        lora_rx(&radio_0, &prototyping_irq_masks, LWQMS_SYNC_WORD, 60000);
+        gpio_write_hal(RX_LED, true);
+
+        usb_console_write_hal("DONE\n");
+
+        usb_console_write_hal("Waiting for interrupt...");
+        while (!sx126x_check_for_interrupt()) {}
+        gpio_write_hal(RX_LED, false);
+        usb_console_write_hal("DONE\n");
+
+        sx126x_irq_mask_t serviced_interrupts = sx126x_service_interrupts();
+
+        if ((serviced_interrupts & SX126X_IRQ_RX_DONE) != 0) {
+            usb_console_write_hal("RX Success!");
+            // Retrieve the data
+        }
+        else if ((serviced_interrupts & SX126X_IRQ_TIMEOUT) != 0) {
+            usb_console_write_hal("ERROR: TIMEOUT!");
+        }
+        else if ((serviced_interrupts & SX126X_IRQ_CRC_ERROR)) {
+            usb_console_write_hal("ERROR: Bad CRC!");
+        }
+        else if ((serviced_interrupts & SX126X_IRQ_HEADER_ERROR)) {
+            usb_console_write_hal("ERROR: Bad header!");
+        }
+        else {
+            usb_console_write_hal("Bad operation!");
+        }
+
+        usb_console_write_hal("\n\n");
+
+        char packet[256];
+        uint8_t rxlen;
+
+        lora_get_rx_data(&radio_0, packet, &rxlen);
+
+        printf("Received packet: %s\n\n", packet);
+
+        sleep_ms(500);
+
+    }    
 }
 
 

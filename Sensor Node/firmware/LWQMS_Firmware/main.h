@@ -10,62 +10,6 @@
 *
 *********************************************************************************************************************/
 
-/**
- * RP2350 I/O Map (Raspberry Pi Pico 2 - Will need revisited for final PCB layout)
- * 
- * 1:   GP0             UART Console TX Reserved
- * 2:   GP1             UART Console RX Reserved
- * 3:   GND             -----------------
- * 4:   GP2             sx1262 DIO1 (IRQ)
- * 5:   GP3             
- * 6:   GP4             I2C0 SDA Reserved
- * 7:   GP5             I2C0 SCL Reserved
- * 8:   GND             -----------------
- * 9:   GP6             sx1262 BUSY
- * 10:  GP7             sx1262 RESET
- * 11:  GP8             
- * 12:  GP9
- * 13:  GND             -----------------
- * 14:  GP10
- * 15:  GP11
- * 16:  GP12
- * 17:  GP13
- * 18:  GND             -----------------
- * 19:  GP14
- * 20:  GP15
- * 21:  GP16            SPI0 MISO
- * 22:  GP17            sx1262 Chip Select
- * 23:  GND             -----------------
- * 24:  GP18            SPI0 SCK
- * 25:  GP19            SPI0 MOSI
- * 26:  GP20
- * 27:  GP21
- * 28:  GND             -----------------
- * 29:  GP22
- * 30:  RUN             -----------------
- * 31:  GP26
- * 32:  GP27
- * 33:  GND             -----------------
- * 34:  GP28
- * 35:  ADC_VREF
- * 36:  3V3_OUT
- * 37:  3V3_EN
- * 38:  GND             -----------------
- * 39:  VSYS (5V_REG)   -----------------
- * 40:  VBUS (5V_UREG)  -----------------
- * 
- * --------------------------------------------------------------------------
- * 
- * Protocol Busses
- * 
- * SPI0: sx1262 radio module
- * SPI1:
- * I2C0:
- * I2C1:
- * UART0: Debug Console (on final board)
- * UART1:
- */
-
 #ifndef MAIN_H
 #define MAIN_H
 
@@ -97,13 +41,13 @@
 #include "isrs.h"
 #include "hardware.h"
 #include "lora.h"
-#include "global_defs.h"
+#include "system_config.h"
 #include "mcp4651.h"
 #include "mxl23l3233f.h"
 #include "tmux1309.h"
+#include "encryption.h"
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Global Definitions & Aliases

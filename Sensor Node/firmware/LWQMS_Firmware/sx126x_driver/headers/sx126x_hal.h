@@ -52,7 +52,7 @@ extern "C" {
 #include "sx126x.h"
 #include "hardware.h"
 #include "radio_isr.h"
-#include "global_defs.h"
+#include "system_config.h"
 
 #include "pico/time.h"
 #include "hardware/spi.h"
