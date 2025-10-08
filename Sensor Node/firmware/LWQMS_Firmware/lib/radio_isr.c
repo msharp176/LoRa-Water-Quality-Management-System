@@ -57,7 +57,7 @@ bool read_irq_register(sx126x_context_t *radio_context, sx126x_irq_mask_t *irq_r
     
     bool irq_ok;
 
-    for (int k = 0; k < SPI_RETRIES; k++) {
+    for (int k = 0; k < COMMS_RETRIES; k++) {
 
         do {
             
@@ -102,7 +102,7 @@ bool clear_interrupts(sx126x_context_t *radio_context) {
 
     bool irq_ok = false;
 
-    for (int k = 0; k < SPI_RETRIES; k++) {
+    for (int k = 0; k < COMMS_RETRIES; k++) {
 
         do {
             if (sx126x_clear_irq_status(radio_context, SX126X_IRQ_ALL) != SX126X_STATUS_OK) break;

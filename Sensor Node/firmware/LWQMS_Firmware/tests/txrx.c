@@ -61,67 +61,15 @@ static const uint8_t test_key[16] = {
     0x0C, 0x0D, 0x0E, 0x0F
 };
 
-void test_encrypt_decrypt(const char *message) {
-
-    uint8_t ciphertext[255];    // max LoRa payload
-    uint8_t decrypted[223];     // max plaintext
-
-    size_t ciphertext_len = 0;
-    size_t decrypted_len = 0;
-
-    size_t msg_len = strlen(message);
-
-    printf("Original (%zu bytes): %s\n", msg_len, message);
-
-    // Encrypt
-    bool enc_ok = aes_128_encrypt(test_key, sizeof(test_key),
-                                  (const uint8_t*)message, msg_len,
-                                  ciphertext, &ciphertext_len);
-
-    if (!enc_ok) {
-        printf("Encryption failed!\n");
-        return;
-    }
-
-    printf("Ciphertext length: %zu bytes\n", ciphertext_len);
-
-    printf("Original:\n\n");
-    hexdump(message, msg_len, 0x00);
-
-    printf("Ciphertext:\n\n");
-    hexdump(ciphertext, 255, 0x00);
-
-    // Decrypt
-    bool dec_ok = aes_128_decrypt(test_key, sizeof(test_key),
-                                  ciphertext, ciphertext_len,
-                                  decrypted, &decrypted_len);
-
-    if (!dec_ok) {
-        printf("Decryption failed!\n");
-        return;
-    }
-
-    // Null-terminate for printing (safe because decrypted_len ≤ 223)
-    decrypted[decrypted_len] = '\0';
-
-    printf("Decrypted (%zu bytes): %s\n", decrypted_len, decrypted);
-
-    // Compare
-    if ((decrypted_len == msg_len) &&
-        (memcmp(message, decrypted, msg_len) == 0)) {
-        printf("Round-trip success!\n\n");
-    } else {
-        printf("Round-trip mismatch!\n\n");
-    }
-}
-
 int main()
 {
 
     init_usb_console_hal();
 
     // Wait for the USB console to be opened on the host PC
+    #ifdef RX
     wait_for_usb_console_connection_hal();
+    #endif
 
     sleep_ms(100);
 
@@ -164,13 +112,11 @@ int main()
 
     gpio_write_hal(STATUS_LED, true);
 
-    char * txBuf = "Four score and seven years ago our fathers brought forth on this continent a new nation.";
-
     while (true) {
 
         usb_console_write_hal("Setting RX Mode...");
 
-        lora_rx(&radio_0, &prototyping_irq_masks, LWQMS_SYNC_WORD, 60000);
+        lora_rx(&radio_0, &prototyping_irq_masks, LWQMS_SYNC_WORD, SX126X_RX_CONTINUOUS);
         gpio_write_hal(RX_LED, true);
 
         usb_console_write_hal("DONE\n");
@@ -206,15 +152,19 @@ int main()
 
         lora_get_rx_data(&radio_0, packet, &rxlen);
 
+        packet[rxlen] = '\0';
+
+        printf("\033[1;37;41mReceived Packet: %s\033[0m\n\n\n", packet);
+        
         //printf("Encrypted packet:\n\n");
         //hexdump(packet, rxlen, 0x00);
 
-        char msg[256];
-        size_t msg_len;
+        //char msg[256];
+        //size_t msg_len;
 
-        bool decryption_success = aes_128_decrypt(test_key, AES_BLOCKLEN, packet, rxlen, msg, &msg_len);
+        //bool decryption_success = aes_128_decrypt(test_key, AES_BLOCKLEN, packet, rxlen, msg, &msg_len);
 
-        printf("Decrypted packet: %s\n\n", msg);
+        //printf("Decrypted packet: %s\n\n", msg);
 
         sleep_ms(500);
 
@@ -225,9 +175,9 @@ int main()
     usb_console_write_hal("Setting up the radio for a transmit operation...");
     
     lora_init_tx(   &radio_0, 
-                    &sx1262_14dBm_pa_params, 
+                    &sx1262_22dBm_pa_params, 
                     &prototyping_mod_params,
-                    14, 
+                    22, 
                     SX126X_RAMP_200_US,
                     LWQMS_SYNC_WORD
                 );
@@ -236,13 +186,15 @@ int main()
 
     gpio_write_hal(STATUS_LED, true);
 
-    char * txBuf = "Four score and seven years ago our fathers brought forth on this continent a new nation.";
+    uint8_t packetnum = 0;
+
+    char txBuf[50];
 
     // Encrypt the buffer
     uint8_t enc_buf[255];
     size_t encrypted_len;
 
-    bool encryption_success = aes_128_encrypt(test_key, AES_BLOCKLEN, txBuf, 89, enc_buf, &encrypted_len);
+    //bool encryption_success = aes_128_encrypt(test_key, AES_BLOCKLEN, txBuf, 89, enc_buf, &encrypted_len);
 
     while (true) {
 
@@ -253,7 +205,9 @@ int main()
         while (!tx_go) {}
         tx_go = false;
 
-        usb_console_write_hal("Sending Packet...");
+        // Clear the old buffer
+        memset(txBuf, 0x00, 50);
+        snprintf(txBuf, 50, "aloha! this is packet # [%d]", packetnum++);
 
         gpio_write_hal(RX_LED, true);
 
@@ -261,8 +215,8 @@ int main()
         lora_tx(&radio_0,
                 &prototyping_irq_masks,
                 &prototyping_pkt_params,
-                enc_buf,
-                encrypted_len
+                txBuf,
+                strnlen(txBuf, 50)
         );
 
         usb_console_write_hal("DONE\n");

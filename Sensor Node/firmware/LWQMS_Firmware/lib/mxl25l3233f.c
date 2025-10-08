@@ -127,7 +127,7 @@ static int mx23l3233_erase_generic(mxl23l3233f_context_t *context, uint8_t comma
 
     bool erase_ok = false;
 
-    for (int k = 0; k < SPI_RETRIES; k++) {
+    for (int k = 0; k < COMMS_RETRIES; k++) {
         do {
             // Wait for the chip to be ready for an erase operation
             mxl23l3233f_wait_for_chip_idle(context);
@@ -242,7 +242,7 @@ int mxl23l3233f_page_program(mxl23l3233f_context_t *context, uint8_t *page_conte
 
     bool page_program_ok = false;
 
-    for (int k = 0; k < SPI_RETRIES; k++) {
+    for (int k = 0; k < COMMS_RETRIES; k++) {
         do {
             // Ensure the chip is ready for a write/erase operation.
             mxl23l3233f_wait_for_chip_idle(context);
@@ -336,7 +336,7 @@ int mxl23l3233f_read_data(mxl23l3233f_context_t *context, uint8_t *rxBuf, size_t
 
     mxl23l3233f_wait_for_chip_idle(context);
 
-    for (int k = 0; k < SPI_RETRIES; k++) {
+    for (int k = 0; k < COMMS_RETRIES; k++) {
         do {
             if (mxl23l3233f_spi_transaction(context, txBuf, buflen, cmd_len, rxBuf) < 0) break;
             read_ok = true;
@@ -407,7 +407,7 @@ int mxl23l3233f_chip_erase(mxl23l3233f_context_t *context) {
     uint8_t test_page[FLASH_PAGE_SIZE];
 
     
-    for (int k = 0; k < SPI_RETRIES; k++) {
+    for (int k = 0; k < COMMS_RETRIES; k++) {
         do {
             // Wait for the chip to be ready for an erase operation
             mxl23l3233f_wait_for_chip_idle(context);
@@ -455,7 +455,7 @@ int mxl23l3233f_deep_power_down(mxl23l3233f_context_t *context) {
     // Wait for the chip to be ready to enter the deep power down mode
     mxl23l3233f_wait_for_chip_idle(context);
 
-    for (int k = 0; k < FLASH_SPI_RETRIES; k++) {
+    for (int k = 0; k < FLASH_COMMS_RETRIES; k++) {
         do {
             // Send the Deep Power Down Command
             if (mxl23l3233f_spi_transaction(context, &powerdown_txBuf, 1, 1, &powerdown_rxBuf) < 0) break;
@@ -494,7 +494,7 @@ int mxl23l3233f_deep_power_down_release(mxl23l3233f_context_t *context) {
 
     bool wakeup_ok = false;
 
-    for (int k = 0; k < SPI_RETRIES; k++) {
+    for (int k = 0; k < COMMS_RETRIES; k++) {
         do {
             // Send the wakeup command plus 3 dummy bytes.
             if (mxl23l3233f_spi_transaction(context, txBuf, buflen, 4, &rxBuf) < 0) break;
@@ -522,7 +522,7 @@ int mxl23l3233f_write_enable(mxl23l3233f_context_t *context) {
 
     bool write_enable_ok = false;
 
-    for (int k = 0; k < FLASH_SPI_RETRIES; k++) {
+    for (int k = 0; k < FLASH_COMMS_RETRIES; k++) {
         do {
             // Send the write enable command
             if (mxl23l3233f_spi_transaction(context, &txBuf, 1, 1, &rxBuf) < 0) break;
@@ -556,7 +556,7 @@ int mxl23l3233f_write_disable(mxl23l3233f_context_t *context) {
 
     bool write_disable_ok = false;
 
-    for (int k = 0; k < FLASH_SPI_RETRIES; k++) {
+    for (int k = 0; k < FLASH_COMMS_RETRIES; k++) {
         do {
             if (mxl23l3233f_spi_transaction(context, &txBuf, 1, 1, &rxBuf) < 0) break;
     
@@ -585,7 +585,7 @@ int mxl23l3233f_read_status_register(mxl23l3233f_context_t *context, uint8_t *st
     
     bool rd_status_ok = false;
 
-    for (int k = 0; k < FLASH_SPI_RETRIES; k++) {
+    for (int k = 0; k < FLASH_COMMS_RETRIES; k++) {
         do {
             // Send the read status register command and read back the contents of the status register.
             if (mxl23l3233f_spi_transaction(context, txBuf, 2, 1, status_register) < 0) break;

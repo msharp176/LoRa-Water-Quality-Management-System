@@ -43,9 +43,12 @@
 #include "lora.h"
 #include "system_config.h"
 #include "mcp4651.h"
+#include "mcp3425.h"
 #include "mxl23l3233f.h"
 #include "tmux1309.h"
 #include "encryption.h"
+
+#include "sx126x.h"
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -59,16 +62,16 @@
 #define LORA_TIMEOUT_MS 10000
 
 sx126x_mod_params_lora_t prototyping_mod_params = {
-    .sf = SX126X_LORA_SF7,
+    .sf = SX126X_LORA_SF10,
     .bw = SX126X_LORA_BW_125,
     .cr = SX126X_LORA_CR_4_5,
     .ldro = 0x00
 };
 
 sx126x_pkt_params_lora_t prototyping_pkt_params = {
-    .preamble_len_in_symb = 12,
+    .preamble_len_in_symb = 8,
     .header_type = SX126X_LORA_PKT_EXPLICIT,
-    .crc_is_on = true,
+    .crc_is_on = false,
     .invert_iq_is_on = false   // Do not invert the IQ unless needed to make network invisible to other LoRa devices - typically involved with LoRaWAN
 };
 

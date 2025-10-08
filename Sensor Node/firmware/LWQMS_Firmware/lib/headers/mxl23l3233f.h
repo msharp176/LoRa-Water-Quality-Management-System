@@ -20,7 +20,7 @@
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Defines 
 
-#define FLASH_SPI_RETRIES 5
+#define FLASH_COMMS_RETRIES 5
 
 #define FLASH_PAGE_SIZE          0x100      ///< Flash page size (256 bytes)
 #define FLASH_SECTOR_SIZE       0x1000      ///< Flash sector size (4KB)

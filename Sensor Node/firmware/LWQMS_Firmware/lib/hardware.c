@@ -53,7 +53,9 @@ sx126x_context_t radio_0 = {
     .cs =   GP11,
     .spi_context = &context_spi_0, // SPI Bus 0
     .radio_operation_timeout_us = RADIO_TIMEOUT_GLOBAL_US,
-    .designator = "RADIO 0"
+    .designator = "RADIO 0",
+    .tx_buf_start = 0x00,
+    .rx_buf_start = 0x00
 };
 
 mcp4651_context_t context_digipot_offset = {
@@ -78,6 +80,11 @@ mcp4651_context_t context_digipot_reference = {
     .i2c_context = &context_i2c_1,
     .wiper_position_a = 0x80,
     .wiper_position_b = 0x80
+};
+
+mcp3425_context_t context_adc = {
+    .addr = 0x68,
+    .i2c_context = &context_i2c_1,
 };
 
 mxl23l3233f_context_t context_flash_0 = {

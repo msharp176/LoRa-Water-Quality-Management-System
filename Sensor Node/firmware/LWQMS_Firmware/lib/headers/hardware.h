@@ -73,7 +73,7 @@
 #pragma endregion
 
 #define SPI_FREQ_GLOBAL 10000000 // 10 MHz
-#define SPI_RETRIES 5
+#define COMMS_RETRIES 5
 
 #define RADIO_TIMEOUT_GLOBAL_US 10000 // 10 ms
 
@@ -147,6 +147,8 @@ typedef struct sx126x_context_s {
     const uint32_t       radio_operation_timeout_us;  // Timeout to wait for radio to leave busy state
     const uint8_t        cs;                          // Chip select GPIO Pin.
     const char *         designator;                  // Radio designator string
+    const uint8_t        tx_buf_start;
+    const uint8_t        rx_buf_start;
 } sx126x_context_t;
 
 /**
@@ -159,6 +161,18 @@ typedef struct mcp4651_context_s {
     uint16_t wiper_position_a;          // The current tap position of wiper A
     uint16_t wiper_position_b;          // The current tap position of wiper B
 } mcp4651_context_t;
+
+/**
+ * @brief mcp3425 16-Bit A-D Converter Configuration Data
+ */
+
+typedef struct mcp3425_context_s {
+    const i2c_context_t* i2c_context;
+    const uint8_t addr;
+    uint8_t gain;
+    uint8_t sampling_rate;
+    bool continuous_conversion_mode_enabled;
+} mcp3425_context_t;
 
 /**
  * @brief mxl23l3233f Serial NOR Flash Configuration Data
@@ -227,6 +241,8 @@ extern mcp4651_context_t context_digipot_offset;
 extern mcp4651_context_t context_digipot_gain;
 
 extern mcp4651_context_t context_digipot_reference;
+
+extern mcp3425_context_t context_adc;
 
 extern mxl23l3233f_context_t context_flash_0;
 

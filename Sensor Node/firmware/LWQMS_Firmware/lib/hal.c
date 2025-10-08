@@ -229,7 +229,6 @@ int i2c_write_then_read_hal(const void* i2c_context, uint8_t address, uint8_t *t
     return bytes_written < 0 ? bytes_written : bytes_read;
 }
 
-
 static bool reserved_i2c_addr(uint8_t addr) {
     return (addr & 0x78) == 0 || (addr & 0x78) == 0x78;
 }

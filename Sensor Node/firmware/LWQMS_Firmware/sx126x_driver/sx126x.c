@@ -299,14 +299,22 @@ sx126x_status_t sx126x_set_tx_with_timeout_in_rtc_step( const void* context, con
 
 sx126x_status_t sx126x_set_rx( const void* context, const uint32_t timeout_in_ms )
 {
-    if( timeout_in_ms > SX126X_MAX_TIMEOUT_IN_MS )
+    uint32_t timeout_for_use;
+
+    if (timeout_in_ms == SX126X_RX_CONTINUOUS) // No timeout selected
+    {
+        // Greenlight this value - added by Matthew Sharp
+        timeout_for_use = timeout_in_ms;
+    }
+    else if( timeout_in_ms > SX126X_MAX_TIMEOUT_IN_MS )
     {
         return SX126X_STATUS_UNKNOWN_VALUE;
     }
+    else {
+        timeout_for_use = sx126x_convert_timeout_in_ms_to_rtc_step( timeout_in_ms );
+    }
 
-    const uint32_t timeout_in_rtc_step = sx126x_convert_timeout_in_ms_to_rtc_step( timeout_in_ms );
-
-    return sx126x_set_rx_with_timeout_in_rtc_step( context, timeout_in_rtc_step );
+    return sx126x_set_rx_with_timeout_in_rtc_step( context, timeout_for_use );
 }
 
 sx126x_status_t sx126x_set_rx_with_timeout_in_rtc_step( const void* context, const uint32_t timeout_in_rtc_step )

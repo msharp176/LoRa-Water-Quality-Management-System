@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "buckboost")(type "KiCad")(uri "${KIPRJMOD}/buckboost.pretty")(options "")(descr ""))
+)
