@@ -64,7 +64,7 @@ int main()
     print_banner();
 
     usb_console_write_hal("Initializing Hardware...");
-    sx126x_initialize_hardware_context(&radio_0);
+    sx126x_initialize_hardware_context(&context_radio_0);
 
     gpio_setup_hal(context_irq_txInit.pin, false);
     gpio_setup_hal(STATUS_LED, true);
@@ -77,16 +77,16 @@ int main()
     usb_console_write_hal("DONE\n");
 
     usb_console_write_hal("Setting up the radio...");
-    sx126x_radio_setup(&radio_0);    
+    sx126x_radio_setup(&context_radio_0);    
     usb_console_write_hal("DONE\n");
 
     usb_console_write_hal("Setting up interrupts...");
-    sx126x_interrupt_setup(&radio_0);
+    sx126x_interrupt_setup(&context_radio_0);
     usb_console_write_hal("DONE\n");
 
     usb_console_write_hal("Setting up the radio for a transmit operation...");
     
-    lora_init_tx(   &radio_0, 
+    lora_init_tx(   &context_radio_0, 
                     &sx1262_14dBm_pa_params, 
                     &prototyping_mod_params,
                     14, 
@@ -114,7 +114,7 @@ int main()
         gpio_write_hal(RX_LED, true);
 
         // Transmit a packet
-        lora_tx(&radio_0,
+        lora_tx(&context_radio_0,
                 &prototyping_irq_masks,
                 &prototyping_pkt_params,
                 txBuf,

@@ -51,20 +51,32 @@ sx126x_status_t sx126x_radio_setup(const void* context) {
             // 1. Perform a reset of the radio module
             if (sx126x_hal_reset(context) != SX126X_STATUS_OK)                          break;
         
+            //printf("1");
+
             // 2. Wakeup the radio
             if (sx126x_hal_wakeup(context) != SX126X_STATUS_OK)                         break;
         
+            //printf("2");
+
             // 3. Set the regulator mode
             if (sx126x_set_reg_mode(context, SX126X_REG_MODE_DCDC) != SX126X_STATUS_OK) break;
         
+            //printf("3");
+
             // 4. Set DIO2 to control the RF switch
             if (sx126x_set_dio2_as_rf_sw_ctrl(context, true) != SX126X_STATUS_OK)       break;
+
+            //printf("4");
 
             // 5. Set DIO3 to control the TCXO
             if (sx126x_set_dio3_as_tcxo_ctrl(context, SX126X_TCXO_CTRL_1_7V, SX126X_TCXO_TIMEOUT) != SX126X_STATUS_OK)  break;
 
+            //printf("5");
+
             // 6. Calibrate the radio
             if (sx126x_cal(context, SX126X_CAL_ALL) != SX126X_STATUS_OK)                break;
+
+            //printf("6");
 
             init_ok = true;
 
@@ -78,6 +90,40 @@ sx126x_status_t sx126x_radio_setup(const void* context) {
     err_raise(ERR_SPI_TRANSACTION_FAIL, ERR_SEV_REBOOT, "SPI Communications failure with SX126X module during radio initialization", "sx126x_hal_initialize_radio");
 
     return SX126X_STATUS_ERROR;
+
+}
+
+#pragma endregion
+
+#pragma region Power Management
+
+bool lora_enter_sleep_mode(const sx126x_context_t* radio_context, bool use_warm_start) {
+    
+    sx126x_sleep_cfgs_t sleep_mode = use_warm_start ? SX126X_SLEEP_CFG_WARM_START : SX126X_SLEEP_CFG_COLD_START;
+    
+    for (int k = 0; k < COMMS_RETRIES; k++) {
+        bool sleep_ok = false;
+        do {
+            if (sx126x_set_sleep(radio_context, sleep_mode) != SX126X_STATUS_OK) break;
+
+            // block for 500us
+            sleep_us(500);
+
+            // Wait for the BUSY line to be asserted HIGH.
+            if (poll_radio_busy(radio_context, GPIO_HIGH) != SX126X_STATUS_OK) break;
+            
+            sleep_ok = true;
+
+        } while (0);
+
+        if (sleep_ok) {
+            return true;
+        }
+    }
+
+    err_raise(ERR_SPI_TRANSACTION_FAIL, ERR_SEV_REBOOT, "SPI Communications failure with SX126X module during sleep mode initialization", "lora_enter_sleep_mode");
+
+    return false;
 
 }
 
@@ -129,8 +175,6 @@ bool lora_init_tx(  const sx126x_context_t* radio_context,
             // Read back packet type
             if (sx126x_get_pkt_type(radio_context, &readback_pkt_type) != SX126X_STATUS_OK)                                 break;
 
-            printf("%d", readback_pkt_type);
-
             if (readback_pkt_type != SX126X_PKT_TYPE_LORA) break;         
 
             init_ok = true; // Only once everything is confirmed to be set up correctly will the init_ok flag be set to true.
@@ -164,20 +208,20 @@ bool lora_tx(   const sx126x_context_t* radio_context,
         do {
             // 1. Configure the LoRa packet
             lora_packet_parameters->pld_len_in_bytes = len;
-            if (sx126x_set_lora_pkt_params(radio_context, lora_packet_parameters) != SX126X_STATUS_OK)                      break;
+            if (sx126x_set_lora_pkt_params(radio_context, lora_packet_parameters) != SX126X_STATUS_OK) break;
 
             // 2. Write the data to be transmitted into the TX buffer
-            if (sx126x_write_buffer(radio_context, 0x00, buf, len) != SX126X_STATUS_OK)                     break;
+            if (sx126x_write_buffer(radio_context, 0x00, buf, len) != SX126X_STATUS_OK) break;
 
             // 3. Configure the interrupts
             if (sx126x_set_dio_irq_params(  radio_context, 
                                             radio_interrupt_cfg->system_mask, 
                                             radio_interrupt_cfg->dio1_mask, 
                                             radio_interrupt_cfg->dio2_mask, 
-                                            radio_interrupt_cfg->dio3_mask  ) != SX126X_STATUS_OK)          break;
+                                            radio_interrupt_cfg->dio3_mask  ) != SX126X_STATUS_OK) break;
             
             // 4. Transmit the data
-            if (sx126x_set_tx(radio_context, 10000) != SX126X_STATUS_OK)                 break;
+            if (sx126x_set_tx(radio_context, 10000) != SX126X_STATUS_OK) break;
 
             tx_ok = true;
 
@@ -238,8 +282,6 @@ bool lora_init_rx(sx126x_context_t* radio_context,
 
             // Read back packet type
             if (sx126x_get_pkt_type(radio_context, &readback_pkt_type) != SX126X_STATUS_OK)                                 break;
-
-            printf("[%d]", readback_pkt_type);
 
             if (readback_pkt_type != SX126X_PKT_TYPE_LORA) break;       
 

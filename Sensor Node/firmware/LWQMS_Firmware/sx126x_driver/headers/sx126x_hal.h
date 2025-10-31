@@ -152,17 +152,18 @@ sx126x_hal_status_t sx126x_hal_wakeup( const void* context );
  * @brief Poll the BUSY pin on the radio until it goes LOW, or we reach the specified timeout.
  * 
  * @param [in] context: Radio implementation parameters
+ * @param [in] target_state: The target state to wait for the busy line of the radio to be in.
  * 
  * @returns Operation Status
  * 
  * @author Matthew Sharp
  * 
  */
-sx126x_hal_status_t wait_for_radio_ready( const void* context );
+sx126x_hal_status_t poll_radio_busy(const void* context, bool target_state);
 
 /**
  * 
- * @brief Initialize all GPIO pins and SPI bus affiliated with the given radio context
+ * @brief Initialize all GPIO pins affiliated with the given radio context - DOES NOT INITIALIZE SPI!!
  * 
  * @param [in] context: Radio Implementation Parameters
  * 

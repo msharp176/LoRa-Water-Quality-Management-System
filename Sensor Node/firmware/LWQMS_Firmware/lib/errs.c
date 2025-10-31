@@ -13,21 +13,14 @@
 #include "errs.h"
 
 void err_raise(lwqms_errs_t err_code, lwqms_err_severity_t severity, char * err_msg, char * err_context) {
-    
-    uint8_t err_led = ERROR_LED;
-
     char err_info[100];
-    
-    gpio_setup_hal(err_led, true);
-    gpio_write_hal(err_led, GPIO_HIGH);
 
     switch (severity) {
         case ERR_SEV_FATAL:
             sprintf(err_info, "ERROR [%d] (FATAL) Encountered in %s: %s", err_code, err_context, err_msg);
             log_error(err_info);
-            while (true) {
-                // Idle
-            }
+            gpio_write_hal(ERR_LED, true);
+            while (1) {}
             break;
         case ERR_SEV_REBOOT:
             sprintf(err_info, "ERROR [%d] (reboot required) Encountered in %s: %s", err_code, err_context, err_msg);
@@ -37,25 +30,21 @@ void err_raise(lwqms_errs_t err_code, lwqms_err_severity_t severity, char * err_
             sprintf(err_info, "ERROR [%d] (non-fatal) Encountered in %s: %s", err_code, err_context, err_msg);
             log_error(err_info);
             for (int k = 0; k < 8; k++) {
-                gpio_write_hal(err_led, GPIO_HIGH);
+                gpio_write_hal(ERR_LED, GPIO_HIGH);
                 sleep_ms(250);
-                gpio_write_hal(err_led, GPIO_LOW);
+                gpio_write_hal(ERR_LED, GPIO_LOW);
                 sleep_ms(250);
             }
         default:
             // Do nothing
     }
 
-    gpio_write_hal(err_led, GPIO_LOW);
+    gpio_write_hal(ERR_LED, GPIO_LOW);
 }
 
 void err_clear() {
-
-    uint8_t err_led = ERROR_LED;
-
     log_error("Errors cleared");
-    gpio_setup_hal(err_led, true);
-    gpio_write_hal(err_led, GPIO_LOW);
+    gpio_write_hal(ERR_LED, GPIO_LOW);
 }
 
 void log_error(char * err_msg_full) {

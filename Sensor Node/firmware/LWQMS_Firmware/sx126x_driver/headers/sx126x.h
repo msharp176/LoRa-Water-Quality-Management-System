@@ -1432,7 +1432,7 @@ sx126x_status_t sx126x_wakeup( const void* context );
 
 /**
  * 
- * @brief Initializes hardware and GPIO pins for the given `sx126x_context_s` structure instance.
+ * @brief Initializes hardware and GPIO pins for the given `sx126x_context_s` structure instance. Does not interact with the radio directly.
  * 
  * @param [in] context Chip Implementation Context
  * 

@@ -37,6 +37,12 @@
 #define SPI0_MISO GP16
 #define SPI0_SCK GP18
 
+#define EN_5V GP2
+#define STATUS_LED GP3
+#define TX_LED GP4
+#define RX_LED GP5
+#define ERR_LED GP6
+
 #pragma region GPIO Aliases
 
 #define GPIO_LOW 0
@@ -76,8 +82,6 @@
 #define COMMS_RETRIES 5
 
 #define RADIO_TIMEOUT_GLOBAL_US 10000 // 10 ms
-
-#define ERROR_LED GP25  // Use the onboard LED for now
 
 #define QTY_GPIO_PINS NUM_BANK0_GPIOS
 
@@ -201,7 +205,10 @@ typedef enum lwqms_errs_e {
     ERR_LORA_TIMEOUT = 2,
     ERR_ARGUMENT = 3,
     ERR_BAD_SETUP = 4,
-    ERR_I2C_TRANSACTION_FAIL = 5
+    ERR_I2C_TRANSACTION_FAIL = 5,
+    ERR_POST_FAIL = 6,
+    ERR_LORA_FAIL = 7,
+    ERR_RDT3_0 = 8
 } lwqms_errs_t;
 
 /**
@@ -225,14 +232,14 @@ extern i2c_context_t context_i2c_0;
 
 extern i2c_context_t context_i2c_1;
 
-const extern gpio_driven_irq_context_t irq_radio_0;
+const extern gpio_driven_irq_context_t irq_context_radio_0;
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Hardware References
 
-extern sx126x_context_t radio_0;
+extern sx126x_context_t context_radio_0;
 
 extern uint8_t err_led;
 
@@ -242,7 +249,7 @@ extern mcp4651_context_t context_digipot_gain;
 
 extern mcp4651_context_t context_digipot_reference;
 
-extern mcp3425_context_t context_adc;
+extern mcp3425_context_t context_adc_0;
 
 extern mxl23l3233f_context_t context_flash_0;
 

@@ -272,7 +272,26 @@ int i2c_read_hal(const void* i2c_context, uint8_t address, uint8_t* rxData, uint
  */
 int i2c_write_then_read_hal(const void* i2c_context, uint8_t address, uint8_t *txData, uint8_t *rxData, uint txLen, uint rxLen);
 
+/**
+ * @brief Scans all addresses on the given I2C interface, giving a visual readout of all available addresses.
+ * 
+ * @param i2c_context: Implementation Information for the desired I2C instance to use
+ * 
+ * @returns None
+ */
 void i2c_scan_hal(const i2c_context_t* i2c_context);
+
+/**
+ * @brief Scans all addresses on the given I2C interface and provides all available addresses.
+ * 
+ * @param i2c_context: Implementation Information for the desired I2C instance to use
+ * @param addressesBuf: Pointer to buffer to store addresses
+ * @param addressBufSize: The size of the address destination buffer
+ * @param addressesFound: The number of addresses found on the given I2C Interface
+ * 
+ * @returns -1 for buffer overflow, 0 for successful scan.
+ */
+int i2c_get_available_addresses_hal(const i2c_context_t* i2c_context, uint8_t* addressesBuf, uint8_t addressBufSize, uint8_t *addressesFound);
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma endregion
@@ -422,6 +441,16 @@ char usb_console_getchar_timeout_us_hal(uint32_t timeout_microseconds);
  * @returns The number of characters written. If less than zero, the write failed.
  */
 int usb_console_write_hal(char * buf);
+
+/**
+ * @brief Gets user input from the USB console connection, guaranteeing null-termination.
+ * 
+ * @param buf: The destination buffer to store the input
+ * @param buflen: The total length of the buffer. If 11 characters are provided, the item at index 10 will be overwritten with a zero to ensure null-termination.
+ * 
+ * @returns The number of characters read from the console.
+ */
+int get_user_input_hal(char * buf, uint buflen);
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

@@ -10,9 +10,13 @@
  *
  * ************************************************************************************/
 
+#include "hardware.h"
+#include "hal.h"
+#include "lora.h"
 #include "sx126x_hal.h"
+#include "mxl23l3233f.h"
 
-#define CHECK_RADIO_BUSY(CONTEXT) if (wait_for_radio_ready(CONTEXT) == SX126X_HAL_STATUS_ERROR) return SX126X_HAL_STATUS_ERROR
+#define CHECK_RADIO_BUSY(CONTEXT) if (poll_radio_busy(CONTEXT, GPIO_LOW) == SX126X_HAL_STATUS_ERROR) return SX126X_HAL_STATUS_ERROR
 
 #pragma region SPI
 
@@ -128,7 +132,7 @@ sx126x_hal_status_t sx126x_hal_wakeup( const void* context ) {
 #pragma region HELPERS
 
 // Convenience method to prevent lengthy and repetitive HAL code.
-sx126x_hal_status_t wait_for_radio_ready(const void* context) {
+sx126x_hal_status_t poll_radio_busy(const void* context, bool target_state) {
 
     // First, cast the void pointer context to a radio context
     const sx126x_context_t* radio_inst = (const sx126x_context_t *)context;
@@ -139,7 +143,7 @@ sx126x_hal_status_t wait_for_radio_ready(const void* context) {
 
     int busy_signal_checks = 0;
 
-    while (gpio_read_hal(radio_inst->busy)) {
+    while (gpio_read_hal(radio_inst->busy) != target_state) {
         
         busy_signal_checks++;
 
@@ -170,9 +174,6 @@ void sx126x_hal_init(const void* context) {
     // Inputs from radio
     gpio_setup_hal(radio_inst->busy, false);
     gpio_setup_hal(radio_inst->irq_context->pin, false);
-
-    // Setup the SPI instance
-    uint baud = spi_init_hal(radio_inst->spi_context);
 
     // Put initial values on the output pins
     gpio_write_hal(radio_inst->cs, GPIO_HIGH);

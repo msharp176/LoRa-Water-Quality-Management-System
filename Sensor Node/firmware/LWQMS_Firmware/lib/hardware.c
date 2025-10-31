@@ -40,15 +40,15 @@ i2c_context_t context_i2c_1 = {
     .sda = GP26
 };
 
-const gpio_driven_irq_context_t irq_radio_0 = {
+const gpio_driven_irq_context_t irq_context_radio_0 = {
     .pin = GP8,
     .source_mask = GPIO_IRQ_EDGE_RISE,
     .callback = &sx126x_master_isr
 };
 
-sx126x_context_t radio_0 = {
+sx126x_context_t context_radio_0 = {
     .busy = GP9,
-    .irq_context = &irq_radio_0,
+    .irq_context = &irq_context_radio_0,
     .rst =  GP10,
     .cs =   GP11,
     .spi_context = &context_spi_0, // SPI Bus 0
@@ -82,7 +82,7 @@ mcp4651_context_t context_digipot_reference = {
     .wiper_position_b = 0x80
 };
 
-mcp3425_context_t context_adc = {
+mcp3425_context_t context_adc_0 = {
     .addr = 0x68,
     .i2c_context = &context_i2c_1,
 };
@@ -101,5 +101,3 @@ tmux1309_context_t context_mux_0 = {
     .sel0 = GP3,
     .sel1 = GP4
 };
-
-uint8_t err_led = ERROR_LED;

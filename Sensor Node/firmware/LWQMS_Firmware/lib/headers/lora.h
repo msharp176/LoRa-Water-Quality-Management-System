@@ -14,14 +14,6 @@
 #define LORA_H
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Debug Logging
-
-#define LORA_FREQ_NORTH_AMERICA 915000000   //915 MHz
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Project Includes
 
 #include "hardware.h"
@@ -41,18 +33,6 @@
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Types
-
-typedef struct sx126x_dio_irq_masks_s {
-    uint16_t system_mask;
-    uint16_t dio1_mask;
-    uint16_t dio2_mask;
-    uint16_t dio3_mask;
-} sx126x_dio_irq_masks_t;
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // SX126X Buffer Base Addresses
 
 #define LORA_TX_BUF_BASE 0x00
@@ -65,6 +45,40 @@ typedef struct sx126x_dio_irq_masks_s {
 
 #define LORA_LDRO_ON 0x01
 #define LORA_LDRO_OFF 0x00
+
+#define LORA_FREQ_NORTH_AMERICA 915000000   // 915 MHz
+
+#define LORA_MAX_PKT_LEN 0x100
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Types
+
+typedef struct sx126x_dio_irq_masks_s {
+    uint16_t system_mask;
+    uint16_t dio1_mask;
+    uint16_t dio2_mask;
+    uint16_t dio3_mask;
+} sx126x_dio_irq_masks_t;
+
+typedef struct lora_setup_s {
+    sx126x_context_t* hw;
+    sx126x_pa_cfg_params_t* pa_setting;
+    sx126x_mod_params_lora_t* mod_setting;
+    sx126x_ramp_time_t ramp_time;
+    sx126x_dio_irq_masks_t *tx_interrupt_setting;
+    sx126x_dio_irq_masks_t *rx_interrupt_setting;
+    sx126x_pkt_params_lora_t *pkt_setting;
+    int8_t txPower;
+    uint32_t operation_timeout_ms;
+    void *node_config;
+} lora_setup_t;
+
+typedef struct lora_pkt_s {
+    uint8_t buf[LORA_MAX_PKT_LEN];
+    uint8_t len;
+} lora_pkt_t;
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -84,6 +98,11 @@ typedef struct sx126x_dio_irq_masks_s {
  * @author Matthew Sharp
  */
 sx126x_status_t sx126x_radio_setup(const void* context);
+
+/**
+ * @brief Enables sleep mode on the sx1262 LoRa Modulator.
+ */
+bool lora_enter_sleep_mode(const sx126x_context_t* radio_context, bool use_warm_start);
 
 /**
  * @brief Initialize the sx126x in transmit mode

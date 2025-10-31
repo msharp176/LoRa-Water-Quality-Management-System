@@ -262,6 +262,39 @@ void i2c_scan_hal(const i2c_context_t* i2c_context) {
     return;
 }
 
+int i2c_get_available_addresses_hal(const i2c_context_t* i2c_context, uint8_t* addressesBuf, uint8_t addressBufSize, uint8_t *addressesFound) {
+
+    int address_idx = 0;
+
+    for (int addr = 0; addr < (1 << 7); ++addr) {
+        // Perform a 1-byte dummy read from the probe address. If a slave
+        // acknowledges this address, the function returns the number of bytes
+        // transferred. If the address byte is ignored, the function returns
+        // -1.
+
+        // Skip over any reserved addresses.
+        int ret;
+        uint8_t rxdata;
+        if (reserved_i2c_addr(addr))
+            ret = PICO_ERROR_GENERIC;
+        else
+            ret = i2c_read_blocking(i2c_context->inst, addr, &rxdata, 1, false);
+
+        if (ret > -1) {
+            addressesBuf[address_idx] = addr;
+            address_idx++;
+            *addressesFound = address_idx;
+            
+            // Ensure we are writing to valid memory
+            if (address_idx > (addressBufSize - 1)) {
+                return -1;
+            }
+        }
+    }
+
+    return 0;
+}
+
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma endregion
@@ -385,6 +418,28 @@ char usb_console_getchar_timeout_us_hal(uint32_t timeout_microseconds) {
 
 int usb_console_write_hal(char * buf) {
     return printf("%s", buf);
+}
+
+int get_user_input_hal(char * buf, uint buflen) {    
+    
+    char * ptr;
+    
+    for (ptr = buf; (ptr - buf) < (buflen - 1); ptr++) {
+        *ptr = usb_console_getchar_hal();
+
+        usb_console_putchar_hal(*ptr);
+
+        if (*ptr == '\r' || *ptr == '\n') {
+            printf("\n");
+            break;
+        }
+    }
+
+    // Guarantee null termination
+    *ptr = 0x00;
+
+    // Return the number of characters read.
+    return ptr - buf;
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------

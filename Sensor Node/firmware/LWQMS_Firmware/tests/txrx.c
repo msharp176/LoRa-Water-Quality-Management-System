@@ -14,10 +14,7 @@
 
 #define DIGIPOT_STEP_TIME_MS 5
 
-#define STATUS_LED GP14
-#define RX_LED GP15
-
-#define RX
+//#define RX
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Global Variables
@@ -67,16 +64,15 @@ int main()
     init_usb_console_hal();
 
     // Wait for the USB console to be opened on the host PC
-    #ifdef RX
     wait_for_usb_console_connection_hal();
-    #endif
 
     sleep_ms(100);
 
     print_banner();
 
     usb_console_write_hal("Initializing Hardware...");
-    sx126x_initialize_hardware_context(&radio_0);
+    spi_init_hal(&context_spi_0);
+    sx126x_initialize_hardware_context(&context_radio_0);
 
     #ifndef RX // TX Mode has this interrupt.
         gpio_setup_hal(context_irq_txInit.pin, false);
@@ -91,11 +87,11 @@ int main()
     usb_console_write_hal("DONE\n");
 
     usb_console_write_hal("Setting up the radio...");
-    sx126x_radio_setup(&radio_0);    
+    sx126x_radio_setup(&context_radio_0);    
     usb_console_write_hal("DONE\n");
 
     usb_console_write_hal("Setting up interrupts...");
-    sx126x_interrupt_setup(&radio_0);
+    sx126x_interrupt_setup(&context_radio_0);
     usb_console_write_hal("DONE\n");
 
     #ifdef RX
@@ -103,7 +99,7 @@ int main()
     usb_console_write_hal("Setting up the radio for a receive operation...");
     
     lora_init_rx(
-        &radio_0,
+        &context_radio_0,
         &prototyping_mod_params,
         &prototyping_pkt_params
     );
@@ -116,7 +112,7 @@ int main()
 
         usb_console_write_hal("Setting RX Mode...");
 
-        lora_rx(&radio_0, &prototyping_irq_masks, LWQMS_SYNC_WORD, SX126X_RX_CONTINUOUS);
+        lora_rx(&context_radio_0, &prototyping_irq_masks, LWQMS_SYNC_WORD, SX126X_RX_CONTINUOUS);
         gpio_write_hal(RX_LED, true);
 
         usb_console_write_hal("DONE\n");
@@ -150,7 +146,7 @@ int main()
         char packet[256];
         uint8_t rxlen;
 
-        lora_get_rx_data(&radio_0, packet, &rxlen);
+        lora_get_rx_data(&context_radio_0, packet, &rxlen);
 
         packet[rxlen] = '\0';
 
@@ -174,7 +170,7 @@ int main()
 
     usb_console_write_hal("Setting up the radio for a transmit operation...");
     
-    lora_init_tx(   &radio_0, 
+    lora_init_tx(   &context_radio_0, 
                     &sx1262_22dBm_pa_params, 
                     &prototyping_mod_params,
                     22, 
@@ -201,9 +197,9 @@ int main()
         usb_console_write_hal("To transmit a packet, press 't'.\n");
 
         // Wait for input
-        //while ((usb_console_getchar_hal() | 0x20) != 't') {}  // t, case insensitive
-        while (!tx_go) {}
-        tx_go = false;
+        while ((usb_console_getchar_hal() | 0x20) != 't') {}  // t, case insensitive
+        //while (!tx_go) {}
+        //tx_go = false;
 
         // Clear the old buffer
         memset(txBuf, 0x00, 50);
@@ -212,7 +208,7 @@ int main()
         gpio_write_hal(RX_LED, true);
 
         // Transmit a packet
-        lora_tx(&radio_0,
+        lora_tx(&context_radio_0,
                 &prototyping_irq_masks,
                 &prototyping_pkt_params,
                 txBuf,

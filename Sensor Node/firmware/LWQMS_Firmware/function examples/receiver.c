@@ -65,7 +65,7 @@ int main()
     print_banner();
 
     usb_console_write_hal("Initializing Hardware...");
-    sx126x_initialize_hardware_context(&radio_0);
+    sx126x_initialize_hardware_context(&context_radio_0);
 
     //gpio_setup_hal(context_irq_txInit.pin, false);
     gpio_setup_hal(STATUS_LED, true);
@@ -76,17 +76,17 @@ int main()
     usb_console_write_hal("DONE\n");
 
     usb_console_write_hal("Setting up the radio...");
-    sx126x_radio_setup(&radio_0);    
+    sx126x_radio_setup(&context_radio_0);    
     usb_console_write_hal("DONE\n");
 
     usb_console_write_hal("Setting up interrupts...");
-    sx126x_interrupt_setup(&radio_0);
+    sx126x_interrupt_setup(&context_radio_0);
     usb_console_write_hal("DONE\n");
 
     usb_console_write_hal("Setting up the radio for a receive operation...");
     
     lora_init_rx(
-        &radio_0,
+        &context_radio_0,
         &prototyping_mod_params,
         &prototyping_pkt_params
     );
@@ -101,7 +101,7 @@ int main()
 
         usb_console_write_hal("Setting RX Mode...");
 
-        lora_rx(&radio_0, &prototyping_irq_masks, LWQMS_SYNC_WORD, 60000);
+        lora_rx(&context_radio_0, &prototyping_irq_masks, LWQMS_SYNC_WORD, 60000);
         gpio_write_hal(RX_LED, true);
 
         usb_console_write_hal("DONE\n");
@@ -135,7 +135,7 @@ int main()
         char packet[256];
         uint8_t rxlen;
 
-        lora_get_rx_data(&radio_0, packet, &rxlen);
+        lora_get_rx_data(&context_radio_0, packet, &rxlen);
 
         printf("Received packet: %s\n\n", packet);
 

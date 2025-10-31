@@ -37,12 +37,14 @@ pico_sdk_init()
 file(GLOB DRIVER_SOURCES "sx126x_driver/*.c")
 file(GLOB LIB "lib/*.c")
 file(GLOB LIB_EXTERNAL "lib/external/*.c")
+file(GLOB SYS_UTILS "sys_utils/*.c")
 
 add_executable(LWQMS_Firmware 
     main.c
     ${DRIVER_SOURCES}
     ${LIB}
     ${LIB_EXTERNAL}
+    ${SYS_UTILS}
 )
 
 pico_set_program_name(LWQMS_Firmware "LWQMS_Firmware")
@@ -65,6 +67,8 @@ target_link_libraries(LWQMS_Firmware
 # Include these directories in the source search
 target_include_directories(LWQMS_Firmware PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
+        ${CMAKE_CURRENT_LIST_DIR}/sys_utils
+        ${CMAKE_CURRENT_LIST_DIR}/sys_utils/headers
         ${CMAKE_CURRENT_LIST_DIR}/sx126x_driver
         ${CMAKE_CURRENT_LIST_DIR}/sx126x_driver/headers
         ${CMAKE_CURRENT_LIST_DIR}/lib

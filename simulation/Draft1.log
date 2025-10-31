@@ -1,6 +1,6 @@
 LTspice 24.0.12 for Windows
 Circuit: * C:\Users\mshar\Documents\capstone\simulation\Draft1.asc
-Start Time: Wed Sep 10 11:59:36 2025
+Start Time: Sat Oct 11 22:17:08 2025
 solver = Normal
 Maximum thread count: 12
 tnom = 27
@@ -8,14 +8,26 @@ temp = 27
 method = modified trap
 Direct Newton iteration for .op point succeeded.
 Semiconductor Device Operating Points:
-                        --- Diodes ---
-Name:    d:u1:1      d:u1:2
-Model:    u1:x        u1:x
-Id:     -5.00e-12   -1.96e-15
-Vd:     -5.00e+00   -1.96e-03
-Req:     1.00e-12    1.00e-12
-CAP:     0.00e+00    0.00e+00
+                        --- Bipolar Transistors ---
+Name:       q1          q2
+Model:    fzt849      fzt849
+Ib:       1.91e-03    1.78e-03
+Ic:      -1.31e-04    3.77e-01
+Vbe:      6.80e-01    7.07e-01
+Vbc:      6.79e-01   -9.31e-04
+Vce:      9.31e-04    7.08e-01
+BetaDC:  -6.85e-02    2.11e+02
+Gm:       2.78e-02    1.43e+01
+Rpi:      3.07e+01    1.45e+01
+Rx:       2.30e-02    2.30e-02
+Ro:       1.49e-01    2.31e+02
+Cbe:      9.08e-09    1.73e-08
+Cbc:      6.81e-08    2.01e-10
+Cjs:      0.00e+00    0.00e+00
+BetaAC:   8.55e-01    2.08e+02
+Cbx:      0.00e+00    0.00e+00
+Ft:       3.48e+04    1.30e+08
 
 
-Total elapsed time: 0.086 seconds.
+Total elapsed time: 0.057 seconds.
 
