@@ -36,6 +36,7 @@ rdt3_0_result_codes_t rdt3_0_transmit(rdt_packet_t pkt, size_t pkt_obj_size, voi
             rdt3_0_ack_t retval = rdt3_0_process_ack_pkt_hal(rx_pkt, pkt, physical_layer_setup);
             switch (retval) {
                 case RDT3_0_ACK:
+                    printf("Packet Acknowledged by Receiver!\n");
                     tx_ok = true;
                     break;
                 case RDT3_0_ACK_BAD_ID:
@@ -46,8 +47,6 @@ rdt3_0_result_codes_t rdt3_0_transmit(rdt_packet_t pkt, size_t pkt_obj_size, voi
                 case RDT3_0_NACK:
                     break;
             }
-
-            free(rx_pkt);
 
             if (tx_ok) {
                 exit_code = RDT3_0_RESULT_CODES_OK;

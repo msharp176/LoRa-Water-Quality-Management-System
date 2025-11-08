@@ -60,26 +60,32 @@ sx126x_context_t context_radio_0 = {
 
 mcp4651_context_t context_digipot_offset = {
     .addr = 0x28,
-    .base_resistance = 50000,
+    .base_resistance_a = 50000,
     .i2c_context = &context_i2c_1,
     .wiper_position_a = 0x80,
     .wiper_position_b = 0x80,
+    .total_steps = 257,
+    .resistance_per_step = 195.3125
 };
 
 mcp4651_context_t context_digipot_gain = {
     .addr = 0x2a,
-    .base_resistance = 50000,
+    .base_resistance_a = 50000,
     .i2c_context = &context_i2c_1,
     .wiper_position_a = 0x80,
-    .wiper_position_b = 0x80
+    .wiper_position_b = 0x80,
+    .total_steps = 257,
+    .resistance_per_step = 195.3125
 };
 
 mcp4651_context_t context_digipot_reference = {
     .addr = 0x2b,
-    .base_resistance = 50000,
+    .base_resistance_a = 50000,
     .i2c_context = &context_i2c_1,
     .wiper_position_a = 0x80,
-    .wiper_position_b = 0x80
+    .wiper_position_b = 0x80,
+    .total_steps = 257,
+    .resistance_per_step = 195.3125
 };
 
 mcp3425_context_t context_adc_0 = {
@@ -97,7 +103,15 @@ mxl23l3233f_context_t context_flash_0 = {
 };
 
 tmux1309_context_t context_mux_0 = {
-    .enable = GP2,
-    .sel0 = GP3,
-    .sel1 = GP4
+    .enable = GP21,
+    .sel0 = GP22,
+    .sel1 = GP23
+};
+
+sdia_context_t context_sdia_0 = {
+    .context_mux = &context_mux_0,
+    .context_adc = &context_adc_0,
+    .context_digipot_gain = &context_digipot_gain,
+    .context_digipot_output_reference = &context_digipot_reference,
+    .context_digipot_dc_offset = &context_digipot_offset
 };

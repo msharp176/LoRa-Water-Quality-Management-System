@@ -54,11 +54,15 @@ void mcp3425_init(mcp3425_context_t *context, mcp3425_sps_t sampling_rate, mcp34
     for (int k = 0; k < COMMS_RETRIES; k++) {
         do {
             // Write the byte to the configuration register
-            i2c_write_hal(context->i2c_context, context->addr, &cfg_reg, 1);
+            if (i2c_write_hal(context->i2c_context, context->addr, &cfg_reg, 1) < 0) break;
             
+            printf("Write Success!\n");
+
             // Read the configuration byte back
             uint8_t rxBuf[3];
-            i2c_read_hal(context->i2c_context, context->addr, rxBuf, 3);
+            if (i2c_read_hal(context->i2c_context, context->addr, rxBuf, 3) < 0) break;
+
+            printf("Read Success!\n");
             
             // Check the configuration register against the written byte
             uint8_t readback_config = rxBuf[2] & 0x1f;
@@ -80,7 +84,7 @@ void mcp3425_init(mcp3425_context_t *context, mcp3425_sps_t sampling_rate, mcp34
     return;
 }
 
-double mcp3425_get_measurement(mcp3425_context_t *context) {
+bool mcp3425_get_measurement(mcp3425_context_t *context, double *reading) {
 
     /**
      * Algorithm:
@@ -89,35 +93,49 @@ double mcp3425_get_measurement(mcp3425_context_t *context) {
      * 3. Keep reading from the device until RDY = 0. Process the corresponding data and return it.
      */
 
-    // 1. Read the configuration register
-    uint8_t rxBuf[3];
-    i2c_read_hal(context->i2c_context, context->addr, rxBuf, 3);
+    bool measure_ok = false;
 
-    // Extract the configuration register
-    uint8_t cfg_reg = rxBuf[2];
+    for (int k = 0; k < COMMS_RETRIES; k++) {
+        do {
+            // 1. Read the configuration register
+            uint8_t rxBuf[3];
+            if (i2c_read_hal(context->i2c_context, context->addr, rxBuf, 3) < 0) break;
 
-    // Determine the mode and other characteristics about the device
-    bool one_shot_conversion_mode_is_set = (cfg_reg & MCP3425_CFG_REG_CONV_MODE) == 0;                 // If OC bit is 1 then we are in continuous conversion mode
-    mcp3425_sps_t sampling_rate = (cfg_reg & (MCP3425_CFG_REG_SPS_1 | MCP3425_CFG_REG_SPS_0)) >> 2;
-    mcp3425_pga_t gain_setting = (cfg_reg & (MCP3425_CFG_REG_PGA_1 | MCP3425_CFG_REG_PGA_0));
+            // Extract the configuration register
+            uint8_t cfg_reg = rxBuf[2];
 
-    if (one_shot_conversion_mode_is_set) {
-        // If we are in one-shot conversion mode, initiate a conversion by writing a one to the RDY bit of the configuration register
-        cfg_reg |= MCP3425_CFG_REG_RDY;
-        i2c_write_hal(context->i2c_context, context->addr, &cfg_reg, 1);
+            // Determine the mode and other characteristics about the device
+            bool one_shot_conversion_mode_is_set = (cfg_reg & MCP3425_CFG_REG_CONV_MODE) == 0;                 // If OC bit is 1 then we are in continuous conversion mode
+            mcp3425_sps_t sampling_rate = (cfg_reg & (MCP3425_CFG_REG_SPS_1 | MCP3425_CFG_REG_SPS_0)) >> 2;
+            mcp3425_pga_t gain_setting = (cfg_reg & (MCP3425_CFG_REG_PGA_1 | MCP3425_CFG_REG_PGA_0));
+
+            if (one_shot_conversion_mode_is_set) {
+                // If we are in one-shot conversion mode, initiate a conversion by writing a one to the RDY bit of the configuration register
+                cfg_reg |= MCP3425_CFG_REG_RDY;
+                if (i2c_write_hal(context->i2c_context, context->addr, &cfg_reg, 1) < 0) break;
+            }
+
+            // Now, wait until the conversion is finished. Once a zero is read back on the RDY bit of the configuration register, send back the fresh data.
+            while ((cfg_reg & MCP3425_CFG_REG_RDY) != 0) {
+                // Read the data and store it in the pre-allocated rx buffer.
+                if (i2c_read_hal(context->i2c_context, context->addr, rxBuf, 3) < 0) break;
+
+                // Update the configuration register
+                cfg_reg = rxBuf[2];
+            } 
+
+            // Return the fresh data
+            *reading = mcp3425_convert_code_to_voltage(((rxBuf[0] << 8) | rxBuf[1]), sampling_rate, gain_setting);
+
+            measure_ok = true;
+        } while (0);
+
+        if (measure_ok) return true;
     }
 
-    // Now, wait until the conversion is finished. Once a zero is read back on the RDY bit of the configuration register, send back the fresh data.
-    while ((cfg_reg & MCP3425_CFG_REG_RDY) != 0) {
-        // Read the data and store it in the pre-allocated rx buffer.
-        i2c_read_hal(context->i2c_context, context->addr, rxBuf, 3);
+    err_raise(ERR_I2C_TRANSACTION_FAIL, ERR_SEV_NONFATAL, "Failed to get measurement from ADC!", "mcp3425_get_measurement");
 
-        // Update the configuration register
-        cfg_reg = rxBuf[2];
-    } 
-
-    // Return the fresh data
-    return mcp3425_convert_code_to_voltage(((rxBuf[0] << 8) | rxBuf[1]), sampling_rate, gain_setting);
+    return false;
 }
 
 void mcp3425_get_params(mcp3425_context_t *context) {

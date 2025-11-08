@@ -71,6 +71,8 @@
 #define GP20 20
 #define GP21 21
 #define GP22 22
+#define GP23 23
+#define GP24 24
 #define GP25 25
 #define GP26 26
 #define GP27 27
@@ -161,9 +163,12 @@ typedef struct sx126x_context_s {
 typedef struct mcp4651_context_s {
     const i2c_context_t* i2c_context;   // The i2c context where the digipot lives
     const uint8_t addr;                 // I2C address
-    const uint32_t base_resistance;     // The base resistance of each potentiometer
+    uint32_t base_resistance_a;   // The full-width resistance of POT A
+    uint32_t base_resistance_b;   // The full-width resistance of POT B
     uint16_t wiper_position_a;          // The current tap position of wiper A
     uint16_t wiper_position_b;          // The current tap position of wiper B
+    uint16_t total_steps;               // The number of available tap positions
+    double resistance_per_step;         // The resistance per step (Rs) of the device
 } mcp4651_context_t;
 
 /**
@@ -220,6 +225,14 @@ typedef enum lwqms_err_severity_e {
     ERR_SEV_NONFATAL = 2
 } lwqms_err_severity_t;
 
+// Hardware contexts used to interface with the Software-Defined Instrumentation Amplifier
+typedef struct sdia_context_s {
+    mcp4651_context_t *context_digipot_gain;
+    mcp4651_context_t *context_digipot_dc_offset;
+    mcp4651_context_t *context_digipot_output_reference;
+    mcp3425_context_t *context_adc;
+    tmux1309_context_t *context_mux;
+} sdia_context_t;
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -254,6 +267,8 @@ extern mcp3425_context_t context_adc_0;
 extern mxl23l3233f_context_t context_flash_0;
 
 extern tmux1309_context_t context_mux_0;
+
+extern sdia_context_t context_sdia_0;
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

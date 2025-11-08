@@ -1,0 +1,63 @@
+
+**** 11/05/25 21:16:02 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-rg_sweep"  [ C:\Users\mshar\Documents\capstone\simulation\Software-Defined Instrumentation Amplifier\Softwar
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "rg_sweep.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+* From [PSPICE NETLIST] section of C:\cds_spb_home\cdssetup\OrCAD_PSpiceTIPSpice_Install\23.1.0\PSpice.ini file:
+.lib "nom_pspti.lib" 
+.lib "nom.lib" 
+
+*Analysis directives: 
+.DC LIN PARAM RG 1 100k 10 
+.OPTIONS ADVCONV
+.OPTIONS FILEMODELSEARCH
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source SOFTWARE_DEFINED_INSTRUMENTATION_AMPLIFIER
+X_U1         VREF1 N00582 VDD VSS N00550 LMV324
+X_U2         N00602 N00586 VDD VSS VOUT LMV324
+X_U3         N00271 N00578 VDD VSS N00564 LMV324
+X_U4         N00840 N00800 VDD VSS N00271 LMV324
+R_R1         VSEN N00840  10k TC=0,0 
+R_R2         VOFF+ N00840  10k TC=0,0 
+R_R3         N00550 N00586  10k TC=0,0 
+R_R4         N00586 VOUT  10k TC=0,0 
+R_R5         N00582 N00550  10k TC=0,0 
+R_RG         N00578 N00582  10k TC=0,0 
+R_R7         N00564 N00578  10k TC=0,0 
+R_R8         N00602 N00564  10k TC=0,0 
+R_R9         VREF2 N00602  10k TC=0,0 
+R_R10         VOFF- N00800  10k TC=0,0 
+R_R11         N00800 N00271  10k TC=0,0 
+V_V1         VDD 0 5
+V_V2         VOFF+ 0 0
+V_V3         VOFF- 0 0
+V_V7         VREF1 0 0
+V_V8         VREF2 0 0
+V_V10         0 VSS 0
+V_V11         VSEN 0 1
+
+**** RESUMING rg_sweep.cir ****
+.END
+
+ERROR(ORPSIM-15167): Undefined parameter: RG.
+

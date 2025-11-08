@@ -15,10 +15,34 @@
 
 #define POWER_5V_COOLDOWN_DURATION_MS 10000
 
+#include <stdio.h>
+
+#define SET_5V_RAIL_STATUS(is_enabled)                                \
+    do {                                                              \
+        /* Check if the EN_5V pin is already in the desired state */   \
+        if (gpio_read_hal(EN_5V) != (is_enabled ? GPIO_HIGH : GPIO_LOW)) { \
+            printf("Waiting for power cooldown...");                  \
+            while (get_absolute_time() < power_5v_cooldown_time) {}   \
+            printf("DONE\n");                                          \
+                                                                  \
+            printf("Setting 5V Rail %s...", (is_enabled ? "ON" : "OFF")); \
+            gpio_write_hal(EN_5V, (is_enabled ? GPIO_HIGH : GPIO_LOW)); \
+            printf("DONE\n");                                         \
+        }                                                             \
+                                                                    \
+        power_5v_cooldown_time = make_timeout_time_ms(POWER_5V_COOLDOWN_DURATION_MS); \
+                                                                                        \
+        /* Perform an I2C Scan ???? No clue why but it fixes issues with comms on the bus */ \
+        uint8_t buf[0xff]; \ 
+        uint8_t bufidx; \
+        i2c_get_available_addresses_hal(&context_i2c_1, buf, 0xff, &bufidx);                      \
+    } while (0)
+
+
 //#define LWQMS_DEDICATED_RECEIVER
 
 void print_banner(void) {
-    printf("-- LoRa Water Quality Management System Sensor Node --\n");
+    printf("\n\n-- LoRa Water Quality Management System Sensor Node --\n");
     printf("Version 0.1, compiled %s, %s\n\n", __DATE__, __TIME__);
 }
 
@@ -35,9 +59,20 @@ void startup_menu() {
     "-> d | Disables the 5V rail (10 second cooldown until rail can be enabled.)\n"
     "-> i | Performs an I2C scan for devices\n"
     "-> t | Transmit a packet\n"
+    "-> a | Configure the software-defined instrumentation amplifier\n"
+    "-> m | Take a measurement using the ADC.\n"
     "-> r | Reboot the device - updates device settings with any changes made here.\n";
     
     absolute_time_t power_5v_cooldown_time = get_absolute_time();
+
+    sdia_wiper_settings_t wiper_setting = { // Initialize all wipers at the midpoint.
+        .dc_neg_wiper_setting = 0x80,
+        .dc_pos_wiper_setting = 0x80,
+        .gain_wiper_a_setting = 0x80,
+        .gain_wiper_b_setting = 0x80,
+        .ref_out_wiper_a_setting = 0x80,
+        .ref_out_wiper_b_setting = 0x80
+    };
 
     while (1) {
 
@@ -73,15 +108,16 @@ void startup_menu() {
                 break;
             case 'e':
             case 'd':
-                printf("Waiting for power cooldown...");
-                while (get_absolute_time() < power_5v_cooldown_time) {}
-                printf("DONE\n");
-
-                printf("Setting 5V Rail %s...", selection == 'e' ? "ON" : "OFF");
-                gpio_write_hal(EN_5V, selection == 'e' ? GPIO_HIGH : GPIO_LOW);
-                printf("DONE");
-
-                power_5v_cooldown_time = make_timeout_time_ms(POWER_5V_COOLDOWN_DURATION_MS);
+                SET_5V_RAIL_STATUS(selection == 'e');
+                if (selection == 'd') {
+                    // Reset the potentiometer positions as they will re-initialize to the mid-point upon 5V power cycle.
+                    wiper_setting.dc_neg_wiper_setting = 0x80;
+                    wiper_setting.dc_pos_wiper_setting = 0x80;
+                    wiper_setting.gain_wiper_a_setting = 0x80;
+                    wiper_setting.gain_wiper_b_setting = 0x80;
+                    wiper_setting.ref_out_wiper_a_setting = 0x80;
+                    wiper_setting.ref_out_wiper_b_setting = 0x80;
+                }
                 break;
             case 'i':
                 uint8_t i2c_address_buf[0xff];
@@ -110,6 +146,45 @@ void startup_menu() {
                 printf("Sending packet...\n\n");
                 rdt3_0_transmit(&tx_pkt, sizeof(lora_pkt_t), &lora_phy_setup);
                 printf("\n\n-- Transmit Operation Complete --\n");
+                break;
+            case 'a':
+                wiper_setting = get_wiper_setting();
+                SET_5V_RAIL_STATUS(true);
+                printf("\n\nWriting Configuration...");
+                sdia_apply_wiper_setting(&context_sdia_0, &wiper_setting);
+                printf("DONE\n");
+                break;
+            case 'm':
+                uint16_t input_selection;
+
+                do {
+                    printf("Poll from which input? [0-3]: \t");
+                    char inputBuf[2];
+                    get_user_input_hal(inputBuf, 2);
+                    input_selection = string_to_uint16_t(inputBuf, 10);
+                    if (input_selection > 3) {
+                        printf("Bad Input!\n");
+                    }
+                } while (input_selection > 3);
+
+                SET_5V_RAIL_STATUS(true);
+                printf("Setting the input...");
+                tmux1309_set_output(&context_mux_0, input_selection);
+                printf("DONE\n");
+                printf("Setting up ADC...");
+                mcp3425_init(&context_adc_0, MCP3425_SPS_15_16BITS, MCP3425_PGA_1, false);
+                printf("DONE\n");
+                printf("Polling ADC...");
+                double voltage_raw = 0;
+                sdia_read_raw(&context_sdia_0, &voltage_raw);
+                printf("DONE\n");
+                printf("Raw Input Voltage: %f\n", voltage_raw);
+                printf("Last used wiper setting:\n");
+                sdia_print_wiper_setting(&wiper_setting);
+                sdia_analog_setting_t analog_behavior;
+                sdia_convert_wiper_setting(&context_sdia_0, &wiper_setting, &analog_behavior);
+                double processed_voltage = sdia_process_raw_voltage(voltage_raw, &analog_behavior);
+                printf("\n\nCalculated Input Voltage: %f", processed_voltage);
                 break;
             default:
                 printf("Invalid Option: %c", selection);
@@ -177,31 +252,6 @@ lwqms_pkt_t test_tx_pkt = {
     .payload = test_payload
 };
 
-// Dedicated Receiver Info
-#ifdef LWQMS_DEDICATED_RECEIVER
-
-node_config_t rx_config = {
-  .ID = 2,
-  .sync_word = 0x42,
-  .latitude = 40.2732,
-  .longitude = 76.8867
-};
-
-lora_setup_t dedicated_receiver_setup = {
-    .hw = &context_radio_0,
-    .mod_setting = &prototyping_mod_params,
-    .operation_timeout_ms = SX126X_RX_CONTINUOUS,
-    .pa_setting = &sx1262_22dBm_pa_params,
-    .pkt_setting = &prototyping_pkt_params,
-    .ramp_time = SX126X_RAMP_200_US,
-    .rx_interrupt_setting = &prototyping_irq_masks,
-    .tx_interrupt_setting = &prototyping_irq_masks,
-    .txPower = 22,
-    .node_config = &rx_config,
-};
-
-#endif
-
 node_config_t tx_config = {
   .ID = 3,
   .sync_word = 0x42,
@@ -227,6 +277,15 @@ lora_setup_t lora_phy_setup = {
 int main()
 {
     system_setup();
+
+    absolute_time_t power_5v_cooldown_time = get_absolute_time();
+    SET_5V_RAIL_STATUS(true);
+
+    sdia_potentiometer_full_calibration_t cal;
+
+    sdia_calibrate(&context_sdia_0, &cal);
+
+    while(1);
 
     while (1) {
         #ifdef LWQMS_DEDICATED_RECEIVER

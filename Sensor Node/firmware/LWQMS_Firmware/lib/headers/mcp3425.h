@@ -68,10 +68,11 @@ void mcp3425_init(mcp3425_context_t *context, mcp3425_sps_t sampling_rate, mcp34
  * the conversion is complete. For continuous conversion mode, this function does not return until NEW data is read from the ADC.
  * 
  * @param context: ADC implementation details
+ * @param reading: Buffer to store the voltage reading
  * 
- * @returns The voltage reading
+ * @returns Operation status
  */
-double mcp3425_get_measurement(mcp3425_context_t *context);
+bool mcp3425_get_measurement(mcp3425_context_t *context, double *reading);
 
 /**
  * @brief Reads the configuration parameters from the ADC and writes their values to the mcp3425 context structure in-place.

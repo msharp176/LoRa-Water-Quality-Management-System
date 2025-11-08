@@ -182,10 +182,6 @@ int i2c_write_hal(const void* i2c_context, uint8_t address, const uint8_t* txDat
     // Write the data and catch errors as they occur.
     int bytes_written = i2c_write_blocking(setup->inst, address, txData, len, false);
 
-    if (bytes_written < 0) {
-        err_raise(ERR_I2C_TRANSACTION_FAIL, ERR_SEV_NONFATAL, "I2C Transaction failure!", "i2c_write_hal");
-    }
-
     return bytes_written;
 }
 
@@ -196,12 +192,7 @@ int i2c_read_hal(const void* i2c_context, uint8_t address, uint8_t* rxData, uint
     // Write the data and catch errors as they occur.
     int bytes_read = i2c_read_blocking(setup->inst, address, rxData, len, false);
 
-    if (bytes_read < 0) {
-        err_raise(ERR_I2C_TRANSACTION_FAIL, ERR_SEV_NONFATAL, "I2C Transaction failure!", "i2c_write_hal");
-    }
-
     return bytes_read;
-
 }
 
 int i2c_write_then_read_hal(const void* i2c_context, uint8_t address, uint8_t *txData, uint8_t *rxData, uint txLen, uint rxLen) {

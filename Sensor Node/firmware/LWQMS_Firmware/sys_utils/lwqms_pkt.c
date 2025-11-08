@@ -99,6 +99,8 @@ bool lwqms_generate_ack_packet(lwqms_pkt_t *packet_to_ack, lwqms_pkt_ack_status_
     return true;
 }
 
+extern void hexdump(const uint8_t *data, size_t length, size_t start_offset);
+
 void lwqms_packet_display(lwqms_pkt_t *pkt) {
     printf("-->Packet ID: %d\n", pkt->pkt_id);
     printf("-->Destination ID: %d\n", pkt->dest_id);

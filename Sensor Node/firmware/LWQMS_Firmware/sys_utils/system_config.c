@@ -21,7 +21,9 @@ static int compare_bytes(const void *a, const void *b) {
     return (*(uint8_t*)a - *(uint8_t*)b);
 }
 
-static uint16_t string_to_uint16_t(const char *str, int base) {
+uint16_t string_to_uint16_t(const char *str, int base) {
+    // Yeah yeah -1 is not technically unsigned, but its better than returning 0. Assumes the user doesn't enter UINT16_T_MAX - 1
+
     char *endptr;
     errno = 0; // Clear errno before the call
 
@@ -30,18 +32,18 @@ static uint16_t string_to_uint16_t(const char *str, int base) {
     // Check for errors
     if (errno == ERANGE || val > UINT16_MAX) {
         // Value out of range for uint16_t
-        return 0;
+        return -1;
     }
 
     if (endptr == str) {
         // No digits found in the string
-        return 0;
+        return -1;
     }
 
     if (*endptr != '\0') {
         // Trailing characters after the number
         // Handle error if strict parsing is required
-        return 0;
+        return -1;
     }
 
     return (uint16_t)val;
@@ -81,6 +83,9 @@ int initialize_gpio() {
             // Initialize the i2c bus
             if (i2c_init_hal(&context_i2c_1) < 0) break;
     
+            // Initialize the TMUX1309
+            tmux1309_init(&context_mux_0);
+            
             init_ok = true;
     
         } while (0);
@@ -179,10 +184,10 @@ node_config_t get_setup_data() {
         int id_len = get_user_input_hal(idbuf, 5);
         node_id_uint16_t = string_to_uint16_t(idbuf, 10);
 
-        if (node_id_uint16_t == 0) {
+        if (node_id_uint16_t == -1) {
             printf("Bad Node ID! The ID must be a positive integer greater than zero!\n");
         }
-    } while (node_id_uint16_t == 0);
+    } while (node_id_uint16_t == -1);
     
     printf("Latitude:\t");
     char latbuf[21];    // 20 chars + null term.
@@ -244,11 +249,11 @@ lwqms_pkt_t get_custom_packet() {
         int dest_len = get_user_input_hal(destination_buf, 11);
         dest_id_uint16 = string_to_uint16_t(destination_buf, 10);   // Base 10 === decimal.
 
-        if (dest_id_uint16 == 0) {
+        if (dest_id_uint16 == -1) {
             printf("BAD FORMAT! The destination ID must be a positive integer!\n");
         }
 
-    } while (dest_id_uint16 == 0);
+    } while (dest_id_uint16 == -1);
 
     uint16_t packet_id_uint16 = 0;
     char packet_id_buf[11];
@@ -257,23 +262,84 @@ lwqms_pkt_t get_custom_packet() {
         int packet_id_len = get_user_input_hal(packet_id_buf, 11);
         packet_id_uint16 = string_to_uint16_t(packet_id_buf, 10);
         
-        if (packet_id_uint16 == 0) {
+        if (packet_id_uint16 == -1) {
             printf("BAD FORMAT! The packet ID must be a positive integer!\n");
         }
-    } while (packet_id_uint16 == 0);
-    
-    char msg_buf[13];
-    memset(msg_buf, 0x00, sizeof(msg_buf));
-    printf("Packet Message Text:\t");
-    int msg_len = get_user_input_hal(msg_buf, 13);
+    } while (packet_id_uint16 == -1);
+
+    char packet_type_buf[2];
+    lwqms_packet_types_t payload_type;
+    packet_type_start:
+    memset(packet_type_buf, 0x00, sizeof(packet_type_buf));
+    printf("Send Telemetry or a Message? (t/m):");
+    get_user_input_hal(packet_type_buf, sizeof(packet_type_buf));
+    printf("\n");
+
+    switch (packet_type_buf[0]) {
+        case 't':
+            payload_type = LWQMS_PACKET_TYPE_TELEMETRY;
+            break;
+        case 'm':
+            payload_type = LWQMS_PACKET_TYPE_MESSAGE;
+            break;
+        default:
+            printf("BAD INPUT!\n");
+            goto packet_type_start;
+    }
+
     lwqms_pkt_payload_t payload;
-    memcpy(payload.message, msg_buf, sizeof(lwqms_pkt_payload_t));
+    
+    char telem_buf[20];
+    
+    if (payload_type == LWQMS_PACKET_TYPE_TELEMETRY) {
+        turb_start:
+        printf("Turbidity measurement (must be > 0):\t");
+        memset(telem_buf, 0x00, sizeof(telem_buf));
+        get_user_input_hal(telem_buf, sizeof(telem_buf));
+        float turb = atoff(telem_buf);
+        if (turb <= 0) {
+            printf("BAD INPUT!\n");
+            goto turb_start;
+        }
+
+        temp_start:
+        printf("Temperature measurement (must be > 0):\t");
+        memset(telem_buf, 0x00, sizeof(telem_buf));
+        get_user_input_hal(telem_buf, sizeof(telem_buf));
+        float temp = atoff(telem_buf);
+        if (temp <= 0) {
+            printf("BAD INPUT!\n");
+            goto temp_start;
+        }
+
+        pH_start:
+        printf("pH measurement (must be > 0):\t");
+        memset(telem_buf, 0x00, sizeof(telem_buf));
+        get_user_input_hal(telem_buf, sizeof(telem_buf));
+        float pH = atoff(telem_buf);
+        if (pH <= 0) {
+            printf("BAD INPUT!\n");
+            goto pH_start;
+        }
+
+        payload.telemetry.turbidity_measurement = turb;
+        payload.telemetry.temperature_measurement = temp;
+        payload.telemetry.pH_measurement = pH;
+    }
+    else {
+        char msg_buf[13];
+        memset(msg_buf, 0x00, sizeof(msg_buf));
+        printf("Packet Message Text:\t");
+        int msg_len = get_user_input_hal(msg_buf, 13);
+        memcpy(payload.message, msg_buf, sizeof(lwqms_pkt_payload_t));
+    }
+    
 
     lwqms_pkt_t packet_to_send = {
         .src_id = sys_configuration.ID,
         .dest_id = dest_id_uint16,
         .pkt_id = packet_id_uint16,
-        .packet_type = LWQMS_PACKET_TYPE_MESSAGE,
+        .packet_type = payload_type,
         .payload = payload
     };
 
@@ -297,6 +363,69 @@ lwqms_pkt_t get_custom_packet() {
     if (confirmationBuf[0] == 'n') goto packet_start;
 
     return packet_to_send;
+}
+
+#define GET_WIPER_SETTING(message, result_var)              \
+    do {                                                     \
+        char wiper_setting_buf[11];                          \
+                                                            \
+        do {                                                 \
+            memset(wiper_setting_buf, 0x00, sizeof(wiper_setting_buf)); \
+            printf(message);                                 \
+            get_user_input_hal(wiper_setting_buf, 11);       \
+            result_var = string_to_uint16_t(wiper_setting_buf, 10); \
+                                                            \
+            if (result_var > 256) {                          \
+                printf("BAD WIPER Setting! The wiper setting should be a positive integer between 0 and 256.\n"); \
+            }                                                \
+        } while (result_var > 256);                          \
+    } while (0);
+
+
+sdia_wiper_settings_t get_wiper_setting() {
+
+    /*
+    typedef struct sdia_wiper_settings_s {
+        uint16_t dc_pos_wiper_setting;
+        uint16_t dc_neg_wiper_setting;
+        uint16_t gain_wiper_a_setting;
+        uint16_t gain_wiper_b_setting;
+        uint16_t ref_out_wiper_a_setting;
+        uint16_t ref_out_wiper_b_setting;
+    } sdia_wiper_settings_t;
+    */
+
+    wiper_start:
+
+    sdia_wiper_settings_t wiper_setting;
+
+    GET_WIPER_SETTING("DC Positive Wiper Setting:\t", wiper_setting.dc_pos_wiper_setting);
+    GET_WIPER_SETTING("DC Negative Wiper Setting:\t", wiper_setting.dc_neg_wiper_setting);
+    GET_WIPER_SETTING("Gain Wiper Top Setting:\t\t", wiper_setting.gain_wiper_a_setting);
+    GET_WIPER_SETTING("Gain Wiper Bottom Setting:\t", wiper_setting.gain_wiper_b_setting);
+    GET_WIPER_SETTING("Output Reference Top Wiper Setting:\t", wiper_setting.ref_out_wiper_a_setting);
+    GET_WIPER_SETTING("Output Reference Bottom Wiper Setting:\t", wiper_setting.ref_out_wiper_b_setting);
+
+    sdia_print_wiper_setting(&wiper_setting);
+
+    char confirmationBuf[2];
+    
+    do {
+        printf("Wiper Setting OK? (y/n):");
+        get_user_input_hal(confirmationBuf, 2);
+        printf("\n");
+
+        confirmationBuf[0] |= (1 << 5);   // Make response lowercase.
+
+        if ((confirmationBuf[0] != 'y') && (confirmationBuf[0] != 'n')) {
+            printf("Bad response!\n");
+        }
+    } while ((confirmationBuf[0] != 'y') && (confirmationBuf[0] != 'n'));
+
+    if (confirmationBuf[0] == 'n') goto wiper_start;
+
+    return wiper_setting;
+
 }
 
 lwqms_post_err_codes_t power_on_self_test() {

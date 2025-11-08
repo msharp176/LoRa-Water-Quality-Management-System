@@ -1,87 +1,10 @@
 ("FILE_TYPE"	"PMAP File"
     ("devices"
-        ("LMV324")
         ("R")
         ("VDC")
-        ("VSIN")
+        ("TLV9102")
     )
     ("instances"
-        ("U1"
-            ("device_name"	"LMV324")
-            ("pspice_path"	"X_U1")
-            ("level"	"0")
-            ("model_params"
-                ("BiasValue Power"
-                    ("value"	"703.0uW")
-                    ("pspice_param"	"BiasValue Power")
-                )
-                ("Testbenches"
-                    ("value"	"[{testbenchurl:,testbenchopj:,testbenchdisplayname:}]")
-                    ("pspice_param"	"Testbenches")
-                )
-                ("productURL"
-                    ("value"	"http://www.ti.com/document-viewer/LMV324-N/datasheet/")
-                    ("pspice_param"	"productURL")
-                )
-            )
-        )
-        ("U2"
-            ("device_name"	"LMV324")
-            ("pspice_path"	"X_U2")
-            ("level"	"0")
-            ("model_params"
-                ("BiasValue Power"
-                    ("value"	"601.0uW")
-                    ("pspice_param"	"BiasValue Power")
-                )
-                ("productURL"
-                    ("value"	"http://www.ti.com/document-viewer/LMV324-N/datasheet/")
-                    ("pspice_param"	"productURL")
-                )
-                ("Testbenches"
-                    ("value"	"[{testbenchurl:,testbenchopj:,testbenchdisplayname:}]")
-                    ("pspice_param"	"Testbenches")
-                )
-            )
-        )
-        ("U3"
-            ("device_name"	"LMV324")
-            ("pspice_path"	"X_U3")
-            ("level"	"0")
-            ("model_params"
-                ("BiasValue Power"
-                    ("value"	"717.4uW")
-                    ("pspice_param"	"BiasValue Power")
-                )
-                ("Testbenches"
-                    ("value"	"[{testbenchurl:,testbenchopj:,testbenchdisplayname:}]")
-                    ("pspice_param"	"Testbenches")
-                )
-                ("productURL"
-                    ("value"	"http://www.ti.com/document-viewer/LMV324-N/datasheet/")
-                    ("pspice_param"	"productURL")
-                )
-            )
-        )
-        ("U4"
-            ("device_name"	"LMV324")
-            ("pspice_path"	"X_U4")
-            ("level"	"0")
-            ("model_params"
-                ("BiasValue Power"
-                    ("value"	"837.7uW")
-                    ("pspice_param"	"BiasValue Power")
-                )
-                ("productURL"
-                    ("value"	"http://www.ti.com/document-viewer/LMV324-N/datasheet/")
-                    ("pspice_param"	"productURL")
-                )
-                ("Testbenches"
-                    ("value"	"[{testbenchurl:,testbenchopj:,testbenchdisplayname:}]")
-                    ("pspice_param"	"Testbenches")
-                )
-            )
-        )
         ("R1"
             ("device_name"	"R")
             ("pspice_path"	"R_R1")
@@ -92,7 +15,7 @@
                     ("pspice_param"	"VALUE")
                 )
                 ("BiasValue Power"
-                    ("value"	"156.3uW")
+                    ("value"	"250.0nW")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("DIST"
@@ -143,7 +66,7 @@
                     ("pspice_param"	"VALUE")
                 )
                 ("BiasValue Power"
-                    ("value"	"156.2uW")
+                    ("value"	"250.0nW")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("DIST"
@@ -194,7 +117,7 @@
                     ("pspice_param"	"VALUE")
                 )
                 ("BiasValue Power"
-                    ("value"	"52.13uW")
+                    ("value"	"4.055uW")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("DIST"
@@ -245,7 +168,7 @@
                     ("pspice_param"	"VALUE")
                 )
                 ("BiasValue Power"
-                    ("value"	"52.11uW")
+                    ("value"	"4.055uW")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("DIST"
@@ -296,7 +219,7 @@
                     ("pspice_param"	"VALUE")
                 )
                 ("BiasValue Power"
-                    ("value"	"15.34nW")
+                    ("value"	"1.012uW")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("DIST"
@@ -347,7 +270,7 @@
                     ("pspice_param"	"VALUE")
                 )
                 ("BiasValue Power"
-                    ("value"	"15.66nW")
+                    ("value"	"1.012uW")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("DIST"
@@ -398,7 +321,7 @@
                     ("pspice_param"	"VALUE")
                 )
                 ("BiasValue Power"
-                    ("value"	"15.98nW")
+                    ("value"	"1.012uW")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("DIST"
@@ -449,7 +372,7 @@
                     ("pspice_param"	"VALUE")
                 )
                 ("BiasValue Power"
-                    ("value"	"58.70uW")
+                    ("value"	"1.015uW")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("DIST"
@@ -500,7 +423,7 @@
                     ("pspice_param"	"VALUE")
                 )
                 ("BiasValue Power"
-                    ("value"	"58.67uW")
+                    ("value"	"1.015uW")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("DIST"
@@ -551,7 +474,7 @@
                     ("pspice_param"	"VALUE")
                 )
                 ("BiasValue Power"
-                    ("value"	"157.8uW")
+                    ("value"	"253.0nW")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("DIST"
@@ -602,7 +525,7 @@
                     ("pspice_param"	"VALUE")
                 )
                 ("BiasValue Power"
-                    ("value"	"157.8uW")
+                    ("value"	"253.0nW")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("DIST"
@@ -653,7 +576,7 @@
                     ("pspice_param"	"DC")
                 )
                 ("BiasValue Power"
-                    ("value"	"-3.473mW")
+                    ("value"	"-2.627mW")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("PSpice Model Type"
@@ -706,11 +629,11 @@
             ("level"	"0")
             ("model_params"
                 ("DC"
-                    ("value"	"2.5")
+                    ("value"	"0")
                     ("pspice_param"	"DC")
                 )
                 ("BiasValue Power"
-                    ("value"	"-44.39nW")
+                    ("value"	"0W")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("PSpice Model Type"
@@ -722,25 +645,6 @@
         ("V8"
             ("device_name"	"VDC")
             ("pspice_path"	"V_V8")
-            ("level"	"0")
-            ("model_params"
-                ("DC"
-                    ("value"	"1.5")
-                    ("pspice_param"	"DC")
-                )
-                ("BiasValue Power"
-                    ("value"	"76.60uW")
-                    ("pspice_param"	"BiasValue Power")
-                )
-                ("PSpice Model Type"
-                    ("value"	"0011")
-                    ("pspice_param"	"PSpice Model Type")
-                )
-            )
-        )
-        ("V10"
-            ("device_name"	"VDC")
-            ("pspice_path"	"V_V10")
             ("level"	"0")
             ("model_params"
                 ("DC"
@@ -757,50 +661,117 @@
                 )
             )
         )
-        ("V11"
-            ("device_name"	"VSIN")
-            ("pspice_path"	"V_V11")
+        ("V10"
+            ("device_name"	"VDC")
+            ("pspice_path"	"V_V10")
             ("level"	"0")
             ("model_params"
-                ("AC"
-                    ("value"	"1k")
-                    ("pspice_param"	"AC")
+                ("DC"
+                    ("value"	"5")
+                    ("pspice_param"	"DC")
                 )
                 ("BiasValue Power"
-                    ("value"	"-312.5uW")
+                    ("value"	"-2.551mW")
                     ("pspice_param"	"BiasValue Power")
-                )
-                ("FREQ"
-                    ("value"	"1k")
-                    ("pspice_param"	"FREQ")
-                )
-                ("VOFF"
-                    ("value"	"2.5")
-                    ("pspice_param"	"VOFF")
-                )
-                ("VAMPL"
-                    ("value"	"0.5")
-                    ("pspice_param"	"VAMPL")
                 )
                 ("PSpice Model Type"
                     ("value"	"0011")
                     ("pspice_param"	"PSpice Model Type")
                 )
+            )
+        )
+        ("V11"
+            ("device_name"	"VDC")
+            ("pspice_path"	"V_V11")
+            ("level"	"0")
+            ("model_params"
                 ("DC"
-                    ("value"	"")
+                    ("value"	"0.1")
                     ("pspice_param"	"DC")
                 )
-                ("TD"
-                    ("value"	"0")
-                    ("pspice_param"	"TD")
+                ("BiasValue Power"
+                    ("value"	"-500.0nW")
+                    ("pspice_param"	"BiasValue Power")
                 )
-                ("DF"
-                    ("value"	"0")
-                    ("pspice_param"	"DF")
+                ("PSpice Model Type"
+                    ("value"	"0011")
+                    ("pspice_param"	"PSpice Model Type")
                 )
-                ("PHASE"
-                    ("value"	"0")
-                    ("pspice_param"	"PHASE")
+            )
+        )
+        ("U1"
+            ("device_name"	"TLV9102")
+            ("pspice_path"	"X_U1")
+            ("level"	"0")
+            ("model_params"
+                ("BiasValue Power"
+                    ("value"	"1.225mW")
+                    ("pspice_param"	"BiasValue Power")
+                )
+                ("productURL"
+                    ("value"	"http://www.ti.com/document-viewer/TLV9101/datasheet/")
+                    ("pspice_param"	"productURL")
+                )
+                ("Testbenches"
+                    ("value"	"[{testbenchurl:https://software-dl.ti.com/pspice/esd/models/TLV9102_V4.0.zip,testbenchopj:TLV9102.opj,testbenchdisplayname:TLV9102 PSpice Model}]")
+                    ("pspice_param"	"Testbenches")
+                )
+            )
+        )
+        ("U2"
+            ("device_name"	"TLV9102")
+            ("pspice_path"	"X_U2")
+            ("level"	"0")
+            ("model_params"
+                ("BiasValue Power"
+                    ("value"	"1.297mW")
+                    ("pspice_param"	"BiasValue Power")
+                )
+                ("Testbenches"
+                    ("value"	"[{testbenchurl:https://software-dl.ti.com/pspice/esd/models/TLV9102_V4.0.zip,testbenchopj:TLV9102.opj,testbenchdisplayname:TLV9102 PSpice Model}]")
+                    ("pspice_param"	"Testbenches")
+                )
+                ("productURL"
+                    ("value"	"http://www.ti.com/document-viewer/TLV9101/datasheet/")
+                    ("pspice_param"	"productURL")
+                )
+            )
+        )
+        ("U3"
+            ("device_name"	"TLV9102")
+            ("pspice_path"	"X_U3")
+            ("level"	"0")
+            ("model_params"
+                ("BiasValue Power"
+                    ("value"	"1.348mW")
+                    ("pspice_param"	"BiasValue Power")
+                )
+                ("productURL"
+                    ("value"	"http://www.ti.com/document-viewer/TLV9101/datasheet/")
+                    ("pspice_param"	"productURL")
+                )
+                ("Testbenches"
+                    ("value"	"[{testbenchurl:https://software-dl.ti.com/pspice/esd/models/TLV9102_V4.0.zip,testbenchopj:TLV9102.opj,testbenchdisplayname:TLV9102 PSpice Model}]")
+                    ("pspice_param"	"Testbenches")
+                )
+            )
+        )
+        ("U4"
+            ("device_name"	"TLV9102")
+            ("pspice_path"	"X_U4")
+            ("level"	"0")
+            ("model_params"
+                ("BiasValue Power"
+                    ("value"	"1.295mW")
+                    ("pspice_param"	"BiasValue Power")
+                )
+                ("Testbenches"
+                    ("value"	"[{testbenchurl:https://software-dl.ti.com/pspice/esd/models/TLV9102_V4.0.zip,testbenchopj:TLV9102.opj,testbenchdisplayname:TLV9102 PSpice Model}]")
+                    ("pspice_param"	"Testbenches")
+                )
+                ("productURL"
+                    ("value"	"http://www.ti.com/document-viewer/TLV9101/datasheet/")
+                    ("pspice_param"	"productURL")
                 )
             )
         )

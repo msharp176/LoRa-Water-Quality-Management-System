@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "LWQMS")(type "KiCad")(uri "C:/Users/mshar/Documents/capstone/Sensor Node/pcb layout/footprints/LWQMS.pretty")(options "")(descr ""))
+)

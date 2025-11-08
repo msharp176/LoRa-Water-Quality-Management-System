@@ -1,7 +1,7 @@
 
-**** 09/11/25 19:59:53 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+**** 11/05/25 21:07:54 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
 
- ** Profile: "SCHEMATIC1-time_domain"  [ c:\users\mshar\documents\capstone\simulation\software-defined instrumentation amplifier\soft
+ ** Profile: "SCHEMATIC1-time_domain"  [ C:\Users\mshar\Documents\capstone\simulation\Software-Defined Instrumentation Amplifier\Soft
 
 
  ****     CIRCUIT DESCRIPTION
@@ -51,18 +51,17 @@ R_R11         N00800 N00271  10k TC=0,0
 V_V1         VDD 0 5
 V_V2         VOFF+ 0 0
 V_V3         VOFF- 0 0
-V_V7         VREF1 0 2.5
-V_V8         VREF2 0 1.5
+V_V7         VREF1 0 0
+V_V8         VREF2 0 2.5
 V_V10         0 VSS 0
-V_V11         VSEN 0  AC 1k
-+SIN 2.5 0.5 1k 0 0 0
+V_V11         VSEN 0 1
 
 **** RESUMING time_domain.cir ****
 .END
 
-**** 09/11/25 19:59:53 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+**** 11/05/25 21:07:54 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
 
- ** Profile: "SCHEMATIC1-time_domain"  [ c:\users\mshar\documents\capstone\simulation\software-defined instrumentation amplifier\soft
+ ** Profile: "SCHEMATIC1-time_domain"  [ C:\Users\mshar\Documents\capstone\simulation\Software-Defined Instrumentation Amplifier\Soft
 
 
  ****     Diode MODEL PARAMETERS
@@ -81,9 +80,9 @@ V_V11         VSEN 0  AC 1k
           IS   10.000000E-15   10.000000E-18   10.000000E-15   10.000000E-18 
 
 
-**** 09/11/25 19:59:53 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+**** 11/05/25 21:07:54 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
 
- ** Profile: "SCHEMATIC1-time_domain"  [ c:\users\mshar\documents\capstone\simulation\software-defined instrumentation amplifier\soft
+ ** Profile: "SCHEMATIC1-time_domain"  [ C:\Users\mshar\Documents\capstone\simulation\Software-Defined Instrumentation Amplifier\Soft
 
 
  ****     BJT MODEL PARAMETERS
@@ -144,9 +143,9 @@ V_V11         VSEN 0  AC 1k
            D     .87             .52             .87             .52         
 
 
-**** 09/11/25 19:59:53 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+**** 11/05/25 21:07:54 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
 
- ** Profile: "SCHEMATIC1-time_domain"  [ c:\users\mshar\documents\capstone\simulation\software-defined instrumentation amplifier\soft
+ ** Profile: "SCHEMATIC1-time_domain"  [ C:\Users\mshar\Documents\capstone\simulation\Software-Defined Instrumentation Amplifier\Soft
 
 
  ****     Resistor MODEL PARAMETERS
@@ -172,9 +171,9 @@ V_V11         VSEN 0  AC 1k
          TC1   -3.000000E-03   10.000000E-06    2.837130E-03   -3.000000E-03 
 
 
-**** 09/11/25 19:59:53 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+**** 11/05/25 21:07:54 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
 
- ** Profile: "SCHEMATIC1-time_domain"  [ c:\users\mshar\documents\capstone\simulation\software-defined instrumentation amplifier\soft
+ ** Profile: "SCHEMATIC1-time_domain"  [ C:\Users\mshar\Documents\capstone\simulation\Software-Defined Instrumentation Amplifier\Soft
 
 
  ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
@@ -187,19 +186,19 @@ V_V11         VSEN 0  AC 1k
  NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
 
 
-(  VDD)    5.0000  (  VSS)    0.0000  ( VOUT)    1.5509  ( VSEN)    2.5000      
+(  VDD)    5.0000  (  VSS)    0.0000  ( VOUT)    3.9893  ( VSEN)    1.0000      
 
-(VOFF+)    0.0000  (VOFF-)    0.0000  (VREF1)    2.5000  (VREF2)    1.5000      
+(VOFF+)    0.0000  (VOFF-)    0.0000  (VREF1)    0.0000  (VREF2)    2.5000      
 
-(N00271)    2.5125 (N00550)    2.4946 (N00564)    2.5321 (N00578)    2.5195     
+(N00271)    1.0117 (N00550)     .0340 (N00564)    1.5100 (N00578)    1.0179     
 
-(N00582)    2.5070 (N00586)    2.0227 (N00602)    2.0160 (N00800)    1.2562     
+(N00582)     .5259 (N00586)    2.0116 (N00602)    2.0049 (N00800)     .5058     
 
-(N00840)    1.2499 (X_U1.10)    2.5000                   (X_U1.11)    2.5034    
+(N00840)     .4999 (X_U1.10)    2.5000                   (X_U1.11)     .3188    
 
-(X_U1.17)    2.5000                   (X_U1.18)    2.5069                       
+(X_U1.17)    2.5000                   (X_U1.18)     .5259                       
 
-(X_U1.19)    2.5000                   (X_U1.21)    1.2500                       
+(X_U1.19)-17.12E-06                   (X_U1.21)    1.2500                       
 
 (X_U1.22)    6.2500                   (X_U1.23)    6.2500                       
 
@@ -213,9 +212,9 @@ V_V11         VSEN 0  AC 1k
 
 (X_U1.33)    4.5000                   (X_U1.34)    3.5000                       
 
-(X_U1.38)    2.5034                   (X_U1.39)    2.5034                       
+(X_U1.38)     .3188                   (X_U1.39)     .3188                       
 
-(X_U1.40)    5.0000                   (X_U1.41)    2.5033                       
+(X_U1.40)    5.0000                   (X_U1.41)     .3570                       
 
 (X_U1.42)    5.0000                   (X_U1.43)    2.5000                       
 
@@ -223,35 +222,35 @@ V_V11         VSEN 0  AC 1k
 
 (X_U1.50)    0.0000                   (X_U1.51)  101.8000                       
 
-(X_U1.52)  -96.8000                   (X_U1.57)    2.5004                       
+(X_U1.52)  -96.8000                   (X_U1.57)  -97.6090                       
 
-(X_U1.58)    2.5000                   (X_U1.59)    2.5595                       
+(X_U1.58)    2.6380                   (X_U1.59)    -.9016                       
 
-(X_U1.71)    2.5585                   (X_U1.72)    1.7365                       
+(X_U1.71)    -.9010                   (X_U1.72)    -.6555                       
 
-(X_U1.73)    3.2537                   (X_U1.74)    5.0000                       
+(X_U1.73)    -.1992                   (X_U1.74)    5.0000                       
 
 (X_U1.75)     .0100                   (X_U1.76)    5.0000                       
 
-(X_U1.77)    0.0000                   (X_U1.78)    2.4996                       
+(X_U1.77)    0.0000                   (X_U1.78)     .0319                       
 
-(X_U1.79)    2.4904                   (X_U1.81)    2.4950                       
+(X_U1.79)     .0316                   (X_U1.81)     .0319                       
 
-(X_U1.86)    2.4946                   (X_U1.91)    2.5000                       
+(X_U1.86)     .0340                   (X_U1.91)    2.5000                       
 
-(X_U1.92)    2.5000                   (X_U1.93)    3.0754                       
+(X_U1.92)    2.5000                   (X_U1.93)    1.8811                       
 
-(X_U1.94)    2.5034                   (X_U1.95)     .2000                       
+(X_U1.94)     .3188                   (X_U1.95)     .2000                       
 
-(X_U1.96)    2.5034                   (X_U1.97)    4.2000                       
+(X_U1.96)     .3188                   (X_U1.97)    4.2000                       
 
-(X_U1.98)    2.5034                   (X_U1.99)    2.5034                       
+(X_U1.98)     .3188                   (X_U1.99)     .3188                       
 
-(X_U2.10)    2.5000                   (X_U2.11)    2.0313                       
+(X_U2.10)    2.5000                   (X_U2.11)    2.0205                       
 
-(X_U2.17)    2.5000                   (X_U2.18)    2.0227                       
+(X_U2.17)    2.5000                   (X_U2.18)    2.0116                       
 
-(X_U2.19)    2.0159                   (X_U2.21)    1.2500                       
+(X_U2.19)    2.0049                   (X_U2.21)    1.2500                       
 
 (X_U2.22)    6.2500                   (X_U2.23)    6.2500                       
 
@@ -265,9 +264,9 @@ V_V11         VSEN 0  AC 1k
 
 (X_U2.33)    4.5000                   (X_U2.34)    3.5000                       
 
-(X_U2.38)    2.0313                   (X_U2.39)    2.0313                       
+(X_U2.38)    2.0205                   (X_U2.39)    2.0205                       
 
-(X_U2.40)    5.0000                   (X_U2.41)    2.0395                       
+(X_U2.40)    5.0000                   (X_U2.41)    2.0289                       
 
 (X_U2.42)    5.0000                   (X_U2.43)    2.5000                       
 
@@ -275,35 +274,35 @@ V_V11         VSEN 0  AC 1k
 
 (X_U2.50)    0.0000                   (X_U2.51)  101.8000                       
 
-(X_U2.52)  -96.8000                   (X_U2.57)    2.4936                       
+(X_U2.52)  -96.8000                   (X_U2.57)    2.5113                       
 
-(X_U2.58)    2.5000                   (X_U2.59)    1.6146                       
+(X_U2.58)    2.5000                   (X_U2.59)    4.0562                       
 
-(X_U2.71)    1.6136                   (X_U2.72)     .7917                       
+(X_U2.71)    4.0552                   (X_U2.72)    3.2331                       
 
-(X_U2.73)    2.3089                   (X_U2.74)    5.0000                       
+(X_U2.73)    4.7503                   (X_U2.74)    5.0000                       
 
 (X_U2.75)     .0100                   (X_U2.76)    5.0000                       
 
-(X_U2.77)    0.0000                   (X_U2.78)    1.5551                       
+(X_U2.77)    0.0000                   (X_U2.78)    3.9957                       
 
-(X_U2.79)    1.5458                   (X_U2.81)    1.5505                       
+(X_U2.79)    3.9865                   (X_U2.81)    3.9910                       
 
-(X_U2.86)    1.5509                   (X_U2.91)    2.5000                       
+(X_U2.86)    3.9893                   (X_U2.91)    2.5000                       
 
-(X_U2.92)    2.5000                   (X_U2.93)    1.9239                       
+(X_U2.92)    2.5000                   (X_U2.93)    3.1132                       
 
-(X_U2.94)    2.0313                   (X_U2.95)     .2000                       
+(X_U2.94)    2.0205                   (X_U2.95)     .2000                       
 
-(X_U2.96)    2.0313                   (X_U2.97)    4.2000                       
+(X_U2.96)    2.0205                   (X_U2.97)    4.2000                       
 
-(X_U2.98)    2.0313                   (X_U2.99)    2.0313                       
+(X_U2.98)    2.0205                   (X_U2.99)    2.0205                       
 
-(X_U3.10)    2.5000                   (X_U3.11)    2.5156                       
+(X_U3.10)    2.5000                   (X_U3.11)    1.0519                       
 
-(X_U3.17)    2.5000                   (X_U3.18)    2.5195                       
+(X_U3.17)    2.5000                   (X_U3.18)    1.0179                       
 
-(X_U3.19)    2.5125                   (X_U3.21)    1.2500                       
+(X_U3.19)    1.0117                   (X_U3.21)    1.2500                       
 
 (X_U3.22)    6.2500                   (X_U3.23)    6.2500                       
 
@@ -317,9 +316,9 @@ V_V11         VSEN 0  AC 1k
 
 (X_U3.33)    4.5000                   (X_U3.34)    3.5000                       
 
-(X_U3.38)    2.5156                   (X_U3.39)    2.5156                       
+(X_U3.38)    1.0519                   (X_U3.39)    1.0519                       
 
-(X_U3.40)    5.0000                   (X_U3.41)    2.5153                       
+(X_U3.40)    5.0000                   (X_U3.41)    1.0772                       
 
 (X_U3.42)    5.0000                   (X_U3.43)    2.5000                       
 
@@ -327,35 +326,35 @@ V_V11         VSEN 0  AC 1k
 
 (X_U3.50)    0.0000                   (X_U3.51)  101.8000                       
 
-(X_U3.52)  -96.8000                   (X_U3.57)    2.5007                       
+(X_U3.52)  -96.8000                   (X_U3.57)    2.4933                       
 
-(X_U3.58)    2.5000                   (X_U3.59)    2.5971                       
+(X_U3.58)    2.5000                   (X_U3.59)    1.5744                       
 
-(X_U3.71)    2.5961                   (X_U3.72)    1.7741                       
+(X_U3.71)    1.5734                   (X_U3.72)     .7514                       
 
-(X_U3.73)    3.2913                   (X_U3.74)    5.0000                       
+(X_U3.73)    2.2686                   (X_U3.74)    5.0000                       
 
 (X_U3.75)     .0100                   (X_U3.76)    5.0000                       
 
-(X_U3.77)    0.0000                   (X_U3.78)    2.5372                       
+(X_U3.77)    0.0000                   (X_U3.78)    1.5147                       
 
-(X_U3.79)    2.5280                   (X_U3.81)    2.5326                       
+(X_U3.79)    1.5054                   (X_U3.81)    1.5100                       
 
-(X_U3.86)    2.5321                   (X_U3.91)    2.5000                       
+(X_U3.86)    1.5100                   (X_U3.91)    2.5000                       
 
-(X_U3.92)    2.5000                   (X_U3.93)    3.0791                       
+(X_U3.92)    2.5000                   (X_U3.93)    2.0570                       
 
-(X_U3.94)    2.5156                   (X_U3.95)     .2000                       
+(X_U3.94)    1.0519                   (X_U3.95)     .2000                       
 
-(X_U3.96)    2.5156                   (X_U3.97)    4.2000                       
+(X_U3.96)    1.0519                   (X_U3.97)    4.2000                       
 
-(X_U3.98)    2.5156                   (X_U3.99)    2.5156                       
+(X_U3.98)    1.0519                   (X_U3.99)    1.0519                       
 
-(X_U4.10)    2.5000                   (X_U4.11)    1.2842                       
+(X_U4.10)    2.5000                   (X_U4.11)     .5528                       
 
-(X_U4.17)    2.5000                   (X_U4.18)    1.2562                       
+(X_U4.17)    2.5000                   (X_U4.18)     .5058                       
 
-(X_U4.19)    1.2499                   (X_U4.21)    1.2500                       
+(X_U4.19)     .4999                   (X_U4.21)    1.2500                       
 
 (X_U4.22)    6.2500                   (X_U4.23)    6.2500                       
 
@@ -369,9 +368,9 @@ V_V11         VSEN 0  AC 1k
 
 (X_U4.33)    4.5000                   (X_U4.34)    3.5000                       
 
-(X_U4.38)    1.2842                   (X_U4.39)    1.2842                       
+(X_U4.38)     .5528                   (X_U4.39)     .5528                       
 
-(X_U4.40)    5.0000                   (X_U4.41)    1.3055                       
+(X_U4.40)    5.0000                   (X_U4.41)     .5868                       
 
 (X_U4.42)    5.0000                   (X_U4.43)    2.5000                       
 
@@ -379,49 +378,49 @@ V_V11         VSEN 0  AC 1k
 
 (X_U4.50)    0.0000                   (X_U4.51)  101.8000                       
 
-(X_U4.52)  -96.8000                   (X_U4.57)    2.5006                       
+(X_U4.52)  -96.8000                   (X_U4.57)    2.4897                       
 
-(X_U4.58)    2.5000                   (X_U4.59)    2.5784                       
+(X_U4.58)    2.5000                   (X_U4.59)    1.0767                       
 
-(X_U4.71)    2.5774                   (X_U4.72)    1.7554                       
+(X_U4.71)    1.0757                   (X_U4.72)     .2537                       
 
-(X_U4.73)    3.2726                   (X_U4.74)    5.0000                       
+(X_U4.73)    1.7709                   (X_U4.74)    5.0000                       
 
 (X_U4.75)     .0100                   (X_U4.76)    5.0000                       
 
-(X_U4.77)    0.0000                   (X_U4.78)    2.5183                       
+(X_U4.77)    0.0000                   (X_U4.78)    1.0168                       
 
-(X_U4.79)    2.5090                   (X_U4.81)    2.5136                       
+(X_U4.79)    1.0076                   (X_U4.81)    1.0122                       
 
-(X_U4.86)    2.5125                   (X_U4.91)    2.5000                       
+(X_U4.86)    1.0117                   (X_U4.91)    2.5000                       
 
-(X_U4.92)    2.5000                   (X_U4.93)    3.1015                       
+(X_U4.92)    2.5000                   (X_U4.93)    3.0779                       
 
-(X_U4.94)    1.2842                   (X_U4.95)     .2000                       
+(X_U4.94)     .5528                   (X_U4.95)     .2000                       
 
-(X_U4.96)    1.2842                   (X_U4.97)    4.2000                       
+(X_U4.96)     .5528                   (X_U4.97)    4.2000                       
 
-(X_U4.98)    1.2842                   (X_U4.99)    1.2842                       
+(X_U4.98)     .5528                   (X_U4.99)     .5528                       
 
 (X_U1.120)    4.5000                  (X_U1.121)    3.5000                      
 
-(X_U1.122)    3.5070                  (X_U1.710)    2.6139                      
+(X_U1.122)    3.5070                  (X_U1.710)    -.8410                      
 
-(X_U1.720)    1.8920                  (X_U2.120)    4.5000                      
+(X_U1.720)    -.6555                  (X_U2.120)    4.5000                      
 
 (X_U2.121)    3.5000                  (X_U2.122)    3.5070                      
 
-(X_U2.710)    1.6691                  (X_U2.720)     .9471                      
+(X_U2.710)    4.1105                  (X_U2.720)    3.3886                      
 
 (X_U3.120)    4.5000                  (X_U3.121)    3.5000                      
 
-(X_U3.122)    3.5070                  (X_U3.710)    2.6515                      
+(X_U3.122)    3.5070                  (X_U3.710)    1.6288                      
 
-(X_U3.720)    1.9296                  (X_U4.120)    4.5000                      
+(X_U3.720)     .9069                  (X_U4.120)    4.5000                      
 
 (X_U4.121)    3.5000                  (X_U4.122)    3.5070                      
 
-(X_U4.710)    2.6328                  (X_U4.720)    1.9109                  
+(X_U4.710)    1.1311                  (X_U4.720)     .4092                  
 
 
 
@@ -429,67 +428,67 @@ V_V11         VSEN 0  AC 1k
     VOLTAGE SOURCE CURRENTS
     NAME         CURRENT
 
-    V_V1        -6.446E-04
-    V_V2         1.250E-04
-    V_V3         1.256E-04
-    V_V7        -1.775E-08
-    V_V8         5.160E-05
-    V_V10       -4.674E-04
-    V_V11       -1.250E-04
+    V_V1        -6.685E-04
+    V_V2         4.999E-05
+    V_V3         5.058E-05
+    V_V7        -1.712E-08
+    V_V8        -4.951E-05
+    V_V10       -6.674E-04
+    V_V11       -5.001E-05
     X_U1.VOFF   -2.105E-12
     X_U1.VSENS1   1.000E-03
     X_U1.VTEMP   1.522E-08
-    X_U1.VCMX    3.316E-09
+    X_U1.VCMX   -2.143E-06
     X_U1.VPSX    0.000E+00
-    X_U1.VCXX   -6.068E-13
-    X_U1.VOOP    4.598E-03
-    X_U1.VOON    4.552E-03
-    X_U1.VOX     4.595E-05
-    X_U1.VFX1    4.595E-05
-    X_U1.VFX2   -5.854E-13
+    X_U1.VCXX    3.762E-12
+    X_U1.VOOP    4.969E-08
+    X_U1.VOON    1.420E-04
+    X_U1.VOX    -2.470E-04
+    X_U1.VFX1   -6.289E-13
+    X_U1.VFX2    2.470E-04
     X_U2.VOFF   -2.105E-12
     X_U2.VSENS1   1.000E-03
     X_U2.VTEMP   1.522E-08
-    X_U2.VCMX   -4.605E-07
+    X_U2.VCMX   -4.711E-07
     X_U2.VPSX    0.000E+00
-    X_U2.VCXX    3.374E-13
-    X_U2.VOOP    4.552E-03
-    X_U2.VOON    4.599E-03
-    X_U2.VOX    -4.718E-05
-    X_U2.VFX1   -5.861E-13
-    X_U2.VFX2    4.718E-05
+    X_U2.VCXX    3.589E-13
+    X_U2.VOOP    4.673E-03
+    X_U2.VOON    4.477E-03
+    X_U2.VOX     1.978E-04
+    X_U2.VFX1    1.978E-04
+    X_U2.VFX2   -6.232E-13
     X_U3.VOFF   -2.105E-12
     X_U3.VSENS1   1.000E-03
     X_U3.VTEMP   1.522E-08
-    X_U3.VCMX    1.530E-08
+    X_U3.VCMX   -1.423E-06
     X_U3.VPSX    0.000E+00
-    X_U3.VCXX   -6.311E-13
-    X_U3.VOOP    4.601E-03
-    X_U3.VOON    4.549E-03
-    X_U3.VOX     5.288E-05
-    X_U3.VFX1    5.288E-05
-    X_U3.VFX2   -5.891E-13
+    X_U3.VCXX    2.296E-12
+    X_U3.VOOP    4.575E-03
+    X_U3.VOON    4.575E-03
+    X_U3.VOX    -2.748E-07
+    X_U3.VFX1   -4.530E-13
+    X_U3.VFX2    2.748E-07
     X_U4.VOFF   -2.105E-12
     X_U4.VSENS1   1.000E-03
     X_U4.VTEMP   1.522E-08
-    X_U4.VCMX   -1.195E-06
+    X_U4.VCMX   -1.913E-06
     X_U4.VPSX    0.000E+00
-    X_U4.VCXX    1.832E-12
-    X_U4.VOOP    4.637E-03
-    X_U4.VOON    4.512E-03
-    X_U4.VOX     1.257E-04
-    X_U4.VFX1    1.257E-04
-    X_U4.VFX2   -6.115E-13
+    X_U4.VCXX    3.294E-12
+    X_U4.VOOP    4.599E-03
+    X_U4.VOON    4.549E-03
+    X_U4.VOX     5.061E-05
+    X_U4.VFX1    5.061E-05
+    X_U4.VFX2   -5.879E-13
 
-    TOTAL POWER DISSIPATION   3.46E-03  WATTS
+    TOTAL POWER DISSIPATION   3.52E-03  WATTS
 
 
 
           JOB CONCLUDED
 
-**** 09/11/25 19:59:53 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+**** 11/05/25 21:07:54 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
 
- ** Profile: "SCHEMATIC1-time_domain"  [ c:\users\mshar\documents\capstone\simulation\software-defined instrumentation amplifier\soft
+ ** Profile: "SCHEMATIC1-time_domain"  [ C:\Users\mshar\Documents\capstone\simulation\Software-Defined Instrumentation Amplifier\Soft
 
 
  ****     JOB STATISTICS SUMMARY
@@ -499,5 +498,5 @@ V_V11         VSEN 0  AC 1k
 
 
 
-  Total job time (using Solver 1)   =        2.55
+  Total job time (using Solver 1)   =        1.89
 
