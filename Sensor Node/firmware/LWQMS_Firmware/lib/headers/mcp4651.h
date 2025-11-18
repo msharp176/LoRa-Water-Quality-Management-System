@@ -26,6 +26,7 @@
 // Defines
 
 #define MCP4651_TAPS 257
+#define MCP4651_MAX_WIPER_INDEX 256
 
 /**
  * @brief MCP4651 Operation Types Enum
@@ -125,6 +126,7 @@ int mcp4651_disable(mcp4651_context_t *context);
  */
 int mcp4651_enable(mcp4651_context_t *context);
 
+int mcp4651_dummy_command(mcp4651_context_t *context);
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #endif

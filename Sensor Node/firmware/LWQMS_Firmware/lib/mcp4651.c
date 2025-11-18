@@ -13,26 +13,20 @@
 
 #include "mcp4651.h"
 
-static uint8_t mcp4651_construct_command_byte(mcp4651_memory_addresses_t address, mcp4651_operation_types_t operation, uint16_t data) {
-    /**
-     * The structure of the command byte looks like this:
-     * AAAACCDD
-     * 
-     * where:
-     * A = memory address
-     * C = command (operation) type
-     * D = MSB0 and MSB1 of the following data byte.
-     * 
-     * To set wiper A to position 256, you would have:
-     *      00000001 and then 00000000 data. Bit 9 of 0x100 carries over to the last position in the command byte 
-     */
-
-    return (address << 4) | (operation << 2) | (data >> 8);
+static uint8_t mcp4651_construct_command_byte(
+    mcp4651_memory_addresses_t address,
+    mcp4651_operation_types_t operation,
+    uint16_t data
+){
+    return ((address   & 0x0F) << 4) |
+           ((operation & 0x03) << 2) |
+           ((data >> 8) & 0x03);
 }
+
 
 int mcp4651_set_wiper(mcp4651_context_t *context, mcp4651_wipers_t wiper, uint16_t position) {
 
-    if (position > 256) {
+    if (position > MCP4651_MAX_WIPER_INDEX) {
         char err_msg[256];
         snprintf(err_msg, 256, "Invalid wiper position requested for MCP4651: %d", position);
         err_raise(ERR_ARGUMENT, ERR_SEV_NONFATAL, err_msg, "mcp4651_set_wiper");
@@ -67,10 +61,18 @@ int mcp4651_set_wiper(mcp4651_context_t *context, mcp4651_wipers_t wiper, uint16
             return set_both_wipers_ok ? position : -1;
     }
 
+    
     uint8_t data_byte = position & 0xff;    // Chop off the top 8 bits.
+    
+    const uint8_t txBuf[2] = {command_byte, data_byte};
+    
+    /*
+    printf("[DEBUG] I2C write for %s with command_byte 0x%02X and data_byte 0x%02X\n",
+           (wiper == MCP4651_WIPER_A ? "Wiper A" : (wiper == MCP4651_WIPER_B ? "Wiper B" : "Both")),
+           command_byte, data_byte);
 
-    const uint8_t txBuf[2] = {command_byte, position};
-
+    */
+   
     return (i2c_write_hal(context->i2c_context, context->addr, txBuf, 2) > 0) ? position : -1;
 }
 
@@ -79,12 +81,20 @@ int mcp4651_increment_wiper(mcp4651_context_t *context, mcp4651_wipers_t wiper) 
 
     switch (wiper) {
         case MCP4651_WIPER_A:
-            command_byte = mcp4651_construct_command_byte(MCP4651_MEMORY_ADDR_WIPER_0, MCP4651_OPERATION_INCREMENT, 0);
             context->wiper_position_a++;
+            if (context->wiper_position_a > MCP4651_MAX_WIPER_INDEX) {
+                context->wiper_position_a = MCP4651_MAX_WIPER_INDEX;
+                return -1;
+            }
+            command_byte = mcp4651_construct_command_byte(MCP4651_MEMORY_ADDR_WIPER_0, MCP4651_OPERATION_INCREMENT, 0);
             break;
         case MCP4651_WIPER_B:
-            command_byte = mcp4651_construct_command_byte(MCP4651_MEMORY_ADDR_WIPER_1, MCP4651_OPERATION_INCREMENT, 0);
             context->wiper_position_b++;
+            if (context->wiper_position_b > MCP4651_MAX_WIPER_INDEX) {
+                context->wiper_position_b = MCP4651_MAX_WIPER_INDEX;
+                return -1;
+            }
+            command_byte = mcp4651_construct_command_byte(MCP4651_MEMORY_ADDR_WIPER_1, MCP4651_OPERATION_INCREMENT, 0);
             break;
         case MCP4651_WIPER_BOTH:
             bool increment_both_ok = false;
@@ -134,6 +144,34 @@ int mcp4651_decrement_wiper(mcp4651_context_t *context, mcp4651_wipers_t wiper) 
     else {
         return -1;
     }}
+
+int mcp4651_dummy_command(mcp4651_context_t *context)
+{
+    // Dummy write to TCON register with no electrical effect.
+    // This resets any lingering increment/decrement/read state
+    // inside the MCP4651 command parser.
+
+    const uint16_t dummy_data = 0x00FF;   // TCON default: all switches ON (no effect)
+    
+    // Build command byte using your existing helper
+    uint8_t command_byte = mcp4651_construct_command_byte(
+                                MCP4651_MEMORY_ADDR_TCON_REG,
+                                MCP4651_OPERATION_WRITE,
+                                dummy_data
+                           );
+
+    // Low byte of data
+    uint8_t data_byte = dummy_data & 0xFF;
+
+    // Prepare I2C buffer (command + data)
+    const uint8_t txBuf[2] = { command_byte, data_byte };
+
+    // Transmit to device — return 0 on success
+    return (i2c_write_hal(context->i2c_context, context->addr, txBuf, 2) > 0) 
+            ? 0 
+            : -1;
+}
+
 
 int mcp4651_disable(mcp4651_context_t *context) {
     

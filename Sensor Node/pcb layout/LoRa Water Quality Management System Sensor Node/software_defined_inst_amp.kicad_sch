@@ -3448,7 +3448,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "LMV324"
+		(property "Value" "TLV9144"
 			(at 85.09 222.2499 0)
 			(effects
 				(font
@@ -3567,7 +3567,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "3.3M"
 			(at 204.47 208.28 90)
 			(effects
 				(font
@@ -4952,7 +4952,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "3.3M"
 			(at 204.47 215.9 90)
 			(effects
 				(font
@@ -5171,7 +5171,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "3.3M"
 			(at 205.994 233.68 90)
 			(effects
 				(font
@@ -5474,7 +5474,7 @@
 				)
 			)
 		)
-		(property "Value" "LMV324"
+		(property "Value" "TLV9144"
 			(at 313.69 176.53 0)
 			(effects
 				(font
@@ -5900,7 +5900,7 @@
 				)
 			)
 		)
-		(property "Value" "LMV324"
+		(property "Value" "TLV9144"
 			(at 228.6 213.36 0)
 			(effects
 				(font
@@ -6172,7 +6172,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "3.3M"
 			(at 229.87 233.68 90)
 			(effects
 				(font
@@ -6477,7 +6477,7 @@
 				)
 			)
 		)
-		(property "Value" "LMV324"
+		(property "Value" "TLV9144"
 			(at 356.87 209.55 0)
 			(effects
 				(font
@@ -7089,7 +7089,7 @@
 				)
 			)
 		)
-		(property "Value" "LMV324"
+		(property "Value" "TLV9144"
 			(at 313.69 226.06 0)
 			(effects
 				(font

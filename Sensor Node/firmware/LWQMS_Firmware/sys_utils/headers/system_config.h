@@ -58,6 +58,7 @@ typedef enum lwqms_post_err_codes_e {
     POST_ERR_DIGIPOT_INIT_FAIL = -6,
     POST_ERR_NO_CONFIG_EXISTS = -7,
     POST_ERR_I2C_DEVICE_NOT_DETECTED = -8,
+    POST_ERR_NO_SDIA_CALIBRATION = -9,
 
 } lwqms_post_err_codes_t;
 
@@ -67,11 +68,8 @@ typedef enum lwqms_post_err_codes_e {
 // Key SPI Flash Memory Addresses
 
 #define FLASH_ADDR_CONFIG 0x00
-#define FLASH_ADDR_TURB_SEN_SETTINGS 0x100
-#define FLASH_ADDR_TEMP_SEN_SETTINGS 0x200
-#define FLASH_ADDR_EXTRA_SEN_SETTINGS 0x300
-#define FLASH_ADDR_PH_SEN_SETTINGS 0x400
-#define FLASH_ADDR_BULK_DATA 0x1000
+#define FLASH_ADDR_SDIA_CAL_DATA_32K_BLOCK 1 // Need 13K of free space dedicated for this.
+#define FLASH_ADDR_BULK_DATA 0x10000
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -100,5 +98,6 @@ uint16_t string_to_uint16_t(const char *str, int base);
 
 extern node_config_t sys_configuration;
 
+extern sdia_potentiometer_full_calibration_t sdia_calibration;
 
 #endif /* SYSTEM_CONFIG_H */

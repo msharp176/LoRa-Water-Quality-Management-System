@@ -181,7 +181,7 @@ void startup_menu() {
                 printf("Raw Input Voltage: %f\n", voltage_raw);
                 printf("Last used wiper setting:\n");
                 sdia_print_wiper_setting(&wiper_setting);
-                sdia_analog_setting_t analog_behavior;
+                sdia_analog_characteristic_t analog_behavior;
                 sdia_convert_wiper_setting(&context_sdia_0, &wiper_setting, &analog_behavior);
                 double processed_voltage = sdia_process_raw_voltage(voltage_raw, &analog_behavior);
                 printf("\n\nCalculated Input Voltage: %f", processed_voltage);

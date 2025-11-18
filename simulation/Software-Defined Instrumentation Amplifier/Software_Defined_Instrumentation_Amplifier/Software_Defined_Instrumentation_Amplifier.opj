@@ -1,6 +1,6 @@
 (ExpressProject "Software_Defined_Instrumentation_Amplifier"
   (ProjectVersion "19981106")
-  (SoftwareVersion "23.1-2024 S001-[11/07/25]")
+  (SoftwareVersion "23.1-2024 S001-[11/17/25]")
   (ProjectType "Analog or A/D Mixed Mode")
   (Folder "Design Resources"
     (Folder "Library")
@@ -47,6 +47,14 @@
   (DefaultLibraryBrowseDirectory "library\PSpice")
   (Folder "Logs")
   (PartMRUSelector
+    (0
+      (LibraryName "C:\CADENCE\PSPICETI\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB")
+      (DeviceIndex "0"))
+    (R
+      (FullPartName "R.Normal")
+      (LibraryName
+         "C:\CADENCE\PSPICETI\TOOLS\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
     (TLV9102
       (FullPartName "TLV9102.Normal")
       (LibraryName "C:\CDS_SPB_HOME\CDSSETUP\PSPTILIBDIR\TLV9102.OLB")
@@ -73,14 +81,6 @@
       (FullPartName "PARAM.Normal")
       (LibraryName
          "C:\CADENCE\PSPICETI\TOOLS\CAPTURE\LIBRARY\PSPICE\SPECIAL.OLB")
-      (DeviceIndex "0"))
-    (0
-      (LibraryName "C:\CADENCE\PSPICETI\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB")
-      (DeviceIndex "0"))
-    (R
-      (FullPartName "R.Normal")
-      (LibraryName
-         "C:\CADENCE\PSPICETI\TOOLS\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
       (DeviceIndex "0")))
   (MPSSessionName "mshar")
   (LastUsedLibraryBrowseDirectory
@@ -99,9 +99,9 @@
     (Doc
       (Type "COrSchematicDoc")
       (Frame
-        (Placement "44 0 1 -1 -1 5 24 5 1268 24 765")
-        (Scroll "184 208")
-        (Zoom "160")
+        (Placement "44 0 1 -1 -1 5 24 5 987 24 765")
+        (Scroll "0 511")
+        (Zoom "192")
         (Occurrence "/"))
       (Path
          "C:\USERS\MSHAR\DOCUMENTS\CAPSTONE\SIMULATION\SOFTWARE-DEFINED INSTRUMENTATION AMPLIFIER\SOFTWARE_DEFINED_INSTRUMENTATION_AMPLIFIER\SOFTWARE_DEFINED_INSTRUMENTATION_AMPLIFIER.DSN")

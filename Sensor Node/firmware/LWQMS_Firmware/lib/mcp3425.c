@@ -56,13 +56,9 @@ void mcp3425_init(mcp3425_context_t *context, mcp3425_sps_t sampling_rate, mcp34
             // Write the byte to the configuration register
             if (i2c_write_hal(context->i2c_context, context->addr, &cfg_reg, 1) < 0) break;
             
-            printf("Write Success!\n");
-
             // Read the configuration byte back
             uint8_t rxBuf[3];
             if (i2c_read_hal(context->i2c_context, context->addr, rxBuf, 3) < 0) break;
-
-            printf("Read Success!\n");
             
             // Check the configuration register against the written byte
             uint8_t readback_config = rxBuf[2] & 0x1f;

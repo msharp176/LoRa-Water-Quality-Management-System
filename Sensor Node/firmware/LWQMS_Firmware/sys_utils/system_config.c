@@ -16,6 +16,7 @@
 #include <limits.h>
 
 node_config_t sys_configuration;
+sdia_potentiometer_full_calibration_t sdia_calibration;
 
 static int compare_bytes(const void *a, const void *b) {
     return (*(uint8_t*)a - *(uint8_t*)b);
@@ -132,6 +133,43 @@ int read_system_config_data(mxl23l3233f_context_t * flash_context, node_config_t
     memcpy(cfgBuf, rxBuf, sizeof(node_config_t));
     
     return 0;
+}
+
+int sdia_fetch_calibration(sdia_potentiometer_full_calibration_t *cal) {
+
+    bool spi_ok = false;
+
+    // Initialize a buffer to store the raw calibration data.
+    uint8_t rxBuf[sizeof(sdia_potentiometer_full_calibration_t)];
+
+    for (int k = 0; k < COMMS_RETRIES; k++) {
+            // Clear the memory
+            memset(rxBuf, 0x00, sizeof(sdia_potentiometer_full_calibration_t));
+
+        if (mxl23l3233f_read_data(&context_flash_0, rxBuf, sizeof(sdia_potentiometer_full_calibration_t), FLASH_ADDR_SDIA_CAL_DATA_32K_BLOCK * FLASH_BLOCK_32KB_SIZE) < 0) break;
+
+        spi_ok = true;
+    }
+
+    if (!spi_ok) return -2;
+
+    // Check for cleared memory
+    for (int k = 0; k < sizeof(sdia_potentiometer_full_calibration_t); k++) {
+        if ((rxBuf[k] != 0x00) && (rxBuf[k] != 0xff)) {
+            break;
+        }
+
+        if (k == sizeof(sdia_potentiometer_full_calibration_t) - 1) {
+            // Clear config - special return code.
+            return -1;
+        }
+    }
+
+    // Copy the buffer to a `sdia_potentiometer_full_calibration_t` structure.
+    memcpy(cal, rxBuf, sizeof(sdia_potentiometer_full_calibration_t));
+    
+    return 0;
+    
 }
 
 int write_system_config_data(mxl23l3233f_context_t * flash_context, node_config_t * config) {
@@ -365,7 +403,7 @@ lwqms_pkt_t get_custom_packet() {
     return packet_to_send;
 }
 
-#define GET_WIPER_SETTING(message, result_var)              \
+#define GET_ANALOG_PARAM(message, result_var)              \
     do {                                                     \
         char wiper_setting_buf[11];                          \
                                                             \
@@ -373,12 +411,12 @@ lwqms_pkt_t get_custom_packet() {
             memset(wiper_setting_buf, 0x00, sizeof(wiper_setting_buf)); \
             printf(message);                                 \
             get_user_input_hal(wiper_setting_buf, 11);       \
-            result_var = string_to_uint16_t(wiper_setting_buf, 10); \
+            result_var = atof(wiper_setting_buf); \
                                                             \
-            if (result_var > 256) {                          \
-                printf("BAD WIPER Setting! The wiper setting should be a positive integer between 0 and 256.\n"); \
+            if (result_var < 0) {                          \
+                printf("BAD WIPER Setting! The wiper setting should be a positive number.\n"); \
             }                                                \
-        } while (result_var > 256);                          \
+        } while (result_var < 0);                          \
     } while (0);
 
 
@@ -397,16 +435,30 @@ sdia_wiper_settings_t get_wiper_setting() {
 
     wiper_start:
 
+    sdia_analog_characteristic_t analog_characteristic;
     sdia_wiper_settings_t wiper_setting;
 
-    GET_WIPER_SETTING("DC Positive Wiper Setting:\t", wiper_setting.dc_pos_wiper_setting);
-    GET_WIPER_SETTING("DC Negative Wiper Setting:\t", wiper_setting.dc_neg_wiper_setting);
-    GET_WIPER_SETTING("Gain Wiper Top Setting:\t\t", wiper_setting.gain_wiper_a_setting);
-    GET_WIPER_SETTING("Gain Wiper Bottom Setting:\t", wiper_setting.gain_wiper_b_setting);
-    GET_WIPER_SETTING("Output Reference Top Wiper Setting:\t", wiper_setting.ref_out_wiper_a_setting);
-    GET_WIPER_SETTING("Output Reference Bottom Wiper Setting:\t", wiper_setting.ref_out_wiper_b_setting);
+    GET_ANALOG_PARAM("DC Positive Offset:\t", analog_characteristic.dc_offset_pos);
+    GET_ANALOG_PARAM("DC Negative Offset:\t", analog_characteristic.dc_offset_neg);
+    GET_ANALOG_PARAM("Gain:\t\t", analog_characteristic.gain);
+    GET_ANALOG_PARAM("Output Reference Offset:\t", analog_characteristic.output_reference_offset);
 
+    // Convert the analog characteristic to an actionable wiper setting
+    sdia_analog_characteristic_t actual_analog_characteristic;
+    if (!sdia_get_wiper_setting_from_analog_characteristic(&context_sdia_0, &analog_characteristic, &sdia_calibration, &wiper_setting, &actual_analog_characteristic)) {
+        err_raise(ERR_ARGUMENT, ERR_SEV_NONFATAL, "Failed to generate wiper setting for the given analog characteristic!", "get_wiper_setting");
+        goto wiper_start;
+    }
+
+    printf("Resulting Wiper Setting:\n");
     sdia_print_wiper_setting(&wiper_setting);
+
+    printf("\n\n");
+
+    printf("Actual Analog Characteristic:\n");
+    sdia_print_analog_characteristic(&actual_analog_characteristic);
+
+    printf("\n\n");
 
     char confirmationBuf[2];
     
@@ -503,6 +555,16 @@ lwqms_post_err_codes_t power_on_self_test() {
             return_code = POST_ERR_I2C_DEVICE_NOT_DETECTED;
             break;
         }
+
+        // 5. Read in the SDIA calibration data
+        printf("Reading software-defined instrumentation amplifier calibration data...");
+        int sdia_retval = sdia_fetch_calibration(&sdia_calibration);
+        if (sdia_retval == -1) return POST_ERR_NO_SDIA_CALIBRATION;
+        else if (sdia_retval == -2) return POST_ERR_SPI_FLASH_FAIL;
+
+        context_digipot_gain.base_resistance_a = sdia_calibration.GainUpper_calibration[MCP4651_MAX_WIPER_INDEX].r_wb;
+        context_digipot_gain.base_resistance_b = sdia_calibration.GainLower_calibration[MCP4651_MAX_WIPER_INDEX].r_wb;
+        printf("DONE\n");
 
     } while (0);
 

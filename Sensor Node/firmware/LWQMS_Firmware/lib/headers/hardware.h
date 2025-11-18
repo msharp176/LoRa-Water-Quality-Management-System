@@ -163,8 +163,8 @@ typedef struct sx126x_context_s {
 typedef struct mcp4651_context_s {
     const i2c_context_t* i2c_context;   // The i2c context where the digipot lives
     const uint8_t addr;                 // I2C address
-    uint32_t base_resistance_a;   // The full-width resistance of POT A
-    uint32_t base_resistance_b;   // The full-width resistance of POT B
+    double base_resistance_a;   // The full-width resistance of POT A
+    double base_resistance_b;   // The full-width resistance of POT B
     uint16_t wiper_position_a;          // The current tap position of wiper A
     uint16_t wiper_position_b;          // The current tap position of wiper B
     uint16_t total_steps;               // The number of available tap positions
