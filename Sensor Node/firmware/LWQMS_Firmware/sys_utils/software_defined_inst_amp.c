@@ -206,27 +206,30 @@ bool sdia_acquire(sdia_context_t *context, sdia_potentiometer_full_calibration_t
     bool acquisition_ok = false;
     
     do {
-        // 1. Get the digipot settings corresponding to the desired analog characteristics of the amplifier
+        // 1. Initialize the ADC with the desired settings
+        if (!mcp3425_init(context->context_adc, MCP3425_SPS_15_16BITS, MCP3425_PGA_1, false)) break;
+
+        // 2. Get the digipot settings corresponding to the desired analog characteristics of the amplifier
         if (!sdia_get_wiper_setting_from_analog_characteristic(context, analog_setting, cal, &wiper_setting, &actual_analog_characteristic)) break;
 
-        // 2. Write the wiper setting to the system
+        // 3. Write the wiper setting to the system
         if (!sdia_apply_wiper_setting(context, &wiper_setting)) break;
 
-        // 2. Enable the correct sensor input
+        // 4. Enable the correct sensor input
         if (tmux1309_set_output(context->context_mux, sensor_input) < 0) break;
 
-        // 3. Allow ~10ms time for stability
+        // 5. Allow ~10ms time for reading stabilization
         sleep_ms(10);
 
-        // 4. Take a measurement
+        // 6. Take a measurement
         double raw_reading = 0;
         if (!sdia_read_raw(context, &raw_reading)) break;
 
-        // 5. Get the analog equivalent of the wiper setting
+        // 7. Get the analog equivalent of the wiper setting
         sdia_analog_characteristic_t analog_behavior;
         if (!sdia_convert_wiper_setting(context, cal, &wiper_setting, &analog_behavior)) break;
 
-        // 6. Obtain the original input voltage
+        // 8. Obtain the original input voltage
         *reading = sdia_process_raw_voltage(raw_reading, &analog_behavior);
 
         acquisition_ok = true;

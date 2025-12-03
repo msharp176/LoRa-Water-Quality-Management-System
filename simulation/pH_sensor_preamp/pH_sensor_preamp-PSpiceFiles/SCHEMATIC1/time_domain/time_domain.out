@@ -1,7 +1,7 @@
+
+**** 11/19/25 14:24:51 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
 
-**** 09/15/25 13:20:04 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
-
- ** Profile: "SCHEMATIC1-time_domain"  [ c:\users\mshar\documents\capstone\simulation\ph_sensor_preamp\ph_sensor_preamp-pspicefiles\s
+ ** Profile: "SCHEMATIC1-time_domain"  [ C:\Users\mshar\Documents\capstone\simulation\pH_sensor_preamp\ph_sensor_preamp-pspicefiles\s
 
 
  ****     CIRCUIT DESCRIPTION
@@ -37,24 +37,23 @@ X_U1         N00410 N00445 VDD VSS N00485 TL082
 X_U2         0 N00530 VDD VSS OUT TL082
 V_V1         VDD 0 5
 V_V2         0 VSS 5
-R_R1         N00485 N00530  100k TC=0,0 
-R_R2         VSS N00530  200k TC=0,0 
-R_R3         OUT N00530  100k TC=0,0 
-R_R4         N00485 N00445  3k TC=0,0 
-R_R5         N00445 0  1k TC=0,0 
+R_R1         N00485 N00530  4.99k TC=0,0 
+R_R2         VSS N00530  10k TC=0,0 
+R_R3         OUT N00530  4.99k TC=0,0 
+R_R4         N00485 N00445  10k TC=0,0 
+R_R5         N00445 0  10k TC=0,0 
 C_C1         N00445 N00485  1u  TC=0,0 
 C_C2         0 N00410  2.2n  TC=0,0 
 R_R6         IN N00410  4.7Meg TC=0,0 
-V_V3         N00933 0  AC 5
-+SIN 0 0.5 2 0 0 0
-R_R7         N00933 IN  10Meg TC=0,0 
+R_R7         N00933 IN  1G TC=0,0 
+V_V3         N00933 0 -0.25
 
 **** RESUMING time_domain.cir ****
 .END
 
-**** 09/15/25 13:20:04 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+**** 11/19/25 14:24:51 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
 
- ** Profile: "SCHEMATIC1-time_domain"  [ c:\users\mshar\documents\capstone\simulation\ph_sensor_preamp\ph_sensor_preamp-pspicefiles\s
+ ** Profile: "SCHEMATIC1-time_domain"  [ C:\Users\mshar\Documents\capstone\simulation\pH_sensor_preamp\ph_sensor_preamp-pspicefiles\s
 
 
  ****     Diode MODEL PARAMETERS
@@ -69,9 +68,9 @@ R_R7         N00933 IN  10Meg TC=0,0
           IS  800.000000E-18  800.000000E-18 
 
 
-**** 09/15/25 13:20:04 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+**** 11/19/25 14:24:51 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
 
- ** Profile: "SCHEMATIC1-time_domain"  [ c:\users\mshar\documents\capstone\simulation\ph_sensor_preamp\ph_sensor_preamp-pspicefiles\s
+ ** Profile: "SCHEMATIC1-time_domain"  [ C:\Users\mshar\Documents\capstone\simulation\pH_sensor_preamp\ph_sensor_preamp-pspicefiles\s
 
 
  ****     Junction FET MODEL PARAMETERS
@@ -89,9 +88,9 @@ R_R7         N00933 IN  10Meg TC=0,0
           IS   15.000000E-12   15.000000E-12 
 
 
-**** 09/15/25 13:20:04 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+**** 11/19/25 14:24:51 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
 
- ** Profile: "SCHEMATIC1-time_domain"  [ c:\users\mshar\documents\capstone\simulation\ph_sensor_preamp\ph_sensor_preamp-pspicefiles\s
+ ** Profile: "SCHEMATIC1-time_domain"  [ C:\Users\mshar\Documents\capstone\simulation\pH_sensor_preamp\ph_sensor_preamp-pspicefiles\s
 
 
  ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
@@ -104,19 +103,19 @@ R_R7         N00933 IN  10Meg TC=0,0
  NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
 
 
-(   IN)-350.5E-06  (  OUT)    2.5020  (  VDD)    5.0000  (  VSS)   -5.0000      
+(   IN)    -.2848  (  OUT)    3.0648  (  VDD)    5.0000  (  VSS)   -5.0000      
 
-(N00410)-515.3E-06 (N00445)-504.3E-06 (N00485)    -.0020 (N00530) 40.99E-09     
+(N00410)    -.2849 (N00445)    -.2849 (N00485)    -.5698 (N00530)-3.267E-06     
 
-(N00933)    0.0000 (X_U1.6) 308.0E-09 (X_U1.7)    -.0021 (X_U1.8)    -.0021     
+(N00933)    -.2500 (X_U1.6) 86.77E-06 (X_U1.7)    -.5912 (X_U1.8)    -.5912     
 
-(X_U1.9)    0.0000 (X_U2.6)-355.4E-06 (X_U2.7)    2.5058 (X_U2.8)    2.5058     
+(X_U1.9)    0.0000 (X_U2.6)-462.5E-06 (X_U2.7)    3.1569 (X_U2.8)    3.1569     
 
-(X_U2.9)    0.0000 (X_U1.10)    -.3991                   (X_U1.11)   -4.6546    
+(X_U2.9)    0.0000 (X_U1.10)    -.6831                   (X_U1.11)   -4.6541    
 
-(X_U1.12)   -4.6545                   (X_U1.53)    2.8000                       
+(X_U1.12)   -4.6541                   (X_U1.53)    2.8000                       
 
-(X_U1.54)   -2.8000                   (X_U1.90)-524.4E-06                       
+(X_U1.54)   -2.8000                   (X_U1.90)    -.1427                       
 
 (X_U1.91)   25.0000                   (X_U1.92)  -25.0000                       
 
@@ -126,7 +125,7 @@ R_R7         N00933 IN  10Meg TC=0,0
 
 (X_U2.53)    2.8000                   (X_U2.54)   -2.8000                       
 
-(X_U2.90)     .0250                   (X_U2.91)   25.0000                       
+(X_U2.90)     .6142                   (X_U2.91)   25.0000                       
 
 (X_U2.92)  -25.0000                   (X_U2.99)    0.0000                   
 
@@ -137,30 +136,30 @@ R_R7         N00933 IN  10Meg TC=0,0
     NAME         CURRENT
 
     V_V1        -9.723E-03
-    V_V2        -9.748E-03
-    V_V3        -3.505E-11
-    X_U1.VB      3.080E-12
-    X_U1.VC      2.803E-12
-    X_U1.VE      2.799E-12
-    X_U1.VLIM   -5.244E-07
-    X_U1.VLP    -2.500E-11
-    X_U1.VLN    -2.500E-11
-    X_U2.VB     -3.554E-09
-    X_U2.VC      2.988E-13
-    X_U2.VE      5.303E-12
-    X_U2.VLIM    2.502E-05
-    X_U2.VLP    -2.498E-11
-    X_U2.VLN    -2.503E-11
+    V_V2        -1.022E-02
+    V_V3        -3.477E-11
+    X_U1.VB      8.677E-10
+    X_U1.VC      3.371E-12
+    X_U1.VE      2.231E-12
+    X_U1.VLIM   -1.427E-04
+    X_U1.VLP    -2.514E-11
+    X_U1.VLN    -2.486E-11
+    X_U2.VB     -4.625E-09
+    X_U2.VC     -2.263E-11
+    X_U2.VE      5.866E-12
+    X_U2.VLIM    6.142E-04
+    X_U2.VLP    -2.439E-11
+    X_U2.VLN    -2.562E-11
 
-    TOTAL POWER DISSIPATION   9.74E-02  WATTS
+    TOTAL POWER DISSIPATION   9.97E-02  WATTS
 
 
 
           JOB CONCLUDED
 
-**** 09/15/25 13:20:04 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+**** 11/19/25 14:24:51 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
 
- ** Profile: "SCHEMATIC1-time_domain"  [ c:\users\mshar\documents\capstone\simulation\ph_sensor_preamp\ph_sensor_preamp-pspicefiles\s
+ ** Profile: "SCHEMATIC1-time_domain"  [ C:\Users\mshar\Documents\capstone\simulation\pH_sensor_preamp\ph_sensor_preamp-pspicefiles\s
 
 
  ****     JOB STATISTICS SUMMARY
@@ -170,5 +169,5 @@ R_R7         N00933 IN  10Meg TC=0,0
 
 
 
-  Total job time (using Solver 1)   =        2.41
+  Total job time (using Solver 1)   =        1.70
 

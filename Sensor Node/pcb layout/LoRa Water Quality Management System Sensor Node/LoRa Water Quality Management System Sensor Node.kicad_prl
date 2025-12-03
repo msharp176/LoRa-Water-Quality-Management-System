@@ -13,7 +13,7 @@
       "shapes": 1.0,
       "tracks": 1.0,
       "vias": 1.0,
-      "zones": 0.6
+      "zones": 0.6700000166893005
     },
     "selection_filter": {
       "dimensions": true,
@@ -33,7 +33,6 @@
       "footprint_text",
       "footprint_anchors",
       "ratsnest",
-      "grid",
       "footprints_front",
       "footprints_back",
       "footprint_values",
@@ -50,7 +49,7 @@
       "conflict_shadows",
       "shapes"
     ],
-    "visible_layers": "ffffffff_ffffffff_fffffff7_ffffffaf",
+    "visible_layers": "ffffffff_ffffffff_fffffff7_ffffffff",
     "zone_display_mode": 0
   },
   "git": {
@@ -92,18 +91,18 @@
       11
     ],
     "col_widths": [
-      25,
-      23,
-      15,
-      11,
-      15,
-      15,
-      15,
-      11,
-      15,
-      15,
-      15,
-      15
+      16,
+      14,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      60
     ],
     "custom_group_rules": [],
     "expanded_rows": [],

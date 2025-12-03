@@ -226,6 +226,19 @@ node_config_t get_setup_data() {
             printf("Bad Node ID! The ID must be a positive integer greater than zero!\n");
         }
     } while (node_id_uint16_t == -1);
+
+    printf("Gateway ID:\t");
+    char gateway_idbuf[5];
+    uint16_t gateway_id_uint16_t = 0;
+
+    do {
+        int id_len = get_user_input_hal(gateway_idbuf, 5);
+        gateway_id_uint16_t = string_to_uint16_t(gateway_idbuf, 10);
+
+        if (gateway_id_uint16_t == -1) {
+            printf("Bad Gateway ID! The Gateway ID must be a positive integer greater than zero!\n");
+        }
+    } while (gateway_id_uint16_t == -1);
     
     printf("Latitude:\t");
     char latbuf[21];    // 20 chars + null term.
@@ -245,6 +258,7 @@ node_config_t get_setup_data() {
 
     node_config_t tmp_cfg = {
         .ID = node_id_uint16_t,
+        .gateway_ID = gateway_id_uint16_t,
         .latitude = latitude,
         .longitude = longitude,
         .sync_word = sync_word
@@ -283,7 +297,7 @@ lwqms_pkt_t get_custom_packet() {
     char destination_buf[11];
     uint16_t dest_id_uint16 = 0;
     do {
-        printf("Destination Device ID:\t");
+        printf("Destination Device ID (gateway ID = %u):\t", sys_configuration.gateway_ID);
         int dest_len = get_user_input_hal(destination_buf, 11);
         dest_id_uint16 = string_to_uint16_t(destination_buf, 10);   // Base 10 === decimal.
 
@@ -568,6 +582,9 @@ lwqms_post_err_codes_t power_on_self_test() {
 
     } while (0);
 
+
+    // No need to disable the 5V rail, as we will be needing it right away for the sampling state.
+    /*
     // Leave the 5V rail on if it has already been turned on... hopefully lets everything settle out an minimize magic smoke???
     if (gpio_read_hal(EN_5V)) {
         printf("Leaving 5V rail on for 10s...");
@@ -577,6 +594,7 @@ lwqms_post_err_codes_t power_on_self_test() {
         // Disable the 5V rail
         gpio_write_hal(EN_5V, GPIO_LOW);
     }
+    */
 
     
     return return_code;

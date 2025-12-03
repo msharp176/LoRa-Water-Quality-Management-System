@@ -1,6 +1,6 @@
 (ExpressProject "pH_sensor_preamp"
   (ProjectVersion "19981106")
-  (SoftwareVersion "23.1-2024 S001-[09/15/25]")
+  (SoftwareVersion "23.1-2024 S001-[11/19/25]")
   (ProjectType "Analog or A/D Mixed Mode")
   (Folder "Design Resources"
     (Folder "Library")
@@ -34,6 +34,11 @@
   (DefaultLibraryBrowseDirectory "library\PSpice")
   (Folder "Logs")
   (PartMRUSelector
+    (VDC
+      (FullPartName "VDC.Normal")
+      (LibraryName
+         "C:\CADENCE\PSPICETI\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
     (R
       (FullPartName "R.Normal")
       (LibraryName
@@ -52,11 +57,6 @@
       (LibraryName
          "C:\CADENCE\PSPICETI\TOOLS\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
       (DeviceIndex "0"))
-    (VDC
-      (FullPartName "VDC.Normal")
-      (LibraryName
-         "C:\CADENCE\PSPICETI\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
-      (DeviceIndex "0"))
     (TL082
       (FullPartName "TL082.Normal")
       (LibraryName "C:\CDS_SPB_HOME\CDSSETUP\PSPTILIBDIR\TL082.OLB")
@@ -73,14 +73,14 @@
     (Doc
       (Type "COrCapturePMDoc")
       (Frame
-        (Placement "44 0 1 -1 -1 -1 -1 0 200 0 627"))
+        (Placement "44 0 1 -1 -1 -1 -1 0 200 0 747"))
       (Tab 0))
     (Doc
       (Type "COrSchematicDoc")
       (Frame
-        (Placement "44 0 1 -1 -1 -1 -1 5 884 24 645")
-        (Scroll "0 18")
-        (Zoom "105")
+        (Placement "44 0 1 -1 -1 -1 -1 5 987 24 765")
+        (Scroll "254 19")
+        (Zoom "192")
         (Occurrence "/"))
       (Path
          "C:\USERS\MSHAR\DOCUMENTS\CAPSTONE\SIMULATION\PH_SENSOR_PREAMP\PH_SENSOR_PREAMP.DSN")

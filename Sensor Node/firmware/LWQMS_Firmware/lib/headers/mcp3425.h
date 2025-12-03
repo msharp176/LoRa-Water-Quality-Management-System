@@ -61,9 +61,9 @@ typedef enum mcp3425_pga_e {
  * @param gain: PGA gain setting
  * @param continuous_mode_en: Set to TRUE to enable continuous conversion mode, FALSE for one-shot conversion mode.
  * 
- * @returns None
+ * @returns Initialization Operation Status
  */
-void mcp3425_init(mcp3425_context_t *context, mcp3425_sps_t sampling_rate, mcp3425_pga_t gain, bool continuous_mode_en);
+bool mcp3425_init(mcp3425_context_t *context, mcp3425_sps_t sampling_rate, mcp3425_pga_t gain, bool continuous_mode_en);
 
 /**
  * @brief Gets a measurement value from the MCP3425 ADC. If the device is in one-shot mode, this triggers a one-shot conversion, and idles until

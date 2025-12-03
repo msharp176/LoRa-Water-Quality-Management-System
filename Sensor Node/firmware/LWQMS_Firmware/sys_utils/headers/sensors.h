@@ -28,6 +28,7 @@
 #define RTD_A 3.9083e-3
 #define RTD_B -5.775e-7
 #define RTD_C -4.183e-12
+#define RTD_V_ADJ (-0.003)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -63,9 +64,8 @@ typedef struct sensor_acquisition_settings_s {
  * 
  * @returns Operation Success/Failure
  */
-bool acquire_data(sdia_context_t *sdia_context, sdia_potentiometer_full_calibration_t *sdia_cal, sensor_acquisition_settings_t *acquisition_settings, sensor_telemetry_t *telem_buf);
+bool sensors_acquire_data(sdia_context_t *sdia_context, sdia_potentiometer_full_calibration_t *sdia_cal, sensor_acquisition_settings_t *acquisition_settings, sensor_telemetry_t *telem_buf);
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 #endif /* SENSORS_H */

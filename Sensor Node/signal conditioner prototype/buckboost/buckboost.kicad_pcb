@@ -196,7 +196,7 @@
 		(descr "SMD pad as test Point, diameter 1.5mm")
 		(tags "test point SMD pad")
 		(property "Reference" "TP2"
-			(at 0 -1.648 0)
+			(at 2.1 1.64 0)
 			(layer "F.SilkS")
 			(uuid "a2cead75-55d1-47b1-be6d-6a2c5ab10cba")
 			(effects
@@ -711,8 +711,8 @@
 		(layer "F.Cu")
 		(uuid "9576ea42-2def-41d1-954f-5b7e80cf37a4")
 		(at 118.75 71.15 180)
-		(property "Reference" "U9"
-			(at 0.635495 -3.177475 0)
+		(property "Reference" "U1"
+			(at 1.81 2.55 0)
 			(layer "F.SilkS")
 			(uuid "7da93ea4-bfa0-4e9b-828b-db510ccdaaff")
 			(effects
@@ -1904,7 +1904,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor handsolder")
 		(property "Reference" "R4"
-			(at 0 -1.65 0)
+			(at 0 1.69 0)
 			(layer "F.SilkS")
 			(uuid "d8eef293-676a-424d-90f2-ef2ad352858b")
 			(effects
@@ -2328,7 +2328,7 @@
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "capacitor handsolder")
 		(property "Reference" "C1"
-			(at 0 -1.68 0)
+			(at 0 1.86 0)
 			(layer "F.SilkS")
 			(uuid "ca8fc591-e156-44f8-bf15-a217c4109126")
 			(effects
@@ -2880,6 +2880,138 @@
 		)
 		(layer "Edge.Cuts")
 		(uuid "e1d2b5f2-0b0d-4a3c-b996-72f3f83e3a05")
+	)
+	(gr_text "L1"
+		(at 126.14 71.81 0)
+		(layer "User.3")
+		(uuid "17c3aa70-bc1b-4179-a6d4-71ee85632aac")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "TP2"
+		(at 117.58 76.08 0)
+		(layer "User.3")
+		(uuid "295fc49f-f0a2-4584-bf73-04a6ff44a0e7")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "C2"
+		(at 106.35 76.97 0)
+		(layer "User.3")
+		(uuid "37fcc4df-d719-47ae-b83c-bce505e86194")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "R4"
+		(at 122.969199 79.65 0)
+		(layer "User.3")
+		(uuid "4906a43c-e642-4bc0-bafb-922d68ba370e")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "R1"
+		(at 106.46 72.5 0)
+		(layer "User.3")
+		(uuid "573cb1fb-599f-4335-b236-84f928b46a40")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "TP1"
+		(at 128.18 76.86 0)
+		(layer "User.3")
+		(uuid "5cd5c5ed-79bb-4385-b6a5-27dde480f3c3")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "R5"
+		(at 112.48 75.18 0)
+		(layer "User.3")
+		(uuid "821f3d0c-68fe-4c67-8730-1db74bfdb8d9")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "C3"
+		(at 123 74.209627 0)
+		(layer "User.3")
+		(uuid "b78e128c-fab3-4c07-ae07-e1c3bca97c44")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "C4"
+		(at 112.21 79.87 0)
+		(layer "User.3")
+		(uuid "c9469939-2758-42c0-8dd6-3eb10cc5c9bd")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "U1"
+		(at 116.02 69.01 0)
+		(layer "User.3")
+		(uuid "d538ad72-bca8-42e5-93ef-5c4d8e256379")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "C1"
+		(at 110.59 69.43 0)
+		(layer "User.3")
+		(uuid "e63352c0-715a-4506-8ec7-c0b04bbf0522")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom)
+		)
 	)
 	(segment
 		(start 111.675 75.4)

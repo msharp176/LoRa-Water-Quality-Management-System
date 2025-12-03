@@ -1,5 +1,22 @@
 #include "main.h"
 
+/**
+ * @brief Struct containing all data necessary to define a single I2C instance within the HAL.
+ */
+typedef struct i2c_context_s {
+    i2c_inst_t* inst;
+    uint        sda;
+    uint        scl;
+    uint        baud;
+} i2c_context_t;
+
+i2c_context_t context_i2c_1 = {
+    .baud = 100000,
+    .inst = i2c1,
+    .scl = GP27,
+    .sda = GP26
+};
+
 static uint16_t wiper_positions[6] = {0, 50, 100, 150, 200, 256};
 
 int main() {
@@ -10,11 +27,8 @@ int main() {
     wait_for_usb_console_connection_hal();
 
     printf("Initializing hardware [HAL]...");
-    // This example will use I2C0 on the default SDA and SCL pins (GP4, GP5 on a Pico)
-    i2c_init_hal(&context_i2c_1);
+    i2c_init_hal(&context_i2c_1);   // 
 
-    // Make the I2C pins available to picotool
-    //bi_decl(bi_2pins_with_func(GP4, GP5, GPIO_FUNC_I2C));
     printf("DONE\n");
 
     int wiper_position_index = 0;
@@ -31,12 +45,14 @@ int main() {
 
         usb_console_write_hal("Setting...");
 
+        // Set the wiper position
         mcp4651_set_wiper(&context_digipot_offset, MCP4651_WIPER_A, wiper_position);
 
         printf("DONE\n\n");
 
         wiper_position_index++;
 
+        // Wrap around the index if it is out of bounds.
         if (wiper_position_index > 5) wiper_position_index = 0;
     }
 }

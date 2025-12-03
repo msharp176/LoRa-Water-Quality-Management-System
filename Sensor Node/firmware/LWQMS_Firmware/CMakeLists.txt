@@ -55,13 +55,15 @@ pico_enable_stdio_uart(LWQMS_Firmware 0)
 pico_enable_stdio_usb(LWQMS_Firmware 1)
 
 # Add the standard library to the build
-target_link_libraries(LWQMS_Firmware
-        pico_stdlib
-        hardware_spi
-        hardware_watchdog
-        hardware_irq
-        hardware_resets
-        hardware_i2c
+target_link_libraries(
+    LWQMS_Firmware
+    pico_stdlib
+    hardware_spi
+    hardware_watchdog
+    hardware_irq
+    hardware_resets
+    hardware_i2c
+    hardware_powman
 )
 
 # Include these directories in the source search

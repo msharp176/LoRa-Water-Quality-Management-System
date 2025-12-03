@@ -455,6 +455,83 @@ int get_user_input_hal(char * buf, uint buflen);
 
 #pragma endregion
 
+#pragma region Power Management
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Power Management
+
+/**
+ * @brief Initializes the Power Management Functionality within the HAL
+ * 
+ * @param power_mgmt_context_dormant Hardware Implementation Details for the Dormant Power State
+ * @param power_mgmt_context_active Hardware Implementation Details for the Active Power State
+ * @param processed_power_context_buf Buffer to write outgoing hardware-specific implementation info for the provided power states
+ * 
+ * @returns Operation Completion Status 
+ */
+bool power_mgmt_init_hal(void *power_mgmt_context_dormant, void *power_mgmt_context_active, void *processed_power_context_buf);
+
+/**
+ * @brief Puts the MCU in its defined dormant state using the HAL. Note that upon wake the MCU will go through a cold boot, 
+ *          re-entering the main entry point of the program as defined by your compiler settings.
+ * 
+ * @param power_context Hardware Implementation Information for the Power States Initialized using `power_mgmt_init_hal`. MUST be the output context
+ * from the initialization method.
+ * 
+ * @returns 0 for a successful operation, or error code if an error occurs.
+ */
+int power_mgmt_go_dormant_hal(void *power_context);
+
+/**
+ * @brief Puts the MCU in its defined dormant state using the HAL for the specified duration. Note that upon wake the MCU will go through a cold boot, 
+ *          re-entering the main entry point of the program as defined by your compiler settings.
+ * 
+ * @param power_context Hardware Implementation Information for the Power States Initialized using `power_mgmt_init_hal`. MUST be the output context
+ * from the initialization method.
+ * @param duration_ms Duration to hold the MCU in its dormant state
+ * 
+ * @returns 0 for a successful operation, or error code if an error occurs.
+ */
+int power_mgmt_go_dormant_for_time_ms_hal(void *power_context, uint64_t duration_ms);
+
+/**
+ * @brief Puts the MCU in its defined dormant state using the HAL until the specified IRQ source is received. Note that upon wake the MCU 
+ *          will go through a cold boot, re-entering the main entry point of the program as defined by your compiler settings.
+ *
+ * @param power_context Hardware Implementation Information for the Power States Initialized using `power_mgmt_init_hal`. MUST be the output context
+ * from the initialization method.
+ * @param trigger Interrupt source to trigger a wake event. Note that the callback method for this trigger will not be executed. 
+ * 
+ * @returns 0 for a successful operation, or error code if an error occurs.
+ */
+int power_mgmt_go_dormant_until_irq_hal(void *power_context, gpio_driven_irq_context_t *trigger);
+
+/**
+ * @brief Writes data to non-volatile (novo) memory dedicated for use with dormant state entry. Note that this memory is not truly non-volatile, 
+ *      as it will not survive a complete power cycle. However, it will persist even if all of the SRAM is powered off.
+ * 
+ * @param data Pointer to buffer to write
+ * @param len Length of data. Maximum of `MCU_POWMAN_NOVO_ELEMENTS` long.
+ * 
+ * @returns 0 for a successful operation, or error code if an error occurs.
+ */
+int power_mgmt_write_novo_memory_hal(uint32_t *data, size_t len);
+
+/**
+ * @brief Reads the data from the non-volatile (novo) memory dedicated for data transfer across the dormant state. Note that this memory is not truly non-volatile,
+ *      as it will not survive a complete powr cycle. However, it will persist even if all of the SRAM is powered off.
+ * 
+ * @param data Pointer to buffer to write data to.
+ * @param buf_len Length of destination pointer. Must be at least `MCU_POWMAN_NOVO_ELEMENTS` long.
+ * 
+ * @returns 0 for a successful operation, or error code if error occurs.
+ */
+int power_mgmt_read_novo_memory_hal(uint32_t *data, size_t buf_len);
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#pragma endregion
+
 #endif /* HAL_H */
 
 /* --- EOF ------------------------------------------------------------------ */

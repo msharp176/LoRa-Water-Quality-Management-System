@@ -1,3 +1,13 @@
+#include "main.h"
+
+/**
+ * @brief Full functional test of the MCP3425 Analog-To-Digital Converter (ADC).
+ * 
+ * @remark Code for the MCP3425 library is in mcp3245.c in the lib/ directory.
+ * 
+ * @author Matthew Sharp
+ */
+
 int main()
 {
     init_usb_console_hal();

@@ -115,3 +115,12 @@ sdia_context_t context_sdia_0 = {
     .context_digipot_output_reference = &context_digipot_reference,
     .context_digipot_dc_offset = &context_digipot_offset
 };
+
+rp2350_power_mgmt_setting_t power_mgmt_dormant_state = {
+    .domains = {
+        .swcore_enable = false,
+        .xip_enable = false,
+        .sram0_enable = false,
+        .sram1_enable = false
+    }
+};

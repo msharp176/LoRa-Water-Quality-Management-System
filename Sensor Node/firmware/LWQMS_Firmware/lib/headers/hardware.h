@@ -16,6 +16,8 @@
 #include "pico/stdlib.h"
 #include "hardware/spi.h"
 #include "hardware/i2c.h"
+#include "hardware/powman.h"
+
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // C Standard Library Includes
@@ -86,6 +88,8 @@
 #define RADIO_TIMEOUT_GLOBAL_US 10000 // 10 ms
 
 #define QTY_GPIO_PINS NUM_BANK0_GPIOS
+
+#define MCU_POWMAN_NOVO_ELEMENTS 8
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -234,6 +238,24 @@ typedef struct sdia_context_s {
     tmux1309_context_t *context_mux;
 } sdia_context_t;
 
+/**
+ * @brief Exposes domain-wise power management configuration for the RP2350
+ */
+typedef union rp2350_power_mgmt_setting_u {
+    struct domains_s {
+        bool swcore_enable, xip_enable, sram0_enable, sram1_enable;
+    } domains;
+    bool as_arr[4]; // Overlays the domain fields as a list of booleans.
+} rp2350_power_mgmt_setting_t;
+
+/**
+ * @brief Provides hardware-specific configuration data for RP2350 power management.
+ */
+typedef struct rp2350_power_state_context_s {
+    powman_power_state active_power_state;
+    powman_power_state dormant_power_state;
+} rp2350_power_state_context_t;
+
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -269,6 +291,8 @@ extern mxl23l3233f_context_t context_flash_0;
 extern tmux1309_context_t context_mux_0;
 
 extern sdia_context_t context_sdia_0;
+
+extern rp2350_power_mgmt_setting_t power_mgmt_dormant_state;
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

@@ -557,7 +557,7 @@
 			)
 		)
 		(property ki_fp_filters "SOIC*3.9x4.9mm*P1.27mm* DIP*W7.62mm* TO*99* OnSemi*Micro8* TSSOP*3x3mm*P0.65mm* TSSOP*4.4x3mm*P0.65mm* MSOP*3x3mm*P0.65mm* SSOP*3.9x4.9mm*P0.635mm* LFCSP*2x2mm*P0.5mm* *SIP* SOIC*5.3x6.2mm*P1.27mm*")
-		(path "/6f0246a5-7687-45f2-81c8-8dd0dd98399c/cafd9218-80b0-4240-b5d2-e2044ca55a0d")
+		(path "/6f0246a5-7687-45f2-81c8-8dd0dd98399c/60fee13f-33fb-4455-b3b5-7dbea8357acc")
 		(sheetname "/PH Sensor Pre-Amplifier ALT/")
 		(sheetfile "phsensorboard_alt.kicad_sch")
 		(attr smd)
@@ -10084,7 +10084,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "3.3M"
 			(at 0 1.65 0)
 			(layer "F.Fab")
 			(uuid "06e5d15c-bbf7-4010-a89b-58989dce0299")
@@ -22341,7 +22341,7 @@
 			)
 		)
 		(property ki_fp_filters "SOIC*3.9x8.7mm*P1.27mm* DIP*W7.62mm* TSSOP*4.4x5mm*P0.65mm* SSOP*5.3x6.2mm*P0.65mm* MSOP*3x3mm*P0.5mm*")
-		(path "/b5335518-ac8e-4539-89ae-0ba6483d5923/a11815aa-b664-4a39-bfe7-bf5f3a03b5d0")
+		(path "/b5335518-ac8e-4539-89ae-0ba6483d5923/f7c9262e-d7b6-4c43-bd05-4672200e6ae8")
 		(sheetname "/Software-Defined Instrumentation Amplifier/")
 		(sheetfile "software_defined_inst_amp.kicad_sch")
 		(attr smd)
@@ -28016,7 +28016,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "3.3M"
 			(at 0 1.65 0)
 			(layer "F.Fab")
 			(uuid "01098f95-c34b-4fb4-b9d9-2255f682bbda")
@@ -38809,7 +38809,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "3.3M"
 			(at 0 1.65 0)
 			(layer "F.Fab")
 			(uuid "09a8f845-6822-4ccb-a682-38764eb01fbc")
@@ -40148,7 +40148,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "3.3M"
 			(at 0 1.65 0)
 			(layer "F.Fab")
 			(uuid "296fa907-17c1-49b0-a82c-87ef20834bcb")

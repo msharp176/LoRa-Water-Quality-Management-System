@@ -23,18 +23,15 @@
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Raspberry Pi Pico SDK Includes
+// Dependencies
 
 #include "pico/stdlib.h"
 #include "pico/stdio.h"
 #include "pico/time.h"
 #include "tusb.h"
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Project Includes
-
+// VVV WRITTEN FOR THIS PROJECT VVV
 #include "hal.h"
 #include "errs.h"
 #include "sx126x.h"
@@ -47,11 +44,12 @@
 #include "mxl23l3233f.h"
 #include "tmux1309.h"
 #include "encryption.h"
-
 #include "sx126x.h"
 
 #include "rdt3.h"
 #include "lwqms_pkt.h"
+#include "sensors.h"
+#include "power_states.h"
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -63,6 +61,13 @@
 #define LWQMS_SYNC_WORD 0x42    // The meaning of life, the universe, and everything
 
 #define LORA_TIMEOUT_MS 10000
+
+typedef enum lwqms_fsm_e {
+    LWQMS_FSM_STATE_RESET    = 0x1BADDEED,
+    LWQMS_FSM_STATE_SAMPLE   = 0xABACADAB,
+    LWQMS_FSM_STATE_TRANSMIT = 0xFEEDFACE,
+    LWQMS_FSM_STATE_DORMANT  = 0xCAFEBABE,
+} lwqms_fsm_t;
 
 sx126x_mod_params_lora_t prototyping_mod_params = {
     .sf = SX126X_LORA_SF10,
@@ -156,3 +161,5 @@ extern lora_setup_t lora_phy_setup;
 #endif
 
 /* --- EOF ------------------------------------------------------------------ */
+
+void blink_status_ok();

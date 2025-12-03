@@ -36,7 +36,8 @@
 // Global Configuration Type
 
 typedef struct node_config_s {
-    uint16_t   ID;     // 10 characters + null termination.
+    uint16_t ID;            // The ID of the sensor node
+    uint16_t gateway_ID;    // The ID of the gateway
     double latitude;
     double longitude;
     char   sync_word;    
@@ -48,7 +49,7 @@ typedef struct node_config_s {
 // POST Error Codes
 
 typedef enum lwqms_post_err_codes_e {
-
+    POST_BYPASS = 1,
     POST_OK = 0,
     POST_ERR_GPIO_INIT = -1,
     POST_ERR_SPI_FLASH_FAIL = -2,
@@ -59,7 +60,8 @@ typedef enum lwqms_post_err_codes_e {
     POST_ERR_NO_CONFIG_EXISTS = -7,
     POST_ERR_I2C_DEVICE_NOT_DETECTED = -8,
     POST_ERR_NO_SDIA_CALIBRATION = -9,
-
+    POST_NONE = -10,
+    POST_ERR_PWR_MGMT_INIT_FAIL = -11,
 } lwqms_post_err_codes_t;
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------

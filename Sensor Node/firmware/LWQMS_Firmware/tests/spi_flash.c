@@ -1,8 +1,8 @@
 /******************************************************************************************************************** 
 *   
-*   @file main.c
+*   @file spi_flash.c
 *
-*   @brief Main Driver file for the LoRa Water Quality Management System Sensor Node Firmware
+*   @brief Full Functional test of the MXL25L3233F SPI NOR Flash IC
 *
 *   @author Matthew Sharp
 *   
@@ -12,13 +12,6 @@
 
 #include "main.h"
 
-#define DIGIPOT_STEP_TIME_MS 5
-
-#define STATUS_LED GP14
-#define RX_LED GP15
-
-#define RX
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Global Variables
 
@@ -27,39 +20,10 @@ char * gettysburg_address = "Four score and seven years ago our fathers brought 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-/**
- * To transmit data:
- * Initialize radio
- * Initialize TX mode
- * Attach the radio interrupt
- * Transmit data
- * Wait for interrupt
- */
-
-static bool tx_go = false;
-
-void isr_set_tx_go(void) {
-    tx_go = true;
-}
-
 void print_banner(void) {
     printf("-- LoRa Water Quality Management System Sensor Node --\n");
     printf("Version 0.1, compiled %s, %s\n\n", __DATE__, __TIME__);
 }
-
-const gpio_driven_irq_context_t context_irq_txInit = {
-    .callback = isr_set_tx_go,
-    .pin = GP12,
-    .source_mask = GPIO_IRQ_EDGE_FALL
-};
-
-// Example 128-bit key (16 bytes)
-static const uint8_t test_key[16] = {
-    0x00, 0x01, 0x02, 0x03,
-    0x04, 0x05, 0x06, 0x07,
-    0x08, 0x09, 0x0A, 0x0B,
-    0x0C, 0x0D, 0x0E, 0x0F
-};
 
 int main()
 {

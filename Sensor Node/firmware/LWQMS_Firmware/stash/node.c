@@ -12,10 +12,9 @@
 
 #include "main.h"
 #include "system_config.h"
+#include <stdio.h>
 
 #define POWER_5V_COOLDOWN_DURATION_MS 10000
-
-#include <stdio.h>
 
 #define SET_5V_RAIL_STATUS(is_enabled)                                \
     do {                                                              \
@@ -33,17 +32,45 @@
         power_5v_cooldown_time = make_timeout_time_ms(POWER_5V_COOLDOWN_DURATION_MS); \
                                                                                         \
         /* Perform an I2C Scan ???? No clue why but it fixes issues with comms on the bus */ \
-        uint8_t buf[0xff]; \ 
+        uint8_t buf[0xff]; \
         uint8_t bufidx; \
         i2c_get_available_addresses_hal(&context_i2c_1, buf, 0xff, &bufidx);                      \
     } while (0)
 
 
-//#define LWQMS_DEDICATED_RECEIVER
+static uint8_t packet_id;
 
 void print_banner(void) {
     printf("\n\n-- LoRa Water Quality Management System Sensor Node --\n");
     printf("Version 0.1, compiled %s, %s\n\n", __DATE__, __TIME__);
+}
+
+void blink_status_ok()
+{
+    for (int k = 0; k < 6; k++)
+    {
+        gpio_toggle_hal(STATUS_LED);
+        sleep_ms(250);
+    }
+}
+
+union sdia_cal_memsaver_u {
+    sdia_potentiometer_full_calibration_t cal;
+    uint8_t buf[sizeof(sdia_potentiometer_full_calibration_t)];
+};
+
+void sdia_get_and_write_calibration() {
+    union sdia_cal_memsaver_u cal;
+
+    sdia_calibrate(&context_sdia_0, &(cal.cal));
+
+    printf("Erasing Old Calibration Data...");
+    mxl23l3233f_erase_32kb_block(&context_flash_0, FLASH_ADDR_SDIA_CAL_DATA_32K_BLOCK);
+    printf("DONE\n");
+
+    printf("Writing Calibration Data to Memory...");
+    mxl23l3233f_write_data(&context_flash_0, cal.buf, sizeof(sdia_potentiometer_full_calibration_t), FLASH_ADDR_SDIA_CAL_DATA_32K_BLOCK * FLASH_BLOCK_32KB_SIZE);
+    printf("DONE\n");
 }
 
 void startup_menu() {
@@ -61,6 +88,9 @@ void startup_menu() {
     "-> t | Transmit a packet\n"
     "-> a | Configure the software-defined instrumentation amplifier\n"
     "-> m | Take a measurement using the ADC.\n"
+    "-> l | Clear the current software-defined instrumentation amplifier calibration data\n"
+    "-> f | Calibrate the Software-Defined Instrumentation Amplifier.\n"
+    "-> w | Print the current Software-Defined Instrumentation Amplifier Calibration Data to the Console.\n"
     "-> r | Reboot the device - updates device settings with any changes made here.\n";
     
     absolute_time_t power_5v_cooldown_time = get_absolute_time();
@@ -136,6 +166,8 @@ void startup_menu() {
                 break;
             case 'r':
                 // Reboot the device. Force this option instead of exit so changes always get saved.
+                SET_5V_RAIL_STATUS(false);
+                sleep_ms(POWER_5V_COOLDOWN_DURATION_MS);    // No smoke please!
                 reboot();
                 break;
             case 't':
@@ -150,9 +182,9 @@ void startup_menu() {
             case 'a':
                 wiper_setting = get_wiper_setting();
                 SET_5V_RAIL_STATUS(true);
-                printf("\n\nWriting Configuration...");
+                printf("Writing Configuration...");
                 sdia_apply_wiper_setting(&context_sdia_0, &wiper_setting);
-                printf("DONE\n");
+                printf("DONE\n\n");
                 break;
             case 'm':
                 uint16_t input_selection;
@@ -167,6 +199,8 @@ void startup_menu() {
                     }
                 } while (input_selection > 3);
 
+                printf("\tOK\n\n");
+
                 SET_5V_RAIL_STATUS(true);
                 printf("Setting the input...");
                 tmux1309_set_output(&context_mux_0, input_selection);
@@ -178,13 +212,24 @@ void startup_menu() {
                 double voltage_raw = 0;
                 sdia_read_raw(&context_sdia_0, &voltage_raw);
                 printf("DONE\n");
-                printf("Raw Input Voltage: %f\n", voltage_raw);
-                printf("Last used wiper setting:\n");
-                sdia_print_wiper_setting(&wiper_setting);
+                printf("ADC Voltage: %f V\n", voltage_raw);
                 sdia_analog_characteristic_t analog_behavior;
-                sdia_convert_wiper_setting(&context_sdia_0, &wiper_setting, &analog_behavior);
+                sdia_convert_wiper_setting(&context_sdia_0, &sdia_calibration, &wiper_setting, &analog_behavior);
                 double processed_voltage = sdia_process_raw_voltage(voltage_raw, &analog_behavior);
-                printf("\n\nCalculated Input Voltage: %f", processed_voltage);
+                printf("\n\nCalculated Input Voltage (based on last used software-defined instrumentation amplifier configuration): \x1b[1m%f V\x1b[0m", processed_voltage);
+                break;
+            case 'l':
+                // Overwrite the space allocated for the configuration data with 0xff
+                printf("Clearing the calibration data...");
+                mxl23l3233f_erase_32kb_block(&context_flash_0, FLASH_ADDR_SDIA_CAL_DATA_32K_BLOCK);
+                printf("DONE\n");
+                break;
+            case 'f':
+                SET_5V_RAIL_STATUS(true);
+                sdia_get_and_write_calibration();
+                break;
+            case 'w':
+                sdia_print_calibration(&sdia_calibration);
                 break;
             default:
                 printf("Invalid Option: %c", selection);
@@ -198,19 +243,39 @@ void startup_menu() {
 void system_setup() {
     init_usb_console_hal();
 
-    wait_for_usb_console_connection_hal();
+    //wait_for_usb_console_connection_hal();
 
     print_banner();
 
     lwqms_post_err_codes_t post_result = power_on_self_test();
 
-    switch (post_result) {
-        case POST_OK:
-            printf("POST Successful!\n\n");
-            for (int k = 0; k < 6; k++) {
-                gpio_toggle_hal(STATUS_LED);
+    uint32_t novo_contents[MCU_POWMAN_NOVO_ELEMENTS];
+    size_t novo_contents_len;
+
+    if (check_for_power_saving_mode_boot(novo_contents, MCU_POWMAN_NOVO_ELEMENTS, &novo_contents_len)) {
+        printf("Dormant state boot detected!\n");
+        packet_id = novo_contents[0];
+        for (int status = 1; status <= 0; --status) {
+            for (uint8_t k = ERR_LED; k <= STATUS_LED; --k) {
+                gpio_write_hal(k, status);
                 sleep_ms(250);
             }
+        }
+    } else {
+        printf("Power cycle boot detected!\n");
+        packet_id = 1;
+    }
+
+    packet_id = check_for_power_saving_mode_boot(novo_contents, MCU_POWMAN_NOVO_ELEMENTS, &novo_contents_len) ? novo_contents[0] : 1;
+
+    switch (post_result) {
+        case POST_BYPASS:
+            printf("POST Bypassed due to previous pass before dormant state.\n\n");
+            blink_status_ok();
+            break;
+        case POST_OK:
+            printf("POST Successful!\n\n");
+            blink_status_ok();
             break;
         case POST_ERR_NO_CONFIG_EXISTS:
             err_raise(ERR_POST_FAIL, ERR_SEV_NONFATAL, "Could not find configuration data!", "power_on_self_test");
@@ -224,6 +289,19 @@ void system_setup() {
                 reboot();
             }
             while (1);
+        case POST_ERR_NO_SDIA_CALIBRATION:
+            err_raise(ERR_POST_FAIL, ERR_SEV_NONFATAL, "Could not find SDIA calibration data!", "power_on_self_test");
+            gpio_write_hal(ERR_LED, GPIO_HIGH);
+
+            // Get a new calibration
+            sdia_get_and_write_calibration();
+            printf("Waiting for powe cooldown time...");
+            gpio_write_hal(EN_5V, GPIO_LOW);
+            sleep_ms(POWER_5V_COOLDOWN_DURATION_MS);
+            printf("DONE\n");
+            printf("Rebooting...");
+            sleep_ms(250);
+            reboot();
         default:
             err_raise(ERR_POST_FAIL, ERR_SEV_FATAL, "Failed to POST! Error Code = %d", "power_on_self_test");
             while (1);
@@ -234,30 +312,11 @@ void system_setup() {
     printf("To interrupt normal startup and enter the startup menu, press 'm'...\n");
 
     while (get_absolute_time() < startup_time) {
-        if ((usb_console_getchar_timeout_us_hal(1000) | (1 << 5)) == 'm') {
+        if ((usb_console_getchar_timeout_us_hal(1000) | (1 << 5)) == 'm') { // Force user input to be lowercase
             startup_menu();
         }
     }
 }
-
-const lwqms_pkt_payload_t test_payload = {
-    .message = "Hallo!"
-};
-
-lwqms_pkt_t test_tx_pkt = {
-    .pkt_id = 1,
-    .dest_id = 2,
-    .src_id = 3,
-    .packet_type = LWQMS_PACKET_TYPE_MESSAGE,
-    .payload = test_payload
-};
-
-node_config_t tx_config = {
-  .ID = 3,
-  .sync_word = 0x42,
-  .latitude = 40.2732,
-  .longitude = 76.8867
-};
 
 lora_setup_t lora_phy_setup = {
     .hw = &context_radio_0,
@@ -272,37 +331,98 @@ lora_setup_t lora_phy_setup = {
     .node_config = &sys_configuration,
 };
 
-
+sensor_acquisition_settings_t sen_acq_settings = {
+    .analog_characteristic_turb = {
+        .dc_offset_pos = 0,
+        .dc_offset_neg = 3,             // Shift ~4.1V input to 1.1V
+        .output_reference_offset = 0,
+        .gain = 1.8                     // 1.98V max input. 
+    },
+    .analog_characteristic_temp = {
+        .dc_offset_pos = 0,
+        .dc_offset_neg = 0,
+        .output_reference_offset = 0,
+        .gain = 12                       // Takes ~0.145V max input to ~1.74V max.
+    },
+    .analog_characteristic_pH = {   // Target pH region: 5-10 -> Vlo = 2.2V, Vhi = 2.9V, BUT output must always be positive. pH 0 = 1.5V --> No greater DC- offset than this.
+        .dc_offset_pos = 0,
+        .dc_offset_neg = 1.4,       // Input range = 0.8V --> 1.5V. Maximum allowable gain = ~1.5
+        .output_reference_offset = 0,
+        .gain = 1.5,
+    }
+};
 
 int main()
 {
     system_setup();
 
-    absolute_time_t power_5v_cooldown_time = get_absolute_time();
-    SET_5V_RAIL_STATUS(true);
+    // FSM
+    lwqms_fsm_t state = LWQMS_FSM_STATE_SAMPLE;
 
-    sdia_potentiometer_full_calibration_t cal;
+    sensor_telemetry_t sensor_data;
 
-    sdia_calibrate(&context_sdia_0, &cal);
+    while(1) {
+        /*
+        printf("Advance FSM? (y) Next State = 0x%08x\n", state);
+        while ((usb_console_getchar_hal() | (1 << 5)) != 'y');
+        printf("advancing!\n");
+        */
+        switch (state) {
+            case LWQMS_FSM_STATE_SAMPLE:
+                /**
+                 * In the SAMPLE state, the sensor node obtains analog voltage readings from each sensor, converts them to their relevant measurements,
+                 * and saves them to RAM. The next state is the TRANSMIT state.
+                 */
+                sensors_acquire_data(&context_sdia_0, &sdia_calibration, &sen_acq_settings, &sensor_data);
+                printf("Telemetry: Turbidity = %f NTU, Temperature = %f C, pH = %f\n\n", sensor_data.turbidity_NTU, sensor_data.temperature_C, sensor_data.pH);
+                gpio_write_hal(EN_5V, GPIO_LOW);
+                state = LWQMS_FSM_STATE_TRANSMIT;
+                break;
+            case LWQMS_FSM_STATE_TRANSMIT:
+                /**
+                 * In the TRANSMIT state, the sensor node converts the telemetry data to a transmittable packet, and uses the LoRa modulator to send the data
+                 * to the gateway. Having completed its duty, the next state is the DORMANT state.
+                 */
+                lwqms_pkt_t telem_packet = {
+                    .src_id = sys_configuration.ID,
+                    .dest_id = sys_configuration.gateway_ID,
+                    .packet_type = LWQMS_PACKET_TYPE_TELEMETRY,
+                    .pkt_id = packet_id,
+                    .payload = {    // Payload is a union type that spans both a char[12] and 3 x floats (4 bytes)
+                        .telemetry = {
+                            .turbidity_measurement = sensor_data.turbidity_NTU,
+                            .temperature_measurement = sensor_data.temperature_C,
+                            .pH_measurement = sensor_data.pH
+                        }
+                    }
+                };
 
-    while(1);
+                lora_pkt_t tx_pkt = {
+                    .len = LWQMS_PKT_LEN_MAX
+                };
 
-    while (1) {
-        #ifdef LWQMS_DEDICATED_RECEIVER
-        usb_console_write_hal("Ready to receive a packet!\n");
+                lwqms_pkt_encode(&telem_packet, tx_pkt.buf, tx_pkt.len);
 
-        lora_pkt_t rxPacket;
-        rdt3_0_receive((rdt_packet_t)(&rxPacket), sizeof(lwqms_pkt_t), &dedicated_receiver_setup);
-        
-        lwqms_pkt_t processed_packet;
-        lwqms_pkt_decode(rxPacket.buf, rxPacket.len, &processed_packet);
-
-        printf("Received packet (outer layer):\n\n");
-        hexdump(processed_packet.payload.message, sizeof(lwqms_pkt_payload_t), 0x00);
-        printf("\n\n");
-
-        #else
-        #endif
+                printf("Transmitting packet...\n\n");
+                rdt3_0_transmit(&tx_pkt, sizeof(lora_pkt_t), &lora_phy_setup);
+                printf("\n\n-- Transmit Operation Complete --\n");
+                packet_id++;
+                state = LWQMS_FSM_STATE_DORMANT;
+                break;
+            case LWQMS_FSM_STATE_DORMANT:
+                /**
+                 * In the DORMANT state, the sensor node deactivates any 5V peripherals (although this function is technically performed 
+                 * after sensor acquisition is complete), puts the LoRa modulator in its deep sleep mode, and enters its MCU's lowest power
+                 * state. After waking up, the MCU will have a cold reset, making the next state the SAMPLE state.
+                 */
+                uint32_t novo_mem_contents[1] = {packet_id};
+                enter_power_saving_mode(&power_mgmt_dormant_state, &context_radio_0, 10 * 60 * 1000, novo_mem_contents, 1);
+                state = LWQMS_FSM_STATE_RESET;
+                break;
+            default:
+                state = LWQMS_FSM_STATE_SAMPLE;
+                break;
+        }
     }
 }
 

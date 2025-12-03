@@ -437,4 +437,117 @@ int get_user_input_hal(char * buf, uint buflen) {
 
 #pragma endregion
 
+#pragma region Power Management
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Power Management
+
+bool power_mgmt_init_hal(void *power_mgmt_context_dormant, void *power_mgmt_context_active, void *processed_power_context_buf) {
+    powman_timer_set_1khz_tick_source_lposc();  // Use the low-power oscillator as a clock reference
+    powman_timer_start();
+    powman_timer_set_ms(time_us_64() / 1000);   // Convert us to ms
+    powman_set_debug_power_request_ignored(true);   // Enable power down even when debugging.
+
+    // Cast the incoming power setting contexts to a rp2350_power_management structure.
+    rp2350_power_mgmt_setting_t *off_state = (rp2350_power_mgmt_setting_t *)power_mgmt_context_dormant;
+    rp2350_power_mgmt_setting_t *on_state = (rp2350_power_mgmt_setting_t *)power_mgmt_context_active;
+
+    // Initialize buffers to store the hardware-specific power management values.
+    powman_power_state dormant_state = POWMAN_POWER_STATE_NONE;
+    powman_power_state active_state = POWMAN_POWER_STATE_NONE;
+    
+    // Manually create a domains array to force agreement between x->as_arr[] index and corresponding power domain
+    enum powman_power_domains domains[] = {
+        POWMAN_POWER_DOMAIN_SWITCHED_CORE,
+        POWMAN_POWER_DOMAIN_XIP_CACHE,
+        POWMAN_POWER_DOMAIN_SRAM_BANK0,
+        POWMAN_POWER_DOMAIN_SRAM_BANK1
+    };
+    
+    // Fill the dormant & active state buffers with their designated values.
+    for (int k = 0; k < (sizeof(domains) / sizeof(enum powman_power_domains)); ++k) {
+        // Do not set the SRAM bits - they will fail validation check. Upon wakeup, these will be brought up by the warm start.
+        if ((domains[k] == POWMAN_POWER_DOMAIN_SRAM_BANK0) || (domains[k] == POWMAN_POWER_DOMAIN_SRAM_BANK1)) continue;
+
+        // For each power domain, check if it was enabled in the incoming setting structure, and enable it in hardware if so.
+        dormant_state = off_state->as_arr[k] ? powman_power_state_with_domain_on(dormant_state, domains[k]) : dormant_state;
+        active_state = on_state->as_arr[k] ? powman_power_state_with_domain_on(active_state, domains[k]) : active_state;
+    }
+
+    // Write the finished states to the outgoing power context buffer structure
+    ((rp2350_power_state_context_t *)processed_power_context_buf)->dormant_power_state = dormant_state;
+    ((rp2350_power_state_context_t *)processed_power_context_buf)->active_power_state = active_state;
+
+    return true;
+}
+
+#define POWMAN_BOOT_VECTOR_ELEMENT_COUNT 4
+
+int power_mgmt_go_dormant_hal(void *power_context) {
+    
+    // Cast the incoming power context to a hardware-specific power definition structure.
+    rp2350_power_state_context_t *power_states = (rp2350_power_state_context_t *)power_context;
+
+    // Set the power state management registers with the incoming hardware-specific power state values.
+    if (!powman_configure_wakeup_state((powman_power_state)(power_states->dormant_power_state), (powman_power_state)(power_states->active_power_state))) return PICO_ERROR_INVALID_STATE;
+
+    // Write zeroes to the boot register, signaling a cold boot. 
+    // TODO (not for this project, but future): Enable Warm Start/Resuming program with customizeable boot vector.
+    for (int k = 0; k < POWMAN_BOOT_VECTOR_ELEMENT_COUNT; ++k) {
+        powman_hw->boot[k] = 0;
+    }
+
+    printf("Powering off...\n");
+    stdio_flush();
+    stdio_deinit_all();
+    int retval = powman_set_power_state(power_states->dormant_power_state);
+    if (PICO_OK != retval) return retval;
+
+    while (1) __wfi();  // Wait for interrupt.
+}
+
+int power_mgmt_go_dormant_for_time_ms_hal(void *power_context, uint64_t duration_ms) {
+    // Enable an alarm after the specified duration, then enter the dormant state
+    uint64_t alarm_time_ms = powman_timer_get_ms() + duration_ms;
+    powman_enable_alarm_wakeup_at_ms(alarm_time_ms);
+    return power_mgmt_go_dormant_hal(power_context);
+}
+
+int power_mgmt_go_dormant_until_irq_hal(void *power_context, gpio_driven_irq_context_t *trigger) {
+    // Check the trigger sources for use with the powman call
+    bool trigger_is_edge_driven = (trigger->source_mask & (GPIO_IRQ_EDGE_FALL | GPIO_IRQ_EDGE_RISE)) > 0;
+    bool trigger_is_high_or_rising = (trigger->source_mask & (GPIO_IRQ_LEVEL_HIGH | GPIO_IRQ_EDGE_RISE)) > 0; 
+    
+    // Enable GPIO wakeup in the power management system
+    powman_enable_gpio_wakeup(0, trigger->pin, trigger_is_edge_driven, trigger_is_high_or_rising);
+    
+    // Enter the dormant state
+    return power_mgmt_go_dormant_hal(power_context);
+}
+
+int power_mgmt_write_novo_memory_hal(uint32_t *data, size_t len) {
+    if (len > MCU_POWMAN_NOVO_ELEMENTS) return -1;
+
+    for (int k = 0; k < len; ++k) {
+        // Write the elements to the scratch register one-by-one as it is volatile. Therefore, we have some optimization disagreement.
+        powman_hw->scratch[k] = data[k];
+    }
+
+    return 0;
+}
+
+int power_mgmt_read_novo_memory_hal(uint32_t *data, size_t buf_len) {
+    if (buf_len < MCU_POWMAN_NOVO_ELEMENTS) return -1;
+
+    for (int k = 0; k < MCU_POWMAN_NOVO_ELEMENTS; ++k) {
+        data[k] = powman_hw->scratch[k];
+    }
+
+    return 0;
+}
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+#pragma endregion
+
 /* --- EOF ------------------------------------------------------------------ */

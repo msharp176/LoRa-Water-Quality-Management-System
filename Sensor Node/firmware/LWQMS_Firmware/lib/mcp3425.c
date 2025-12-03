@@ -43,7 +43,7 @@ static double mcp3425_convert_code_to_voltage(uint16_t raw_data, mcp3425_sps_t s
     return voltage;
 }
 
-void mcp3425_init(mcp3425_context_t *context, mcp3425_sps_t sampling_rate, mcp3425_pga_t gain, bool continuous_mode_en) {
+bool mcp3425_init(mcp3425_context_t *context, mcp3425_sps_t sampling_rate, mcp3425_pga_t gain, bool continuous_mode_en) {
     // Note that this call does not initialize the i2c bus
 
     // Capture:  prepend with zeroes   last bit                  bottom 2 bits              bottom 2 bits
@@ -71,13 +71,13 @@ void mcp3425_init(mcp3425_context_t *context, mcp3425_sps_t sampling_rate, mcp34
         if (cfg_ok) {
             // Write the params to the context by performing a sanity-check read. This also enables secondary validation outside this function's scope.
             mcp3425_get_params(context);
-            return;
+            return true;
         }
     }
 
     err_raise(ERR_I2C_TRANSACTION_FAIL, ERR_SEV_NONFATAL, "Failed to configure the A-D converter!", "mcp3425_init");
 
-    return;
+    return false;
 }
 
 bool mcp3425_get_measurement(mcp3425_context_t *context, double *reading) {

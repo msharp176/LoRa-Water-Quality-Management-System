@@ -21,6 +21,16 @@
  */
 static double convert_turb_voltage_to_turbidity(double sensor_voltage) {
 
+    // Turbidity sensor voltage cleanup - doing my best.
+    //sensor_voltage += 0.76;
+    if (sensor_voltage > 4.1188) {
+        sensor_voltage = 4.1188;
+    }
+    printf("Sensor Voltage (adjusted), %f", sensor_voltage);
+    // See SDIA Profile Excel File For Formula Characterization - Linear Regression Estimated from Testing Data
+    double turb_est = -1462.9 * (sensor_voltage) + 6011.1;
+
+    return turb_est < 0 ? 0 : turb_est;
 }
 
 /**
@@ -32,8 +42,8 @@ static double convert_turb_voltage_to_turbidity(double sensor_voltage) {
  */
 static double convert_rtd_voltage_to_temp(double sensor_voltage) {
 
-    // See section 2.4.11 of capstone report for formula derivation
-    return (-RTD_A + sqrt(pow(RTD_A, 2) - ((4 * RTD_B) * (1 - ((47 * sensor_voltage) / (5 - sensor_voltage)))))) / (2 * RTD_B);   
+    // See excel sheet for conversion
+    return (2515.7 * sensor_voltage) - 261.78;
 }
 
 /**
@@ -45,9 +55,11 @@ static double convert_rtd_voltage_to_temp(double sensor_voltage) {
  */
 static double convert_ph_voltage_to_ph(double sensor_voltage) {
 
+    // See SDIA Profile Excel File for formula characterization - linear regression from testing data
+    return (7.2492 * sensor_voltage) - 11.198;
 }
 
-bool acquire_data(sdia_context_t *sdia_context, sdia_potentiometer_full_calibration_t *sdia_cal, sensor_acquisition_settings_t *acquisition_settings, sensor_telemetry_t *telem_buf) {
+bool sensors_acquire_data(sdia_context_t *sdia_context, sdia_potentiometer_full_calibration_t *sdia_cal, sensor_acquisition_settings_t *acquisition_settings, sensor_telemetry_t *telem_buf) {
 
     bool acquisition_ok = false;
 
@@ -69,6 +81,8 @@ bool acquire_data(sdia_context_t *sdia_context, sdia_potentiometer_full_calibrat
     } while (0);
 
     if (!acquisition_ok) return false;
+
+    printf("Turbidity Voltage: %f, pH Voltage: %f, RTD Voltage (no adjustment): %f\n", turb_voltage, pH_voltage, rtd_voltage);
 
     // Convert to corresponding measurements
     telem_buf->turbidity_NTU = convert_turb_voltage_to_turbidity(turb_voltage);
