@@ -310,6 +310,24 @@ bool check_if_rebooted_or_clean_boot(void) {
     return watchdog_caused_reboot();
 }
 
+bool watchdog_init_hal(uint32_t timeout_ms) {
+    if (timeout_ms > WATCHDOG_MAX_DELAY_MS) {
+        return false;
+    }
+    else {
+        watchdog_enable(timeout_ms, true);
+        return true;
+    }
+}
+
+void watchdog_feed_hal() {
+    watchdog_update();
+}
+
+void watchdog_deinit_hal() {
+    watchdog_disable();
+}
+
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma endregion
@@ -500,6 +518,7 @@ int power_mgmt_go_dormant_hal(void *power_context) {
     printf("Powering off...\n");
     stdio_flush();
     stdio_deinit_all();
+    watchdog_deinit_hal();  // back to the kennel
     int retval = powman_set_power_state(power_states->dormant_power_state);
     if (PICO_OK != retval) return retval;
 

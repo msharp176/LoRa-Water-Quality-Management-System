@@ -35,18 +35,28 @@
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Types 
 
+/**
+ * @brief Different types of packets that the sensor node can send: telemetry or a message
+ */
 typedef enum lwqms_packet_types_e {
     LWQMS_PACKET_TYPE_TELEMETRY = 0,
     LWQMS_PACKET_TYPE_MESSAGE = 1
 } lwqms_packet_types_t;
 
+/**
+ * @brief Structure to encode the three measured sensor values as floating point numbers.
+ * Enables easy collapse to a uint8_t array for transmission.
+ */
 typedef struct lwqms_telemetry_s {
     float turbidity_measurement;
     float temperature_measurement;
     float pH_measurement;
 } lwqms_telemetry_t;
 
-// My first real-world use case for a union!!
+/**
+ * @brief Defines the ultimate payload contained in the packet. By using a union type, we can represent both
+ * payload types using the same C type and same memory locations.
+ */
 typedef union lwqms_pkt_payload_u {
     lwqms_telemetry_t telemetry;
     char message[sizeof(lwqms_telemetry_t)];

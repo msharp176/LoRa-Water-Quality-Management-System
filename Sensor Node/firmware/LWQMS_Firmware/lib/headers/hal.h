@@ -300,6 +300,8 @@ int i2c_get_available_addresses_hal(const i2c_context_t* i2c_context, uint8_t* a
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Watchdog & Reboot
 
+#define WATCHDOG_MAX_DELAY_MS 16777
+
 /**
  * 
  * @brief Reboots the MCU using the watchdog timer
@@ -315,6 +317,27 @@ void reboot(void);
  * 
  */
 bool check_if_rebooted_or_clean_boot(void);
+
+/**
+ * @brief Initalizes the watchdog timer on the MCU
+ * 
+ * @returns True for a successful initialization.
+ */
+bool watchdog_init_hal(uint32_t timeout_ms);
+
+/**
+ * @brief Feeds the watchdog, keeping the fierce animal at bay for another timeout, as defined in `watchdog_init_hal`
+ * 
+ * @returns None
+ */
+void watchdog_feed_hal();
+
+/**
+ * @brief Deactivates the watchdog, sending it back to the doghouse.
+ * 
+ * @returns None
+ */
+void watchdog_deinit_hal();
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

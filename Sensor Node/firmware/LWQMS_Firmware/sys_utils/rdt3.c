@@ -24,6 +24,8 @@ rdt3_0_result_codes_t rdt3_0_transmit(rdt_packet_t pkt, size_t pkt_obj_size, voi
 
     for (int k = 0; k < RDT_RETRIES; k++) {
         do {
+            watchdog_feed_hal();    // Feed the dog - beware of bites!
+
             // 1. Transmit the packet
             if (!rdt3_0_tx_hal(pkt, physical_layer_setup)) break;
             

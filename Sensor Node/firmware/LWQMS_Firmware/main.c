@@ -282,6 +282,8 @@ void startup_menu() {
 }
 
 void system_setup() {
+    watchdog_init_hal(WATCHDOG_MAX_DELAY_MS);   // Let the dog out
+
     init_usb_console_hal();
 
     //wait_for_usb_console_connection_hal();
@@ -355,6 +357,7 @@ void system_setup() {
     
         while (get_absolute_time() < startup_time) {
             if ((usb_console_getchar_timeout_us_hal(1000) | (1 << 5)) == 'm') { // Force user input to be lowercase
+                watchdog_deinit_hal();  // back to the kennel
                 startup_menu();
             }
         }
@@ -391,6 +394,7 @@ int main()
                  * In the SAMPLE state, the sensor node obtains analog voltage readings from each sensor, converts them to their relevant measurements,
                  * and saves them to RAM. The next state is the TRANSMIT state.
                  */
+                watchdog_feed_hal();    // Feed the dog - beware of bites!
                 sensors_acquire_data(&context_sdia_0, &sdia_calibration, &sen_acq_settings, &sensor_data);
                 printf("Telemetry: Turbidity = %f NTU, Temperature = %f C, pH = %f\n\n", sensor_data.turbidity_NTU, sensor_data.temperature_C, sensor_data.pH);
                 gpio_write_hal(EN_5V, GPIO_LOW);
@@ -422,7 +426,7 @@ int main()
                 lwqms_pkt_encode(&telem_packet, tx_pkt.buf, tx_pkt.len);
 
                 printf("Transmitting packet...\n\n");
-                rdt3_0_transmit(&tx_pkt, sizeof(lora_pkt_t), &lora_phy_setup);
+                rdt3_0_transmit(&tx_pkt, sizeof(lora_pkt_t), &lora_phy_setup);  // Feeding the dog built into this method
                 printf("\n\n-- Transmit Operation Complete --\n");
                 packet_id++;
                 state = LWQMS_FSM_STATE_DORMANT;
@@ -433,6 +437,7 @@ int main()
                  * after sensor acquisition is complete), puts the LoRa modulator in its deep sleep mode, and enters its MCU's lowest power
                  * state. After waking up, the MCU will have a cold reset, making the next state the SAMPLE state.
                  */
+                watchdog_feed_hal();    // Feed the dog - beware of bites!
                 uint32_t novo_mem_contents[1] = {packet_id};
                 enter_power_saving_mode(&power_mgmt_dormant_state, &context_radio_0, 60 * 1000 * NODE_SLEEP_INTERVAL_MINS, novo_mem_contents, 1);
                 state = LWQMS_FSM_STATE_RESET;
