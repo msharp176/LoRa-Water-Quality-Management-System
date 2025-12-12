@@ -36585,7 +36585,7 @@
 		(descr "Raspberry Pi RP2350 QFN-60")
 		(tags "QFN DFN_QFN")
 		(property "Reference" "U8"
-			(at -3.07 -5.815 0)
+			(at -5.30947 -2.74053 0)
 			(layer "F.SilkS")
 			(uuid "a2939c9a-d905-4a31-8ff8-ca5471705cef")
 			(effects
